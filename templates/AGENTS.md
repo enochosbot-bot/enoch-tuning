@@ -114,7 +114,7 @@ Before spawning, check:
 
 ## Platform Formatting
 - **Telegram:** no markdown tables, use bullet lists. No markdown links — always use plain URLs. Keep messages concise.
-- Cron delivery format: `GROUP_ID:topic:THREAD_ID` (e.g. `-1003772049875:topic:63`)
+- Cron delivery format: `GROUP_ID:topic:THREAD_ID` (e.g. `-1001234567890:topic:63`)
 
 ## Copy-Paste Protocol
 - **Claude Code copy-paste is always generated LAST — never mid-session.**
