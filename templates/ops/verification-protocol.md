@@ -86,7 +86,7 @@ If you're about to say any of these, stop and verify first:
 **The copy-paste is always the LAST thing generated in a session — never mid-conversation.**
 
 - Do not generate a Claude Code copy-paste while work is still in progress
-- If something gets added to the todo AFTER a copy-paste was already given, flag it immediately and deliver an addendum unprompted — don't wait for Deacon to catch it
+- If something gets added to the todo AFTER a copy-paste was already given, flag it immediately and deliver an addendum unprompted — don't wait for the user to catch it
 - Before generating the copy-paste, explicitly check: is there anything in this conversation that hasn't made it into the todo yet?
 
 ---

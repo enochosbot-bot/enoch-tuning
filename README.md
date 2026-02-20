@@ -145,14 +145,6 @@ This skill is a direct response to all four failures. It doesn't change what you
 
 ---
 
-## Professional Setup
-
-If you'd rather have this installed, personalized, and hardened by someone who's been running this system in production:
-
-**Ridley Research & Consulting** — AI implementation for operators, advisors, and political organizations.
-- Onboarding includes: skill install, full personalization, security audit, Gideon monitoring setup
-- Monthly retainer available for ongoing maintenance and updates
-
 ---
 
 ## License

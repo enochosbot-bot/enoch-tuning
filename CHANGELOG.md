@@ -2,13 +2,14 @@
 
 ## v1.4 — February 20, 2026
 
-### Security: Removed real identifier from AGENTS.md template
+### Security: Removed real identifiers + personal references
 
-Replaced a real Telegram group ID that was used as an example in the Platform Formatting section with a generic placeholder (`-1001234567890:topic:63`). If you installed v1.0–v1.3 and used this template verbatim, check your personalized AGENTS.md for your real group ID — keep it local, don't commit it to a public repo.
+- Replaced a real Telegram group ID in AGENTS.md template with a generic placeholder
+- Removed personal name reference from verification-protocol.md template
+- Removed consulting business attribution from README — repo is now fully generic
+- Added `SECURITY.md`: explicit guidance on what belongs public (templates) vs. private (your personalized instance)
 
-### Added: SECURITY.md
-
-Explicit guidance on what belongs in this public repo (templates only) vs. what should live in a private repo (your personalized instance, cron config, security playbook, memory, audit reports). Includes recommended setup for OPSEC-conscious users.
+If you installed v1.0–v1.3, audit your personalized files for any real IDs or personal data before committing to a public repo.
 
 ---
 
