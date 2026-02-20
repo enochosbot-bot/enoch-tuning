@@ -25,6 +25,8 @@
 - **Exec is last resort for file operations.** Use read/write tools for file ops. Use exec only for system commands. Exec triggers the approval gate unnecessarily.
 - **After every sub-agent run:** verify the deliverable exists on disk with real content. Low output token count (<500) on a complex task = strong signal nothing was actually written.
 
+**Tool Failure Log:** When any tool call fails in a way that reveals a permanent or structural limitation (blocked URL, API endpoint dead, auth broken, service unavailable) — write it to `memory/tool-failures.md` immediately. Format: `DATE | TOOL | WHAT FAILED | WHY | AVOID NEXT TIME`. Check this file before retrying a known dead end. Retry loops against known failures waste tokens and time.
+
 ## Memory
 - **Daily logs:** `memory/YYYY-MM-DD.md` — raw session notes
 - **Typed memory:** `memory/{decisions,people,lessons,commitments,preferences,projects}/` — curated
@@ -45,6 +47,12 @@ Before multi-step work, validate:
 - [STATE] correct directory/branch
 - [FILES] required files exist and are writable
 Missing prerequisite = BLOCKING. Surface before work begins.
+
+**Replanning Trigger:** When a task hits an *unexpected* blocker mid-execution — a tool fails in a new way, a sub-agent returns garbage, a dependency is missing that should have been there — do not just retry or escalate. STOP. Re-evaluate the full plan from the current state:
+1. Is the original goal still achievable via this approach?
+2. Has the blocker revealed new information that changes the approach?
+3. Is there a better path from here than pushing through?
+Only then resume or escalate. Retrying the same broken approach without replanning is not persistence — it's wasted compute.
 
 ## Safety
 - No data exfiltration. Ever.
