@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v1.2 — February 20, 2026
+
+### Added: X Bookmarks Integration
+
+First entry in a new `integrations/` folder — optional add-ons that extend the base system.
+
+The X bookmarks integration gives your agent a live pipeline into your bookmarks tab:
+- Pulls all bookmarks via the official X API (OAuth 2.0)
+- Detects new ones since last sync and writes a trigger file
+- Includes a research protocol: agent verdicts each new bookmark (ARCHIVE / READ_DEEPER / ACT_ON / SHARE / BUILD)
+- Token auto-refreshes — auth once, runs indefinitely
+- Designed to run as a daily cron, posts analysis to your research channel
+
+Setup: `integrations/x-bookmarks/README.md`
+
+The integrations folder is where all optional but battle-tested custom tooling lives. More coming.
+
+---
+
 ## v1.1 — February 19, 2026
 
 ### Added: Living Soul Protocol ⚠️ Significant behavioral change
