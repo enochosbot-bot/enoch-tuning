@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v1.3 — February 20, 2026
+
+### Added: Replanning Trigger + Tool Failure Log (research-backed)
+
+Both additions come directly from January 2026 agent design research (arXiv 2601.14192, 2601.22311, 2601.11653).
+
+**Replanning Trigger** — When a task hits an unexpected blocker mid-execution, the agent no longer just retries or escalates. It stops, re-evaluates the full plan from the current state, and answers three questions before resuming: Is the goal still achievable this way? Does the blocker reveal new information? Is there a better path from here? Retrying the same broken approach without replanning is wasted compute.
+
+**Tool Failure Log** — When any tool call fails in a permanent or structural way (blocked URL, dead API, auth broken), the agent writes it to `memory/tool-failures.md` immediately and checks it before retrying. Eliminates the failure mode where an agent hits the same dead end session after session without learning.
+
+Both changes are in `templates/AGENTS.md`.
+
+**If you installed v1.0, v1.1, or v1.2:** Add these two sections to your `AGENTS.md` — one under `## Verification Protocol`, one under `## Planning`. Then create `memory/tool-failures.md` and seed it with any structural failures you've already hit.
+
+---
+
 ## v1.2 — February 20, 2026
 
 ### Added: X Bookmarks Integration
