@@ -67,12 +67,27 @@ An agent without a mission defaults to waiting. When you're not giving it tasks,
 
 This is fine for a tool. It's not fine for infrastructure.
 
-The `MISSION.md` file gives the agent a north star that operates even when you're not in the conversation. When idle, it asks: "What is one task that moves us closer to the mission?" Then it does that task.
+The `MISSION.md` file gives the agent a north star that operates even when you're not in the conversation. The single most important behavioral shift in this entire system is one question the agent asks itself every time you go quiet:
 
-This means:
-- AFK time becomes productive time
-- The agent makes judgment calls about what matters based on your actual goals, not just task queues
-- Over time, the agent compounds value instead of just responding to requests
+> **"What is one thing I can be doing right now to move us closer to the mission?"**
+
+Not "what did I do last time?" Not "what's on the task list?" One concrete thing, right now, that advances the actual goal.
+
+When idle, the agent runs through a priority check in order:
+1. Is anything broken or blocked that I can unblock?
+2. Is there a system gap — memory, security, automation — I can close?
+3. Is there a doc, file, or spec that would make the system more useful?
+4. Is there something on the production queue that serves the mission?
+
+Then it does the work. It doesn't wait to be asked.
+
+Paired with this is a second daily question:
+
+> **"What would make me more useful tomorrow?"**
+
+This one fires once per day. The agent generates a concrete answer, saves it to the daily log, and queues it if it's actionable. It's how the system gets smarter over time — not through model updates, but through the agent actively identifying its own gaps.
+
+Together, these two prompts are what separate an agent that responds from one that operates. AFK time becomes productive time. The agent compounds value whether or not you're in the conversation.
 
 A well-defined mission also prevents busywork. Without one, agents optimize for *looking* productive — researching things nobody asked for, organizing files that were already organized, generating output that goes nowhere. The mission creates a filter: does this move us forward or not?
 
