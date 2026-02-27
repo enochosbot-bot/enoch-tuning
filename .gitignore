@@ -59,6 +59,19 @@ tmp/*.pdf
 # Photos (managed externally)
 deacon-photos/
 
+# Personal media — never commit to public repo
+deacon-headshot*
+bookshelf_frame_*
+bookshelf.md
+enoch-pfp.jpg
+nexus-*.png
+creative-output.png
+dense_*.png
+end_*.png
+intro_*.png
+ps_*.png
+*.tw_session
+
 # Large media — clips and generated images
 clips/
 creative-output/
