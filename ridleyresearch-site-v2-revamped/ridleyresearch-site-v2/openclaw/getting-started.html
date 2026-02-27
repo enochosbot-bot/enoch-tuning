@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Getting Started with OpenClaw | Ridley Research & Consulting</title>
+  <meta name="description" content="Everything you need to get OpenClaw running — hardware, accounts, installation, and your first working agent." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+  <style>
+    .toc {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+    .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      font-family: "Space Grotesk", Inter, sans-serif;
+    }
+    .toc ol { margin: 0; padding-left: 20px; }
+    .toc li { margin: 6px 0; font-size: 14px; }
+    .toc a { color: var(--accent); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .req-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .req-card-title {
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: var(--accent2);
+    }
+    .req-card ul { margin: 0; padding-left: 16px; }
+    .req-card li { font-size: 13px; color: var(--muted); margin: 4px 0; }
+    .req-card li span { color: var(--text); }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #5b8fff, #3d6eff);
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin-right: 10px;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+
+    .step-block {
+      border-left: 2px solid rgba(91,143,255,0.2);
+      padding-left: 20px;
+      margin: 24px 0 32px;
+    }
+
+    .note {
+      background: rgba(91,143,255,0.07);
+      border: 1px solid rgba(91,143,255,0.18);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 14px;
+      margin: 20px 0;
+      color: #b8c8f0;
+    }
+    .note strong { color: #7eb8ff; }
+
+    code {
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 5px;
+      padding: 2px 7px;
+      font-size: 13px;
+      color: #7eb8ff;
+      font-family: "SF Mono", "Fira Code", monospace;
+    }
+    pre {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 16px 0;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #c8d8ff;
+    }
+
+    .pill {
+      display: inline-block;
+      background: rgba(91,143,255,0.12);
+      border: 1px solid rgba(91,143,255,0.2);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 12px;
+      color: #c8d8ff;
+      margin: 2px;
+    }
+    .pill.green { background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.2); color: #86efac; }
+    .pill.yellow { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.2); color: #fcd34d; }
+
+    @media (max-width:600px) {
+      .req-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <article class="post">
+      <h1>Getting Started with OpenClaw</h1>
+      <p class="muted">OpenClaw section · 12 min read · Last updated February 2026</p>
+
+      <p>This guide covers everything you need to go from zero to a working OpenClaw agent — the hardware, the accounts, the installation, and the first configuration that makes it actually useful. No fluff, no assumed knowledge.</p>
+
+      <div class="toc">
+        <div class="toc-title">On this page</div>
+        <ol>
+          <li><a href="#what-youll-have">What you'll have at the end</a></li>
+          <li><a href="#requirements">Requirements</a></li>
+          <li><a href="#install">Install OpenClaw</a></li>
+          <li><a href="#connect-telegram">Connect Telegram</a></li>
+          <li><a href="#connect-model">Connect an AI model</a></li>
+          <li><a href="#first-test">First test</a></li>
+          <li><a href="#configure-identity">Configure your agent's identity</a></li>
+          <li><a href="#next-steps">What to do next</a></li>
+        </ol>
+      </div>
+
+      <!-- ─── SECTION 1 ─── -->
+      <h2 id="what-youll-have">1. What You'll Have at the End</h2>
+
+      <p>A working agent that:</p>
+      <ul>
+        <li>Runs continuously on your Mac as a background service</li>
+        <li>Receives and responds to messages via Telegram on your phone</li>
+        <li>Has access to an AI model (cloud or local)</li>
+        <li>Can read and write files, run searches, and execute tasks</li>
+        <li>Remembers context across sessions</li>
+      </ul>
+
+      <p>This is the foundation. Everything else — cron schedules, additional tools, memory architecture, specialized skills — gets layered on top. Get this working first.</p>
+
+      <!-- ─── SECTION 2 ─── -->
+      <h2 id="requirements">2. Requirements</h2>
+
+      <div class="req-grid">
+        <div class="req-card">
+          <div class="req-card-title">Hardware</div>
+          <ul>
+            <li><span>Mac</span> (Apple Silicon recommended)</li>
+            <li><span>8GB RAM minimum</span>, 16GB+ preferred</li>
+            <li>macOS 13 Ventura or newer</li>
+            <li>Stable internet connection</li>
+          </ul>
+        </div>
+        <div class="req-card">
+          <div class="req-card-title">Accounts</div>
+          <ul>
+            <li><span>Telegram account</span> + phone number</li>
+            <li><span>Anthropic account</span> (or OpenAI)</li>
+            <li>Brave Search API key (free tier works)</li>
+          </ul>
+        </div>
+        <div class="req-card">
+          <div class="req-card-title">Software</div>
+          <ul>
+            <li><span>Node.js</span> v18 or newer</li>
+            <li><span>Homebrew</span> (macOS package manager)</li>
+            <li>Git</li>
+          </ul>
+        </div>
+        <div class="req-card">
+          <div class="req-card-title">Cost to get started</div>
+          <ul>
+            <li><span>OpenClaw:</span> free, open source</li>
+            <li><span>Telegram bot:</span> free</li>
+            <li><span>Claude API:</span> pay-per-use (~$5–20/mo typical)</li>
+            <li><span>Brave Search:</span> 2,000 free queries/mo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Apple Silicon recommendation:</strong> An M4 Mac mini (16GB, $599) is the best entry point. The unified memory architecture means it can also run local models later — giving you a path to zero API costs as you scale. You don't need it to start, but it's the right long-term platform.
+      </div>
+
+      <!-- ─── SECTION 3 ─── -->
+      <h2 id="install">3. Install OpenClaw</h2>
+
+      <div class="step-block">
+        <p>Install Homebrew if you don't already have it:</p>
+        <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+
+        <p>Install Node.js:</p>
+        <pre><code>brew install node</code></pre>
+
+        <p>Install OpenClaw globally via npm:</p>
+        <pre><code>npm install -g openclaw</code></pre>
+
+        <p>Verify the install:</p>
+        <pre><code>openclaw --version</code></pre>
+
+        <p>Initialize your workspace:</p>
+        <pre><code>openclaw init</code></pre>
+
+        <p>This creates a workspace directory at <code>~/.openclaw/workspace</code> — the folder your agent reads from, writes to, and calls home.</p>
+      </div>
+
+      <!-- ─── SECTION 4 ─── -->
+      <h2 id="connect-telegram">4. Connect Telegram</h2>
+
+      <div class="step-block">
+        <p><strong>Create a Telegram bot:</strong></p>
+        <ol>
+          <li>Open Telegram and search for <code>@BotFather</code></li>
+          <li>Send <code>/newbot</code></li>
+          <li>Choose a name and username for your bot</li>
+          <li>BotFather will give you an API token — copy it</li>
+        </ol>
+
+        <p>Add the token to your OpenClaw config:</p>
+        <pre><code>openclaw config set telegram.botToken YOUR_TOKEN_HERE</code></pre>
+
+        <p><strong>Get your Telegram user ID:</strong></p>
+        <ol>
+          <li>Search for <code>@userinfobot</code> on Telegram</li>
+          <li>Send it any message — it replies with your numeric ID</li>
+        </ol>
+
+        <pre><code>openclaw config set telegram.allowedUsers YOUR_TELEGRAM_ID</code></pre>
+
+        <div class="note">
+          <strong>Why this matters:</strong> The allowedUsers setting locks your bot so only you (and whoever else you explicitly add) can talk to it. Without this, anyone who finds your bot can send it commands.
+        </div>
+      </div>
+
+      <!-- ─── SECTION 5 ─── -->
+      <h2 id="connect-model">5. Connect an AI Model</h2>
+
+      <div class="step-block">
+        <p>OpenClaw supports multiple model providers. For a first setup, Anthropic Claude is the most capable and the most consistent.</p>
+
+        <p>Get an API key from <a href="https://console.anthropic.com" style="color:var(--accent)">console.anthropic.com</a>. Add it:</p>
+        <pre><code>openclaw config set anthropic.apiKey YOUR_KEY_HERE
+openclaw config set model anthropic/claude-sonnet-4-6</code></pre>
+
+        <p>If you want to run a local model instead (no API costs):</p>
+        <pre><code># Install Ollama
+brew install ollama
+
+# Pull a model (16GB RAM minimum for 7B models)
+ollama pull llama3.2
+
+# Point OpenClaw at it
+openclaw config set model ollama/llama3.2</code></pre>
+
+        <div class="note">
+          <strong>Which model to use:</strong> Start with Claude if you have an API key. It's the most capable out of the box and handles complex instructions well. Switch to a local model once you understand what tasks your agent is actually running — local models are free and handle most recurring jobs fine.
+        </div>
+      </div>
+
+      <!-- ─── SECTION 6 ─── -->
+      <h2 id="first-test">6. First Test</h2>
+
+      <div class="step-block">
+        <p>Start the OpenClaw gateway:</p>
+        <pre><code>openclaw gateway start</code></pre>
+
+        <p>Open Telegram, find your bot, and send it a message:</p>
+        <pre><code>Hello — what can you do?</code></pre>
+
+        <p>If it responds, you have a working agent. If it doesn't:</p>
+        <ul>
+          <li>Check gateway status: <code>openclaw gateway status</code></li>
+          <li>Check logs: <code>openclaw logs</code></li>
+          <li>Verify your bot token is correct in the config</li>
+          <li>Confirm you messaged the right bot (search by username)</li>
+        </ul>
+
+        <p>Once it's responding, test a basic task:</p>
+        <pre><code>Search the web for the latest news on AI agents and give me a 3-bullet summary.</code></pre>
+
+        <p>If that works, your agent has a model, memory, and web access. The core is running.</p>
+
+        <p>To have the gateway start automatically when you restart your Mac:</p>
+        <pre><code>openclaw gateway enable</code></pre>
+      </div>
+
+      <!-- ─── SECTION 7 ─── -->
+      <h2 id="configure-identity">7. Configure Your Agent's Identity</h2>
+
+      <div class="step-block">
+        <p>This is the most important configuration step and the one most people skip. Your agent's identity file is what separates a reliable system from one that drifts.</p>
+
+        <p>Open your workspace:</p>
+        <pre><code>cd ~/.openclaw/workspace</code></pre>
+
+        <p>You'll find a <code>SOUL.md</code> file. This is where you define:</p>
+        <ul>
+          <li>What your agent's name and role is</li>
+          <li>What it will never do (hard limits)</li>
+          <li>How it communicates</li>
+          <li>What it should do proactively vs. only when asked</li>
+        </ul>
+
+        <p>There's also <code>AGENTS.md</code> (operating rules), <code>MEMORY.md</code> (long-term memory), and a <code>memory/</code> folder. These files are what the agent reads at the start of every session to understand who it is and what it's working on.</p>
+
+        <div class="note">
+          <strong>Don't skip this.</strong> An agent without a configured identity is just a chat interface. The identity files are what make it an operator — something that acts consistently, remembers context, and behaves predictably over time.
+        </div>
+      </div>
+
+      <!-- ─── SECTION 8 ─── -->
+      <h2 id="next-steps">8. What to Do Next</h2>
+
+      <p>Once you have a working agent, the next questions are:</p>
+
+      <ul>
+        <li><strong>What should it do automatically?</strong> — Set up your first cron job. Morning briefing or email triage are good starting points.</li>
+        <li><strong>How should it remember things?</strong> — Configure the memory architecture so context persists across sessions correctly.</li>
+        <li><strong>Which tools should it have access to?</strong> — Web search, email, calendar, file ops — each needs explicit configuration.</li>
+        <li><strong>How do you verify it's working?</strong> — Set up a heartbeat check so you know when something fails.</li>
+      </ul>
+
+      <p>These questions are where the real setup work happens. The installation above gets you a running system. The configuration work is what makes it useful.</p>
+
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0;" />
+
+      <p><strong>The full configuration guide</strong> — identity setup, memory architecture, cron automation, Telegram integration, and deployment — is covered step by step in the <a href="../#guide" style="color:var(--accent)">AI Ops Setup Guide</a>. Everything I actually run, documented from scratch.</p>
+
+      <p>Want to see what day-to-day looks like as you build this out? <a href="../daily/" style="color:var(--accent)">Follow the Daily Log →</a></p>
+
+      <div style="margin-top:40px;padding:28px 32px;background:linear-gradient(135deg,rgba(91,143,255,0.08),rgba(30,50,140,0.1));border:1px solid rgba(91,143,255,0.2);border-radius:16px;text-align:center;">
+        <p style="font-size:17px;font-weight:600;margin:0 0 8px;color:var(--text);">Want a guided walkthrough + coaching on implementation?</p>
+        <p style="font-size:14px;color:var(--muted);margin:0 0 20px;">We'll walk through your setup, your workflows, and get it running the right way.</p>
+        <a href="mailto:hello@ridleyresearch.com?subject=Implementation%20Coaching" style="display:inline-flex;align-items:center;background:linear-gradient(135deg,#5b8fff,#3d6eff);color:#fff;text-decoration:none;padding:13px 26px;border-radius:10px;font-weight:600;font-size:15px;">Book a Call →</a>
+      </div>
+    </article>
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+  <script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Agents for HVAC Technicians: Fill Your Schedule Without the Busywork | Ridley Research & Consulting</title>
+  <meta name="description" content="HVAC businesses live and die by how well they manage demand swings. Here's how a custom AI agent setup keeps your schedule full without adding office overhead." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+    <article class="post">
+      <h1>AI Agents for HVAC Technicians: Fill Your Schedule Without the Busywork</h1>
+      <p class="muted">Published: 2026-02-26 · 6 min read</p>
+
+      <h2>The Problem</h2>
+
+      <p>HVAC is one of the most demand-volatile businesses in the trades. In July in Texas or January in the Midwest, your phone rings faster than you can answer it. In April and October, you're wondering where the next job is coming from. Most HVAC operators know this pattern well — they've lived through enough seasons to expect it — but knowing it doesn't make managing it easier.</p>
+
+      <p>During the peaks, the problem isn't finding work, it's handling the volume. Calls go to voicemail and don't get returned for two days. Customers book with whoever answers. Scheduling gets chaotic. Emergency calls jump the queue and the routine maintenance jobs get pushed, then the customers who got pushed don't come back. All while the office side of the business — estimates, invoicing, equipment quotes, maintenance agreement renewals — piles up because everyone is heads-down in the field.</p>
+
+      <p>During the slow seasons, the problem flips. Now you need to be proactive — maintenance reminders going out, tune-up specials being offered to past customers, agreements being renewed before they lapse. That kind of outreach should be running continuously, but in practice it happens when someone has time to sit down and do it, which is never when the schedule is full and not often enough when it's slow.</p>
+
+      <h2>What Changes</h2>
+
+      <p>A custom agent setup for an HVAC business attacks both ends of the demand cycle.</p>
+
+      <p>During peak periods, inbound requests get acknowledged immediately, appointment windows get offered automatically, and confirmations go out without a dispatcher having to manage each one manually. Your schedule gets organized based on geography and job type, not whoever called most recently. Tech arrival windows get communicated to customers so your phones aren't fielding "when is he coming?" calls all day.</p>
+
+      <p>During slow periods, your customer database works for you. Maintenance reminders go out to every customer due for a seasonal tune-up. Agreement renewal notices go to customers whose contracts are coming up. Past customers who haven't booked in 18 months get a simple check-in. These aren't mass blasts — they're timed, relevant outreach based on actual customer history.</p>
+
+      <p>Invoicing closes out faster. Equipment quotes get formatted and sent the same day. Reviews get requested after every completed job. Service history gets logged so your techs walk in knowing what was done last time.</p>
+
+      <h2>What "Custom" Actually Means</h2>
+
+      <p>HVAC businesses are not interchangeable. A two-tech residential-only operation runs nothing like a ten-truck commercial and residential shop. Your maintenance agreement structure, your service area, your parts sourcing, the software you dispatch from — all of it shapes how an agent setup needs to be built.</p>
+
+      <p>We don't install a package and call it done. We understand your operation first. What's falling through the cracks, what's eating your time, how your customers communicate, what your slow season looks like. The build comes after that. The result is automation that fits your actual business — not something you have to work around.</p>
+
+      <h2>The Result</h2>
+
+      <p>Your schedule stays fuller in the slow months because outreach is running consistently. Your peak season doesn't turn into a customer service disaster because the intake process doesn't depend on someone being available to answer every call. Your invoicing is current. Your maintenance customers hear from you before they think to call a competitor.</p>
+
+      <p>You're still running the jobs. The business around those jobs runs with less friction and less of it falling on you personally.</p>
+
+      <p>If you run an HVAC company and want a custom agent setup built for your business, <a href="mailto:hello@ridleyresearch.com?subject=HVAC%20AI%20Setup">start here</a>.</p>
+    </article>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

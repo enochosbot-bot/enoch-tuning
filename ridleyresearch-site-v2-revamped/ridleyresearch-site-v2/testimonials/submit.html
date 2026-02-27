@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Submit a Testimonial | Ridley Research & Consulting</title>
+  <meta name="description" content="Share what changed for you after working with Ridley Research. Your story helps others decide." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+  <style>
+
+    /* ── PAGE HERO ── */
+    .submit-hero {
+      padding: 72px 0 52px;
+      border-bottom: 1px solid var(--line2);
+      margin-bottom: 56px;
+    }
+    .submit-eyebrow {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .submit-headline {
+      font-family: var(--serif);
+      font-size: clamp(36px, 6vw, 60px);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin: 0 0 20px;
+      line-height: 1.1;
+    }
+    .submit-sub {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 54ch;
+      margin: 0;
+    }
+
+    /* ── FORM CONTAINER ── */
+    .form-wrap {
+      max-width: 600px;
+      margin-bottom: 80px;
+    }
+
+    /* ── FORM FIELDS ── */
+    .field-group {
+      margin-bottom: 32px;
+    }
+    .field-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .field-group label .optional {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.2);
+      font-weight: 400;
+      text-transform: none;
+      margin-left: 6px;
+    }
+    .field-group input[type="text"],
+    .field-group textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      color: var(--text);
+      font-size: 15px;
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.5;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      resize: vertical;
+    }
+    .field-group input[type="text"]:focus,
+    .field-group textarea:focus {
+      border-color: rgba(255,255,255,0.22);
+      background: var(--surface2);
+    }
+    .field-group input[type="text"]::placeholder,
+    .field-group textarea::placeholder {
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .field-group textarea {
+      min-height: 160px;
+    }
+
+    /* ── STAR RATING ── */
+    .star-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .star-row input[type="radio"] {
+      display: none;
+    }
+    .star-row label.star {
+      font-size: 26px;
+      cursor: pointer;
+      color: rgba(255,255,255,0.15);
+      transition: color 0.15s ease, transform 0.1s ease;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+    }
+    /* Highlight stars on hover and when checked — CSS-only using reverse sibling trick */
+    .star-row input[type="radio"]:checked ~ label.star { color: rgba(255,255,255,0.15); }
+    .star-row:has(input[value="1"]:checked) label.star:nth-of-type(1) { color: var(--accent2); }
+    .star-row:has(input[value="2"]:checked) label.star:nth-of-type(-n+2) { color: var(--accent2); }
+    .star-row:has(input[value="3"]:checked) label.star:nth-of-type(-n+3) { color: var(--accent2); }
+    .star-row:has(input[value="4"]:checked) label.star:nth-of-type(-n+4) { color: var(--accent2); }
+    .star-row:has(input[value="5"]:checked) label.star:nth-of-type(-n+5) { color: var(--accent2); }
+    .star-row:hover label.star { color: rgba(255,255,255,0.15); }
+    .star-row label.star:hover,
+    .star-row label.star:hover ~ label.star { color: var(--accent2) !important; }
+    /* Fix: highlight hovered star and all before it */
+    .star-row label.star:hover { color: var(--accent2) !important; }
+    .star-row label.star:hover ~ label.star { color: rgba(255,255,255,0.15) !important; }
+    /* Use flex row-reverse so previous-sibling CSS trick works on hover */
+
+    /* ── PERMISSION CHECKBOX ── */
+    .checkbox-group {
+      margin-bottom: 36px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent2);
+      cursor: pointer;
+    }
+    .checkbox-group label {
+      font-size: 13px;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.6;
+      cursor: pointer;
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--text);
+      color: #0d1017;
+      border: none;
+      padding: 14px 32px;
+      border-radius: var(--radius-pill);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .submit-btn:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* ── FORM DIVIDER ── */
+    .form-rule {
+      height: 1px;
+      background: var(--line2);
+      margin: 36px 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+
+    <!-- ── HERO ── -->
+    <section class="submit-hero">
+      <div class="submit-eyebrow">Testimonials</div>
+      <h1 class="submit-headline">What changed<br>for you?</h1>
+      <p class="submit-sub">If you've worked with us or used OpenClaw, we'd love to hear your story. Named or anonymous — your call. Submissions go straight to Deacon.</p>
+    </section>
+
+    <!-- ── FORM ── -->
+    <div class="form-wrap">
+      <form name="testimonial-submission" method="POST" data-netlify="true" action="/testimonials/thank-you">
+        <input type="hidden" name="form-name" value="testimonial-submission" />
+
+        <div class="field-group">
+          <label for="name">Name <span class="optional">(required)</span></label>
+          <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name" />
+        </div>
+
+        <div class="field-group">
+          <label for="company">Company / Role <span class="optional">optional</span></label>
+          <input type="text" id="company" name="company" placeholder="e.g. Founder at Acme Co." autocomplete="organization" />
+        </div>
+
+        <div class="form-rule"></div>
+
+        <div class="field-group">
+          <label for="result">What changed for you?</label>
+          <textarea id="result" name="result" placeholder="Describe what shifted — in your workflow, business, or life — after working with us or using OpenClaw." required></textarea>
+        </div>
+
+        <div class="field-group">
+          <label>Rating <span class="optional">optional</span></label>
+          <!-- Stars use flex row-reverse so :has() CSS-only hover works correctly -->
+          <div class="star-row" style="flex-direction:row-reverse;justify-content:flex-end;">
+            <input type="radio" name="rating" id="star5" value="5" />
+            <label for="star5" class="star" title="5 stars">★</label>
+            <input type="radio" name="rating" id="star4" value="4" />
+            <label for="star4" class="star" title="4 stars">★</label>
+            <input type="radio" name="rating" id="star3" value="3" />
+            <label for="star3" class="star" title="3 stars">★</label>
+            <input type="radio" name="rating" id="star2" value="2" />
+            <label for="star2" class="star" title="2 stars">★</label>
+            <input type="radio" name="rating" id="star1" value="1" />
+            <label for="star1" class="star" title="1 star">★</label>
+          </div>
+        </div>
+
+        <div class="form-rule"></div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="permission" name="permission" value="yes" required />
+          <label for="permission">I give Ridley Research permission to publish this testimonial on ridleyresearch.com and in marketing materials.</label>
+        </div>
+
+        <button type="submit" class="submit-btn">Send It →</button>
+      </form>
+    </div>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+  <script>
+    const revealEls = document.querySelectorAll(".submit-hero, .form-wrap");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = "1";
+          e.target.style.transform = "translateY(0)";
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    revealEls.forEach((el, i) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(20px)";
+      el.style.transition = `opacity 0.5s ease ${i * 0.08}s, transform 0.5s ease ${i * 0.08}s`;
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

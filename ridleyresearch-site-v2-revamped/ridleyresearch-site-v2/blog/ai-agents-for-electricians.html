@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Agents for Electricians: More Jobs, Less Paperwork | Ridley Research & Consulting</title>
+  <meta name="description" content="Electrical contractors waste hours every week on quotes, scheduling, and follow-ups that could run automatically. Here's what a custom agent setup looks like in an electrical business." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+    <article class="post">
+      <h1>AI Agents for Electricians: More Jobs, Less Paperwork</h1>
+      <p class="muted">Published: 2026-02-26 · 6 min read</p>
+
+      <h2>The Problem</h2>
+
+      <p>Electrical contractors spend a significant chunk of every week on work that has nothing to do with electrical. Quoting jobs takes time — especially when each one needs to be scoped properly, priced accurately, and formatted in a way that looks professional. Scheduling requires coordination, and when a job runs long or a tech calls in sick, the whole day's calendar needs to be rearranged and every affected customer notified. After the job is done, there's invoicing, permit documentation, warranty paperwork, and the follow-up that should happen but usually doesn't.</p>
+
+      <p>For smaller shops — owner-operators or two or three electricians — all of this lands on one person. Usually the owner. Usually at the end of the day when they'd rather be anywhere else. The work itself is fine. It's the layer of business operations sitting on top of it that grinds people down.</p>
+
+      <p>The other cost is the jobs that don't close because the quote took four days to get out, or the customer called twice and didn't hear back, or the follow-up on a pending estimate never happened. You did the work of acquiring that lead. You just didn't close the loop fast enough. That's a real revenue leak, and it's almost entirely a systems problem, not a skills problem.</p>
+
+      <h2>What Changes</h2>
+
+      <p>A custom agent setup for an electrical business is built around the specific places where your time and revenue are leaking.</p>
+
+      <p>On the quoting side: a customer submits a job request, the agent acknowledges it immediately, gathers any additional details needed, and generates a draft estimate based on your pricing and job type. You review, adjust if needed, approve, and it goes out. Same day. Not three days later when you finally had time to sit down with it.</p>
+
+      <p>Follow-up on outstanding quotes runs automatically. If someone received an estimate and hasn't responded in three days, a gentle check-in goes out. Most people who don't respond aren't saying no — they got busy, forgot, or were waiting for a reason to pull the trigger. A well-timed follow-up closes a meaningful percentage of those.</p>
+
+      <p>Scheduling confirmations, arrival notifications, job completion follow-ups, review requests — all of it runs on a cadence without you managing each step. Your customer communication becomes consistent without you having to be consistently available to manage it.</p>
+
+      <h2>What "Custom" Actually Means</h2>
+
+      <p>An electrical contractor doing residential service calls has a fundamentally different operation than one running commercial panel upgrades and new construction. Your pricing structure, permit processes, crew size, the software you use to manage jobs — all of it is specific to how you've built your business.</p>
+
+      <p>We build around that specificity. We spend time understanding your workflow before we write a single line of automation. What types of jobs do you do most? Where does your time go that you wish it didn't? What does your quoting process look like today? The build comes from that conversation. What you end up with is infrastructure that fits how you operate — not a generic tool you have to configure yourself and maintain on top of everything else.</p>
+
+      <h2>The Result</h2>
+
+      <p>Quotes get out faster. Pending estimates get followed up on. Customers get confirmation and arrival updates without you texting them manually. Invoices go out the day the job closes. Your reviews accumulate because the request actually goes out every time, not just when you remember.</p>
+
+      <p>The electrical work doesn't change. The business infrastructure around it runs tighter, and more of what you do actually turns into revenue instead of time spent on tasks that aren't billable.</p>
+
+      <p>If you run an electrical contracting business and want a custom agent setup built for your operation, <a href="mailto:hello@ridleyresearch.com?subject=Electrical%20AI%20Setup">start here</a>.</p>
+    </article>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

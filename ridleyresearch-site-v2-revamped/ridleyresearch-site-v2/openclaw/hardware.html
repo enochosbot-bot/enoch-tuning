@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hardware for AI Agents | Ridley Research & Consulting</title>
+  <meta name="description" content="What hardware you run your AI agent stack on matters more than most people realize. Here's what we use, why we chose it, and what to avoid." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+  <style>
+
+    .hw-intro {
+      max-width: 66ch;
+      padding: 52px 0 56px;
+      border-bottom: 1px solid var(--line2);
+      margin-bottom: 56px;
+    }
+    .hw-intro p {
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--muted2);
+      font-weight: 300;
+      margin: 0 0 22px;
+    }
+    .hw-intro p:last-child { margin-bottom: 0; }
+    .hw-intro strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .hw-section {
+      max-width: 66ch;
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--line2);
+    }
+    .hw-section:last-of-type {
+      border-bottom: none;
+    }
+    .hw-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin: 0 0 22px;
+      line-height: 1.2;
+    }
+    .hw-section p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--muted2);
+      font-weight: 300;
+      margin: 0 0 20px;
+    }
+    .hw-section p:last-child { margin-bottom: 0; }
+    .hw-section strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+    .hw-section ul {
+      margin: 0 0 20px;
+      padding-left: 20px;
+    }
+    .hw-section ul li {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--muted2);
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+    .hw-section ul li strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 24px;
+      font-size: 14px;
+    }
+    .comparison-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 16px 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .comparison-table td {
+      padding: 14px 16px 14px 0;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.6;
+      border-bottom: 1px solid var(--line2);
+      vertical-align: top;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table td:first-child {
+      color: var(--text);
+      font-weight: 400;
+      white-space: nowrap;
+      padding-right: 24px;
+    }
+    .verdict-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-pill);
+      padding: 3px 10px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .verdict-tag.recommended {
+      color: var(--text);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .rec-block {
+      padding: 40px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      background: var(--surface);
+      margin: 40px 0 0;
+      position: relative;
+      overflow: hidden;
+      max-width: 66ch;
+    }
+    .rec-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.22), rgba(255,255,255,0.03));
+    }
+    .rec-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .rec-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 400;
+      color: var(--text);
+      margin: 0 0 16px;
+      line-height: 1.25;
+    }
+    .rec-body {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted2);
+      font-weight: 300;
+      margin: 0 0 16px;
+    }
+    .rec-body strong { color: var(--text); font-weight: 400; }
+    .rec-body:last-of-type { margin-bottom: 0; }
+
+    /* ── MAC TIER BREAKDOWN ── */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 32px 0 40px;
+    }
+    @media (max-width: 600px) { .tier-grid { grid-template-columns: 1fr; } }
+    .tier-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tier-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .tier-entry::before  { background: linear-gradient(90deg, #4ade80, #22c55e); }
+    .tier-mid::before    { background: linear-gradient(90deg, #5b8fff, #3d6eff); }
+    .tier-pro::before    { background: linear-gradient(90deg, #a855f7, #7c3aed); }
+    .tier-max::before    { background: linear-gradient(90deg, #f59e0b, #d97706); }
+    .tier-ultra::before  { background: linear-gradient(90deg, #ef4444, #dc2626); }
+    .tier-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .tier-entry .tier-label  { color: #4ade80; }
+    .tier-mid   .tier-label  { color: #7eb8ff; }
+    .tier-pro   .tier-label  { color: #c084fc; }
+    .tier-max   .tier-label  { color: #fbbf24; }
+    .tier-ultra .tier-label  { color: #f87171; }
+    .tier-name  { font-size: 18px; font-weight: 600; margin: 0 0 4px; color: var(--text); }
+    .tier-price { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 13px;
+      gap: 12px;
+    }
+    .spec-row:last-of-type { border-bottom: none; }
+    .spec-key { color: var(--muted); flex-shrink: 0; }
+    .spec-val { color: var(--text); font-weight: 500; text-align: right; }
+    .models-section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .models-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .model-tag {
+      display: inline-block;
+      background: rgba(91,143,255,0.1);
+      border: 1px solid rgba(91,143,255,0.2);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 12px;
+      margin: 3px 3px 3px 0;
+      color: #c8d8ff;
+    }
+    .schematic {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin: 8px 0 32px;
+      overflow-x: auto;
+    }
+    @media (max-width: 600px) { .schematic { padding: 20px 16px; } }
+    .schematic-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .schema-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+    .schema-row:last-child { border-bottom: none; }
+    .schema-machine { width: 180px; flex-shrink: 0; font-weight: 500; color: var(--text); }
+    .schema-ram { width: 64px; flex-shrink: 0; color: #7eb8ff; font-weight: 600; }
+    .schema-bar-wrap { flex: 1; min-width: 100px; background: rgba(255,255,255,0.06); border-radius: 4px; height: 8px; }
+    .schema-bar { height: 8px; border-radius: 4px; }
+    .schema-models { color: var(--muted); font-size: 12px; min-width: 180px; }
+    .hw-callout {
+      background: rgba(91,143,255,0.06);
+      border: 1px solid rgba(91,143,255,0.18);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 0 0 24px;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--muted2);
+    }
+    .hw-callout strong { color: #7eb8ff; }
+
+    .page-cta {
+      padding: 64px 0 0;
+      border-top: 1px solid var(--line2);
+      margin-top: 64px;
+    }
+    .page-cta-heading {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 300;
+      color: var(--text);
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+    .page-cta-sub {
+      font-size: 15px;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 54ch;
+      line-height: 1.75;
+      margin: 0 0 32px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+    <article class="post">
+
+      <h1>Hardware for AI Agents</h1>
+      <p class="muted">OpenClaw section · 6 min read</p>
+
+      <!-- INTRO -->
+      <div class="hw-intro">
+        <p>Most conversations about AI skip the hardware question entirely. They shouldn't. When you're running an AI agent stack — not an app you open and close, but infrastructure that operates continuously on your behalf — the machine underneath it matters more than most people expect.</p>
+        <p>It affects how hot your room gets. How much your electricity bill moves. Whether you hear a fan at 2 AM. And whether the system you're building today can handle the models that exist two years from now.</p>
+        <p><strong>We have a clear opinion on this.</strong> Here's how we got there, and what we'd recommend to anyone setting up a serious deployment.</p>
+      </div>
+
+      <!-- SECTION: Why hardware matters -->
+      <div class="hw-section">
+        <h2>This Isn't a Laptop You Close at Night</h2>
+        <p>Standard advice for buying a computer optimizes for portability, screen quality, or raw benchmark performance. None of those things matter much here.</p>
+        <p>An agent stack runs continuously. It handles scheduled jobs at 3 AM. It processes incoming messages while you're in a meeting. It runs research tasks in the background while you do other work. The machine needs to handle sustained, mixed workloads — not just occasional bursts — without becoming a heat source, a noise problem, or a power drain you notice on your bill.</p>
+        <p>That's a different set of requirements. And it points to a different kind of hardware.</p>
+      </div>
+
+      <!-- SECTION: Why Apple Silicon -->
+      <div class="hw-section">
+        <h2>Why We Run on Apple Silicon</h2>
+        <p>Our deployment runs on a Mac mini. It sits in a bedroom. It has been running for months without interruption.</p>
+        <p><strong>It has never once been audible.</strong></p>
+        <p>That's the detail that matters most and gets mentioned least in hardware comparisons. When your infrastructure runs 24 hours a day, silence isn't a luxury — it's a requirement. A machine that spins up fans under load is a machine that degrades your environment every time it works hard. Apple Silicon was engineered to avoid exactly that.</p>
+        <p>The technical reason is the architecture. M-series chips use a unified memory design — the CPU, GPU, and Neural Engine share the same high-bandwidth memory pool instead of passing data between separate chips. For AI workloads, which constantly move large amounts of data between compute units, this is significantly more efficient than conventional designs. The result is real performance delivered with less heat and less power draw.</p>
+        <p>In practice: it runs serious AI workloads continuously, stays cool, stays quiet, and draws around 10–20 watts under typical load. A comparable x86 machine doing similar work would draw 3–5× more power and would need active cooling to manage the heat.</p>
+      </div>
+
+      <!-- SECTION: Comparison -->
+      <div class="hw-section">
+        <h2>The Honest Comparison</h2>
+        <p>OpenClaw runs on Mac, Linux, and Windows. All three work. But they're not equivalent for this use case.</p>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Verdict</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Apple Silicon Mac <span class="verdict-tag recommended">Recommended</span></td>
+              <td>Best overall</td>
+              <td>Silent, efficient, reliable. Best local inference performance per watt. Lowest friction for setup and maintenance. What we deploy on.</td>
+            </tr>
+            <tr>
+              <td>Linux <span class="verdict-tag">Viable</span></td>
+              <td>Good for experienced users</td>
+              <td>Legitimate option, especially on a dedicated server or VPS. More configuration overhead. Things that just work on macOS sometimes require troubleshooting. Better budget option if you're comfortable in the terminal.</td>
+            </tr>
+            <tr>
+              <td>Windows <span class="verdict-tag">Works</span></td>
+              <td>Adds friction</td>
+              <td>OpenClaw installs and runs. But comparable hardware runs hotter and louder, and Windows is a less natural environment for the command-line tooling this stack depends on. More background maintenance. Not what we'd choose.</td>
+            </tr>
+            <tr>
+              <td>GPU Rig <span class="verdict-tag">Specialty</span></td>
+              <td>Overkill for most</td>
+              <td>If you're running very large local models at scale, there's a case for dedicated GPU hardware. For the workflows most small teams care about, a Mac mini outperforms anything in its price range — without the noise, heat, and power cost.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION: Mac Tier Breakdown -->
+      <div class="hw-section">
+        <h2>The Full Mac Breakdown</h2>
+        <p>Every current Apple Silicon desktop tier, the specs that matter for AI inference, and the free models each one can actually run via <a href="https://ollama.com" style="color:var(--accent)">Ollama</a>.</p>
+
+        <div class="hw-callout">
+          <strong>Why unified memory is the only number that matters:</strong> On Apple Silicon, the CPU, GPU, and Neural Engine share one high-bandwidth memory pool. A 48GB Mac mini can load a 34B parameter model entirely into memory — something a PC with a 24GB GPU can't do. Start with the RAM number and work backwards.
+        </div>
+
+        <div class="tier-grid">
+
+          <div class="tier-card tier-entry">
+            <div class="tier-label">Entry</div>
+            <div class="tier-name">Mac mini M4</div>
+            <div class="tier-price">From $599</div>
+            <div class="spec-row"><span class="spec-key">Chip</span><span class="spec-val">Apple M4</span></div>
+            <div class="spec-row"><span class="spec-key">CPU Cores</span><span class="spec-val">10-core</span></div>
+            <div class="spec-row"><span class="spec-key">GPU Cores</span><span class="spec-val">10-core</span></div>
+            <div class="spec-row"><span class="spec-key">Unified Memory</span><span class="spec-val">16GB (↑32GB)</span></div>
+            <div class="spec-row"><span class="spec-key">Memory BW</span><span class="spec-val">120 GB/s</span></div>
+            <div class="spec-row"><span class="spec-key">Neural Engine</span><span class="spec-val">16-core</span></div>
+            <div class="models-section">
+              <div class="models-label">Free Models (16GB)</div>
+              <span class="model-tag">Llama 3.2 3B</span>
+              <span class="model-tag">Phi-4 mini</span>
+              <span class="model-tag">Gemma 3 4B</span>
+              <span class="model-tag">Mistral 7B (Q4)</span>
+              <span class="model-tag">Qwen2.5 7B</span>
+              <span class="model-tag">DeepSeek-R1 7B</span>
+            </div>
+          </div>
+
+          <div class="tier-card tier-entry">
+            <div class="tier-label">Entry+</div>
+            <div class="tier-name">Mac mini M4 32GB</div>
+            <div class="tier-price">From $799 (upgraded)</div>
+            <div class="spec-row"><span class="spec-key">Chip</span><span class="spec-val">Apple M4</span></div>
+            <div class="spec-row"><span class="spec-key">CPU Cores</span><span class="spec-val">10-core</span></div>
+            <div class="spec-row"><span class="spec-key">GPU Cores</span><span class="spec-val">10-core</span></div>
+            <div class="spec-row"><span class="spec-key">Unified Memory</span><span class="spec-val">32GB</span></div>
+            <div class="spec-row"><span class="spec-key">Memory BW</span><span class="spec-val">120 GB/s</span></div>
+            <div class="spec-row"><span class="spec-key">Neural Engine</span><span class="spec-val">16-core</span></div>
+            <div class="models-section">
+              <div class="models-label">Free Models (32GB)</div>
+              <span class="model-tag">Llama 3.1 8B</span>
+              <span class="model-tag">Mistral 7B (full)</span>
+              <span class="model-tag">Phi-4 14B</span>
+              <span class="model-tag">Gemma 3 12B</span>
+              <span class="model-tag">CodeLlama 13B</span>
+              <span class="model-tag">DeepSeek-R1 14B</span>
+            </div>
+          </div>
+
+          <div class="tier-card tier-mid">
+            <div class="tier-label">Mid</div>
+            <div class="tier-name">Mac mini M4 Pro</div>
+            <div class="tier-price">From $1,399</div>
+            <div class="spec-row"><span class="spec-key">Chip</span><span class="spec-val">Apple M4 Pro</span></div>
+            <div class="spec-row"><span class="spec-key">CPU Cores</span><span class="spec-val">14-core</span></div>
+            <div class="spec-row"><span class="spec-key">GPU Cores</span><span class="spec-val">20-core</span></div>
+            <div class="spec-row"><span class="spec-key">Unified Memory</span><span class="spec-val">24GB (↑48GB)</span></div>
+            <div class="spec-row"><span class="spec-key">Memory BW</span><span class="spec-val">273 GB/s</span></div>
+            <div class="spec-row"><span class="spec-key">Neural Engine</span><span class="spec-val">16-core</span></div>
+            <div class="models-section">
+              <div class="models-label">Free Models (24GB)</div>
+              <span class="model-tag">Llama 3.1 8B</span>
+              <span class="model-tag">Phi-4 14B (Q4)</span>
+              <span class="model-tag">Gemma 3 12B</span>
+              <span class="model-tag">DeepSeek-R1 14B</span>
+              <span class="model-tag">Qwen2.5 14B</span>
+              <span class="model-tag">Mixtral 8x7B (Q2)</span>
+            </div>
+          </div>
+
+          <div class="tier-card tier-pro">
+            <div class="tier-label">Pro</div>
+            <div class="tier-name">Mac mini M4 Pro 48GB</div>
+            <div class="tier-price">From $1,599 (upgraded)</div>
+            <div class="spec-row"><span class="spec-key">Chip</span><span class="spec-val">Apple M4 Pro</span></div>
+            <div class="spec-row"><span class="spec-key">CPU Cores</span><span class="spec-val">14–16-core</span></div>
+            <div class="spec-row"><span class="spec-key">GPU Cores</span><span class="spec-val">20–24-core</span></div>
+            <div class="spec-row"><span class="spec-key">Unified Memory</span><span class="spec-val">48GB</span></div>
+            <div class="spec-row"><span class="spec-key">Memory BW</span><span class="spec-val">273 GB/s</span></div>
+            <div class="spec-row"><span class="spec-key">Neural Engine</span><span class="spec-val">16-core</span></div>
+            <div class="models-section">
+              <div class="models-label">Free Models (48GB)</div>
+              <span class="model-tag">Llama 3.3 70B (Q4)</span>
+              <span class="model-tag">Qwen2.5 32B</span>
+              <span class="model-tag">DeepSeek-R1 32B</span>
+              <span class="model-tag">Mixtral 8x7B (Q4)</span>
+              <span class="model-tag">CodeLlama 34B</span>
+              <span class="model-tag">Phi-4 medium</span>
+            </div>
+          </div>
+
+          <div class="tier-card tier-max">
+            <div class="tier-label">Max</div>
+            <div class="tier-name">Mac Studio M4 Max</div>
+            <div class="tier-price">From $1,999</div>
+            <div class="spec-row"><span class="spec-key">Chip</span><span class="spec-val">Apple M4 Max</span></div>
+            <div class="spec-row"><span class="spec-key">CPU Cores</span><span class="spec-val">14-core</span></div>
+            <div class="spec-row"><span class="spec-key">GPU Cores</span><span class="spec-val">32-core</span></div>
+            <div class="spec-row"><span class="spec-key">Unified Memory</span><span class="spec-val">36GB (↑64GB, ↑128GB)</span></div>
+            <div class="spec-row"><span class="spec-key">Memory BW</span><span class="spec-val">546 GB/s</span></div>
+            <div class="spec-row"><span class="spec-key">Neural Engine</span><span class="spec-val">16-core</span></div>
+            <div class="models-section">
+              <div class="models-label">Free Models (36GB)</div>
+              <span class="model-tag">Qwen2.5 32B (full)</span>
+              <span class="model-tag">DeepSeek-R1 32B (full)</span>
+              <span class="model-tag">Mixtral 8x7B</span>
+              <span class="model-tag">CodeLlama 34B</span>
+              <span class="model-tag">Llama 3.1 70B (Q4 tight)</span>
+            </div>
+          </div>
+
+          <div class="tier-card tier-max">
+            <div class="tier-label">Max+</div>
+            <div class="tier-name">Mac Studio M4 Max 64GB</div>
+            <div class="tier-price">From $2,399</div>
+            <div class="spec-row"><span class="spec-key">Chip</span><span class="spec-val">Apple M4 Max</span></div>
+            <div class="spec-row"><span class="spec-key">CPU Cores</span><span class="spec-val">16-core</span></div>
+            <div class="spec-row"><span class="spec-key">GPU Cores</span><span class="spec-val">40-core</span></div>
+            <div class="spec-row"><span class="spec-key">Unified Memory</span><span class="spec-val">64GB (↑128GB)</span></div>
+            <div class="spec-row"><span class="spec-key">Memory BW</span><span class="spec-val">546 GB/s</span></div>
+            <div class="spec-row"><span class="spec-key">Neural Engine</span><span class="spec-val">16-core</span></div>
+            <div class="models-section">
+              <div class="models-label">Free Models (64GB)</div>
+              <span class="model-tag">Llama 3.1 70B (Q8)</span>
+              <span class="model-tag">Qwen2.5 72B (Q4)</span>
+              <span class="model-tag">DeepSeek-R1 70B (Q4)</span>
+              <span class="model-tag">Mixtral 8x22B (Q4)</span>
+            </div>
+          </div>
+
+          <div class="tier-card tier-ultra">
+            <div class="tier-label">Ultra</div>
+            <div class="tier-name">Mac Studio M4 Ultra</div>
+            <div class="tier-price">From $3,999</div>
+            <div class="spec-row"><span class="spec-key">Chip</span><span class="spec-val">Apple M4 Ultra</span></div>
+            <div class="spec-row"><span class="spec-key">CPU Cores</span><span class="spec-val">28-core</span></div>
+            <div class="spec-row"><span class="spec-key">GPU Cores</span><span class="spec-val">60-core</span></div>
+            <div class="spec-row"><span class="spec-key">Unified Memory</span><span class="spec-val">192GB (↑512GB)</span></div>
+            <div class="spec-row"><span class="spec-key">Memory BW</span><span class="spec-val">800 GB/s</span></div>
+            <div class="spec-row"><span class="spec-key">Neural Engine</span><span class="spec-val">32-core</span></div>
+            <div class="models-section">
+              <div class="models-label">Free Models (192GB)</div>
+              <span class="model-tag">Llama 3.1 405B (Q4)</span>
+              <span class="model-tag">DeepSeek-R1 671B (Q2)</span>
+              <span class="model-tag">Qwen2.5 72B (full)</span>
+              <span class="model-tag">Any sub-100B model (full)</span>
+            </div>
+          </div>
+
+        </div>
+
+        <h3 style="font-family:var(--serif);font-size:clamp(20px,2.5vw,28px);font-weight:400;color:var(--text);margin:40px 0 16px;">RAM → Model Capability Map</h3>
+        <p>The single most important number is unified memory. Here's how each tier maps to what you can actually run:</p>
+
+        <div class="schematic">
+          <div class="schematic-title">RAM → Model Size</div>
+          <div class="schema-row">
+            <div class="schema-machine">Mac mini M4 / 16GB</div>
+            <div class="schema-ram">16 GB</div>
+            <div class="schema-bar-wrap"><div class="schema-bar" style="width:9%;background:linear-gradient(90deg,#4ade80,#22c55e)"></div></div>
+            <div class="schema-models">Up to ~7B (Q4) — fast, focused tasks</div>
+          </div>
+          <div class="schema-row">
+            <div class="schema-machine">Mac mini M4 / 32GB</div>
+            <div class="schema-ram">32 GB</div>
+            <div class="schema-bar-wrap"><div class="schema-bar" style="width:18%;background:linear-gradient(90deg,#4ade80,#22c55e)"></div></div>
+            <div class="schema-models">Up to ~14B — capable reasoning, coding</div>
+          </div>
+          <div class="schema-row">
+            <div class="schema-machine">Mac mini M4 Pro / 24GB</div>
+            <div class="schema-ram">24 GB</div>
+            <div class="schema-bar-wrap"><div class="schema-bar" style="width:14%;background:linear-gradient(90deg,#5b8fff,#3d6eff)"></div></div>
+            <div class="schema-models">Up to ~14B — faster inference than base M4</div>
+          </div>
+          <div class="schema-row">
+            <div class="schema-machine">Mac mini M4 Pro / 48GB</div>
+            <div class="schema-ram">48 GB</div>
+            <div class="schema-bar-wrap"><div class="schema-bar" style="width:28%;background:linear-gradient(90deg,#a855f7,#7c3aed)"></div></div>
+            <div class="schema-models">Up to ~34B (Q4) — runs 70B quantized</div>
+          </div>
+          <div class="schema-row">
+            <div class="schema-machine">Mac Studio M4 Max / 36GB</div>
+            <div class="schema-ram">36 GB</div>
+            <div class="schema-bar-wrap"><div class="schema-bar" style="width:21%;background:linear-gradient(90deg,#f59e0b,#d97706)"></div></div>
+            <div class="schema-models">Up to ~32B (full) — 70B tight at Q4</div>
+          </div>
+          <div class="schema-row">
+            <div class="schema-machine">Mac Studio M4 Max / 64GB</div>
+            <div class="schema-ram">64 GB</div>
+            <div class="schema-bar-wrap"><div class="schema-bar" style="width:37%;background:linear-gradient(90deg,#f59e0b,#d97706)"></div></div>
+            <div class="schema-models">Up to 70B (Q8) — frontier open models</div>
+          </div>
+          <div class="schema-row">
+            <div class="schema-machine">Mac Studio M4 Ultra / 192GB</div>
+            <div class="schema-ram">192 GB</div>
+            <div class="schema-bar-wrap"><div class="schema-bar" style="width:80%;background:linear-gradient(90deg,#ef4444,#dc2626)"></div></div>
+            <div class="schema-models">405B at Q4 — DeepSeek-R1 671B at Q2</div>
+          </div>
+        </div>
+
+        <div class="hw-callout">
+          <strong>The sweet spot for most operators:</strong> Mac mini M4 Pro with 48GB. $1,599 gets you 70B-class models, fast inference from the Pro's 273 GB/s memory bandwidth, and a machine that won't be obsolete for years. The base 16GB mini handles lightweight automation — step up to the Pro if you're running serious agent workloads.
+        </div>
+      </div>
+
+      <!-- SECTION: Future proofing -->
+      <div class="hw-section">
+        <h2>Why This Hardware Is a Long-Term Bet</h2>
+        <p>The direction of AI development is toward local compute. That's not a prediction — it's already happening.</p>
+        <p>Models that required a data center two years ago now run on a laptop. Models that required a high-end GPU last year now run on a Mac mini. The trajectory isn't slowing — it's accelerating, and the efficiency curve is moving faster than the capability curve. Every year, meaningfully more capable models fit into meaningfully less compute.</p>
+        <p>What this means practically: <strong>the agents running on cloud APIs today will increasingly run on your own hardware.</strong> Faster. With no per-token cost. With no data leaving your machine at all. Apple Silicon is already capable of running serious local models — Llama, Qwen, Phi, Mistral — at speeds that are genuinely useful for production work. The M4 Pro has enough unified memory to hold models that would have required a dedicated GPU rig a year ago.</p>
+        <p>Every generation of Apple Silicon meaningfully increases what's possible locally. The machine you buy today will run models next year that don't exist yet — models substantially more capable than what's available now. You're not buying hardware for today's workload. You're buying into a compute architecture that is scaling in exactly the direction this technology is heading.</p>
+        <p>When local inference catches up to cloud inference — and it will, for most tasks — the operators already running local infrastructure will have a real advantage. The hardware will be paid for. The system will be configured. The only thing that changes is the model you point it at.</p>
+      </div>
+
+      <!-- RECOMMENDATION BLOCK -->
+      <div class="rec-block">
+        <div class="rec-label">Our Recommendation</div>
+        <div class="rec-title">Mac mini M4 or M4 Pro</div>
+        <p class="rec-body">For most small teams and individuals, this is the right machine. It's quiet enough for a bedroom or home office, powerful enough to handle serious production workloads, and priced well for the value it delivers. The M4 starts at $599. The M4 Pro starts at $1,299. For most single-operator deployments, the base M4 is sufficient — step up to the Pro if you're planning to run larger local models or heavier parallel workloads.</p>
+        <p class="rec-body"><strong>If budget is the primary constraint,</strong> a Linux machine or VPS is a workable path. We've deployed on both. It works. It just takes more time to set up and maintain — and you'll want to be comfortable in the terminal before going that route.</p>
+        <p class="rec-body">If you're already in the Apple ecosystem, the integration advantages are real. If you're not, this is a reasonable reason to start.</p>
+      </div>
+
+      <!-- PAGE CTA -->
+      <div class="page-cta">
+        <div class="page-cta-heading">Not sure what<br>setup is right for you?</div>
+        <p class="page-cta-sub">We do a process audit before every deployment — including hardware assessment. If you're not sure what you need, that's exactly what the discovery call is for.</p>
+        <div class="btn-row">
+          <a class="cta" href="mailto:hello@ridleyresearch.com">Book a Discovery Call</a>
+          <a class="ghost" href="/openclaw/what-is-openclaw">What is OpenClaw? →</a>
+        </div>
+      </div>
+
+    </article>
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+  <script>
+    const revealEls = document.querySelectorAll(".hw-intro, .hw-section, .rec-block, .page-cta");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = "1";
+          e.target.style.transform = "translateY(0)";
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    revealEls.forEach((el, i) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(20px)";
+      el.style.transition = `opacity 0.5s ease ${i * 0.05}s, transform 0.5s ease ${i * 0.05}s`;
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

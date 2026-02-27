@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Products — Ridley Research & Consulting</title>
+  <meta name="description" content="Done-for-you AI setup and self-serve guides from Ridley Research & Consulting." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+  <style>
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 40px;
+      margin-bottom: 24px;
+    }
+    .product-badge {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 18px;
+      font-family: var(--sans);
+      background: rgba(255,255,255,0.05);
+    }
+    .product-title {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+    .product-desc {
+      color: var(--muted2);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 60ch;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+    .product-list {
+      margin: 0 0 28px;
+      padding: 0;
+      list-style: none;
+    }
+    .product-list li {
+      color: var(--muted2);
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 8px 0 8px 20px;
+      position: relative;
+      border-bottom: 1px solid var(--line2);
+      font-weight: 300;
+    }
+    .product-list li:last-child { border-bottom: none; }
+    .product-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .product-note {
+      margin: 12px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+    .product-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+    /* ── HOW IT WORKS ── */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media (max-width: 640px) {
+      .how-grid { grid-template-columns: 1fr; }
+    }
+    .how-step {
+      background: var(--surface);
+      border: 1px solid var(--line2);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+    .how-step-num {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .how-step-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text);
+      margin: 0 0 6px;
+    }
+    .how-step-price {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .how-step-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--muted2);
+      font-weight: 300;
+      margin: 0;
+    }
+
+    /* ── PRICING LINK CALLOUT ── */
+    .pricing-callout {
+      background: var(--surface);
+      border: 1px solid var(--line2);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .pricing-callout-text {
+      font-size: 15px;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .pricing-callout-text strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+
+    <!-- ── HERO ── -->
+    <section class="hero" style="padding:60px 0 40px;">
+      <div class="hero-tags">Products</div>
+      <div class="hero-wordmark" style="font-size:clamp(40px,6vw,72px);">What We<br>Build</div>
+      <div class="hero-rule"></div>
+      <p class="hero-sub">A modular AI stack, assembled around how your business actually runs.</p>
+    </section>
+
+    <!-- ── HOW IT WORKS ── -->
+    <div class="section-header"><span class="section-label">How It Works</span><div class="section-rule"></div></div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-step-num">Step 01</div>
+        <h3 class="how-step-title">Platform Setup</h3>
+        <div class="how-step-price">$500 one-time</div>
+        <p class="how-step-desc">The foundation for everything. We install and configure your base agent stack, chief-of-staff agent, memory, and session persistence on your hardware.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">Step 02</div>
+        <h3 class="how-step-title">Automation Modules</h3>
+        <div class="how-step-price">$300–$500 each</div>
+        <p class="how-step-desc">Pick the modules that match your biggest pain points. Each is built specifically for your workflow — not a generic template dropped in.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">Step 03</div>
+        <h3 class="how-step-title">Monthly Maintenance</h3>
+        <div class="how-step-price">$250/month (optional)</div>
+        <p class="how-step-desc">Your business changes. Your agents should too. Includes monitoring, updates, and prompt tuning as your needs evolve.</p>
+      </div>
+    </div>
+
+    <!-- Module breakdown link -->
+    <div class="pricing-callout" style="margin-top:16px;margin-bottom:48px;">
+      <p class="pricing-callout-text">7 modules available — <strong>Lead Follow-Up Engine, Content Draft Machine, Inbox Triage, Meeting Prep Automator, Client Onboarding Flow, Nightly Ops Brief, Research Agent.</strong> Full descriptions and individual pricing on the pricing page.</p>
+      <a class="ghost" href="/pricing/" style="white-space:nowrap;">See Full Pricing →</a>
+    </div>
+
+    <!-- ── ENGAGEMENT TIERS ── -->
+    <div class="section-header"><span class="section-label">Typical Engagements</span><div class="section-rule"></div></div>
+
+    <!-- Getting Started -->
+    <div class="product-card" style="margin-bottom:24px;">
+      <div class="product-badge">Getting Started · $1,100–$1,300</div>
+      <h2 class="product-title">Platform + 2 Modules</h2>
+      <p class="product-desc">
+        A focused build around your highest-leverage pain point. Enough to change your week without overbuilding before you know what you need.
+      </p>
+      <ul class="product-list">
+        <li>Platform Setup included — the full base stack configured on your hardware</li>
+        <li>2 automation modules chosen based on your workflows</li>
+        <li>Built and verified before handoff — you're not left with a half-working system</li>
+        <li>Full documentation so you understand what's running and why</li>
+      </ul>
+      <div class="product-row">
+        <a class="cta" href="mailto:hello@ridleyresearch.com?subject=Getting%20Started%20Engagement">Book a Discovery Call</a>
+        <a class="ghost" href="/pricing/">See Module Pricing</a>
+      </div>
+      <p class="product-note">$500 platform + 2 modules ($300–$400 each). Exact total depends on which modules fit your business.</p>
+    </div>
+
+    <!-- Full Stack -->
+    <div class="product-card" style="border-color:rgba(255,255,255,0.14);position:relative;overflow:hidden;margin-bottom:24px;">
+      <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.22),rgba(255,255,255,0.03));"></div>
+      <div class="product-badge" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.28);">Full Stack · $2,100–$3,150 + $250/mo</div>
+      <h2 class="product-title">Platform + 4–5 Modules + Maintenance</h2>
+      <p class="product-desc">
+        A complete AI operating infrastructure for your business. Built across the areas that eat your time, with ongoing tuning as your business evolves.
+      </p>
+      <ul class="product-list">
+        <li>Platform Setup — full base stack on your hardware</li>
+        <li>4–5 automation modules covering your entire back-office</li>
+        <li>Integrations with the tools you already use (CRM, calendar, inbox)</li>
+        <li>Full documentation and team walkthrough before handoff</li>
+        <li>Monthly maintenance — monitoring, prompt tuning, updates</li>
+      </ul>
+      <div class="product-row">
+        <a class="cta" href="mailto:hello@ridleyresearch.com?subject=Full%20Stack%20Engagement">Book a Scoping Call</a>
+        <a class="ghost" href="/pricing/">See Module Pricing</a>
+      </div>
+      <p class="product-note">$500 platform + 4–5 modules ($300–$500 each) + $250/month maintenance. Exact scope scoped to your business.</p>
+    </div>
+
+    <!-- Personal Install -->
+    <div class="section-header" style="margin-top:48px;"><span class="section-label">Personal Install · DFW Only</span><div class="section-rule"></div></div>
+    <div class="product-card">
+      <div class="product-badge">In-Person · DFW · $497 · 5 Spots</div>
+      <h2 class="product-title">Done-for-You AI Setup</h2>
+      <p class="product-desc">
+        An in-person install — I come to you anywhere in the DFW area. You walk away with a fully configured AI operating system running on your machine: memory, automation, Telegram integration, cron jobs, and security. Same day.
+      </p>
+      <ul class="product-list">
+        <li>In-person session at your location — anywhere in the Dallas-Fort Worth area</li>
+        <li>Full OpenClaw install and configuration on your hardware</li>
+        <li>Identity, memory, and automation architecture built to your workflows</li>
+        <li>Telegram integration — your AI reachable from anywhere</li>
+        <li>Cron jobs and scheduled tasks set up and tested before I leave</li>
+        <li>30-day follow-up support included</li>
+      </ul>
+      <div class="product-row">
+        <a class="cta" href="mailto:hello@ridleyresearch.com?subject=Done-for-You%20Setup%20-%20DFW">Book Your Install — $497</a>
+      </div>
+      <p class="product-note">DFW area only. 5 installs available at this price. First come, first served.</p>
+    </div>
+
+    <!-- ── CTA ── -->
+    <div style="padding:56px 0 48px;border-top:1px solid var(--line2);margin-top:48px;">
+      <div style="font-family:var(--serif);font-size:clamp(26px,4vw,40px);font-weight:300;letter-spacing:0.01em;color:var(--text);margin:0 0 14px;line-height:1.2;">Not sure where to start?</div>
+      <p style="font-size:15px;color:var(--muted2);font-weight:300;max-width:52ch;line-height:1.75;margin:0 0 32px;">Book a 20-minute call and we'll tell you exactly what we'd build for your business — and how much it would cost.</p>
+      <div class="btn-row">
+        <a class="cta" href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a 20-Minute Call</a>
+        <a class="ghost" href="/pricing/">See Full Pricing</a>
+      </div>
+    </div>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+  <script>
+    const revealEls = document.querySelectorAll(".how-step, .product-card, .pricing-callout");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = "1";
+          e.target.style.transform = "translateY(0)";
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    revealEls.forEach((el, i) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(16px)";
+      el.style.transition = `opacity 0.45s ease ${i * 0.06}s, transform 0.45s ease ${i * 0.06}s`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

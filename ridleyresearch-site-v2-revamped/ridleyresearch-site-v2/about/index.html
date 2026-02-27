@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Ridley Research & Consulting</title>
+  <meta name="description" content="Deacon Ridley built Ridley Research to close the leverage gap for independent advisors and small financial services firms — without the headcount." />
+  <link rel="stylesheet" href="/styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+    <article class="post">
+
+      <h1>One person. An army of agents. A different kind of firm.</h1>
+      <p class="muted">About Ridley Research</p>
+
+      <p>There's a leverage gap in financial services, and it's been there for years.</p>
+
+      <p>Large firms have 50-person ops teams, dedicated tech stacks, and entire departments for things solo advisors and small firms handle alone — or don't handle at all. That gap used to be a given. A cost of doing business at a certain scale.</p>
+
+      <p>Then something changed.</p>
+
+      <p>I started watching AI agents reach a point where one person, coordinating the right system, could operate at the scale of a department. Not someday. Now. The tools were real, the results were real, and most people in financial services had no idea it was happening.</p>
+
+      <p>That's why I built Ridley Research.</p>
+
+      <p>We help independent advisors and small financial services firms close the leverage gap — without the headcount. No enterprise budget required. No year-long implementation. Just a tightly built system that works while you focus on clients.</p>
+
+      <p>I do this work because I've seen what it looks like when someone gets it right. Clients who came in overwhelmed and left with infrastructure they didn't think was possible for a firm their size.</p>
+
+      <p>One of them put it this way:</p>
+
+      <blockquote style="border-left:2px solid rgba(255,255,255,0.2);margin:32px 0;padding:0 0 0 24px;">
+        <p style="font-family:var(--serif);font-size:clamp(18px,2.2vw,24px);font-weight:300;font-style:italic;color:var(--text);line-height:1.6;margin:0 0 14px;">"Couldn't have gotten this going without Deacon. He fast tracked getting me through set up hurdles and helped me get going with this amazing tool. Such a huge help."</p>
+        <p style="font-size:13px;letter-spacing:0.08em;color:var(--muted);margin:0;">— Andrew Simmons</p>
+      </blockquote>
+
+      <p>If you're tired of being outgunned by firms with bigger teams and bigger budgets, this is what we do.</p>
+
+      <p><a href="/contact" style="color:var(--accent)">Work with us →</a></p>
+
+    </article>
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+  <script>
+    const revealEls = document.querySelectorAll(".post p, .post blockquote, .post h1");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = "1";
+          e.target.style.transform = "translateY(0)";
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    revealEls.forEach((el, i) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(16px)";
+      el.style.transition = `opacity 0.5s ease ${i * 0.04}s, transform 0.5s ease ${i * 0.04}s`;
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

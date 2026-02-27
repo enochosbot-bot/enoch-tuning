@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week One | Daily Log | Ridley Research & Consulting</title>
+  <meta name="description" content="What it actually felt like to set OpenClaw up from scratch — the first thing that worked and the first thing that broke." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+  <style>
+    .daily-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+    .daily-tag {
+      display: inline-block;
+      background: rgba(91,143,255,0.12);
+      border: 1px solid rgba(91,143,255,0.2);
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #7eb8ff;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      letter-spacing: 0.04em;
+    }
+    .daily-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      margin-top: 40px;
+      font-size: 14px;
+    }
+    .daily-nav a { color: var(--accent); text-decoration: none; }
+    .daily-nav a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <article class="post">
+      <div class="daily-meta">
+        <span class="daily-tag">Daily Log</span>
+        <span class="muted" style="font-size:13px;">Feb 25, 2026 · 3 min read</span>
+      </div>
+
+      <h1>Week One</h1>
+
+      <p>I've been running OpenClaw for about a week now. Here's what I've actually learned — not the polished version, the real one.</p>
+
+      <p>The installation is straightforward. You're up and talking to your agent in under an hour if you follow the steps. What takes longer — what I didn't expect to take as long — is figuring out what to actually <em>ask it to do</em>.</p>
+
+      <p>The first few days I was using it like a chat window. Ask a question, get an answer, close the app. That's not what it's for. It took me a few days to shift my thinking from "smart assistant I talk to" to "operator running in the background."</p>
+
+      <p>The thing that clicked it for me: I set up a morning briefing cron. Every morning at 7 AM, my agent pulls the current state of my task queue, checks what's blocking, and sends me a summary on Telegram before I've even looked at my phone. That's the first time it felt like infrastructure instead of a toy.</p>
+
+      <p>The first thing that broke: I tried to give it too many instructions at once. I spent an hour writing a detailed operating document covering every edge case I could think of. The agent started behaving inconsistently — not because the instructions were wrong, but because there were too many of them competing with each other. Stripped it back to six core rules. Fixed immediately.</p>
+
+      <p>Lesson from week one: <strong>start smaller than you think you need to.</strong> One cron job. One tool integration. One clear role. Get that working reliably before you add anything else. The instinct is to set up everything at once — resist it.</p>
+
+      <div class="daily-nav">
+        <span></span>
+        <a href="./">← Back to Daily Log</a>
+      </div>
+    </article>
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+  <script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

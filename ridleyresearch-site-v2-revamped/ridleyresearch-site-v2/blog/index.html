@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog | Ridley Research & Consulting</title>
+  <meta name="description" content="Practical articles on AI agents, workflow automation, and what it actually looks like to run this stuff in production." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+  <style>
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 48px;
+      align-items: start;
+      margin-top: 32px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 88px;
+    }
+
+    .sidebar-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .sidebar-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4a5680;
+      margin-bottom: 14px;
+      font-family: "Space Grotesk", Inter, sans-serif;
+    }
+
+    .daily-item {
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-decoration: none;
+      color: inherit;
+    }
+    .daily-item:last-of-type { border-bottom: none; }
+    .daily-item-date { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
+    .daily-item-title { font-size: 14px; font-weight: 500; color: var(--text); transition: color 0.15s; }
+    .daily-item:hover .daily-item-title { color: var(--accent2); }
+
+    .sidebar-subscribe {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .sidebar-subscribe p { font-size: 13px; color: var(--muted); margin: 0 0 10px; }
+    .sidebar-subscribe-row { display: flex; gap: 8px; }
+    .sidebar-subscribe-input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      outline: none;
+      min-width: 0;
+    }
+    .sidebar-subscribe-input::placeholder { color: var(--muted); }
+    .sidebar-subscribe-btn {
+      background: linear-gradient(135deg, #5b8fff, #3d6eff);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .sidebar-confirm { display: none; font-size: 13px; color: #4ade80; margin-top: 8px; }
+
+    @media (max-width: 700px) {
+      .blog-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Blog</h1>
+    <p class="sub">What I'm learning building with AI agents — what works, what breaks, and what I'd do differently.</p>
+
+    <div class="blog-layout">
+      <!-- Main article list -->
+      <div class="list">
+        <!-- Pinned -->
+        <p style="border-left:3px solid var(--accent2);padding-left:14px;margin-left:-17px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent2);display:block;margin-bottom:4px;">Start Here</span>
+          <a href="./two-weeks-no-sleep">Two Weeks, No Sleep, and What I Actually Built</a><br>
+          <span class="muted">Two weeks of all-nighters, one AI agent, and a consulting firm that didn't exist a month ago.</span>
+        </p>
+
+        <!-- High-value reads, ordered by importance -->
+        <p><a href="./three-ai-employees-running-247">3 AI Employees Running 24/7 on One Machine</a><br><span class="muted">Why specialist agents outperform a single generalist AI, and how to build a team that runs while you sleep.</span></p>
+        <p><a href="./business-case-for-ai-agents">The Business Case for AI Agents</a><br><span class="muted">ROI math, data sovereignty, and why local-first AI gives small teams more control than the SaaS alternatives.</span></p>
+        <p><a href="./clean-room-pattern-ai-without-leaking-data">The Clean-Room Pattern: Using Cloud AI Without Leaking Client Data</a><br><span class="muted">A practical architecture for data-sensitive environments — cloud AI performance without exposing sensitive information to third-party servers.</span></p>
+        <p><a href="./why-smaller-models-win-with-skills">Why a $20 Model Beats a $200 Model (If You Do This)</a><br><span class="muted">The variable that drives agent performance isn't the model tier — it's the procedural knowledge you give it to work from.</span></p>
+        <p><a href="./rebuilding-agent-stack">What We Learned Rebuilding an Agent Stack from Scratch</a><br><span class="muted">Model degradation, why local LLMs failed in production, and the operational reset that fixed it.</span></p>
+        <p><a href="./apple-silicon-local-ai-buyers-guide">Apple Silicon Local AI Buyer's Guide: Mac mini to Mac Studio</a><br><span class="muted">Every M4 tier from $599 to $3,999+, the free models each one runs, and how to pick the right machine for local AI ops.</span></p>
+        <p><a href="./agent-operating-system-setup">Agent Operating System Setup</a><br><span class="muted">Roles, guardrails, and proof-first execution standards that make agents usable.</span></p>
+        <p><a href="./memory-architecture-for-agents">Memory Architecture for Agents</a><br><span class="muted">A 3-tier memory model that reduces drift and keeps context useful.</span></p>
+        <p><a href="./fixing-agent-drift-and-reliability">Fixing Agent Drift and Reliability</a><br><span class="muted">How to recover from silent regressions and restore execution trust.</span></p>
+        <p><a href="./five-workflows-that-save-time">Five Automation Workflows That Actually Save Time</a><br><span class="muted">High-ROI use-cases you can deploy without enterprise complexity.</span></p>
+        <p><a href="./local-vs-cloud-models">Local vs Cloud Models for Automation</a><br><span class="muted">Where local LLMs fit, where cloud is safer, and how to run hybrid.</span></p>
+        <p><a href="./what-is-openclaw">What OpenClaw Is (and Isn't)</a><br><span class="muted">Clear explanation for teams evaluating agent-based automation.</span></p>
+
+        <!-- Industry Use Cases -->
+        <p style="border-left:3px solid rgba(255,255,255,0.15);padding-left:14px;margin-left:-17px;margin-top:32px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">For Your Business</span>
+        </p>
+        <p><a href="./ai-agents-for-salespeople">AI Agents for Salespeople: Stop Chasing Leads Manually</a><br><span class="muted">What a custom agent setup actually does to your pipeline, follow-up, and proposal time.</span></p>
+        <p><a href="./ai-agents-for-real-estate-agents">AI Agents for Real Estate Agents: More Listings, Less Admin</a><br><span class="muted">Listing descriptions, transaction management, and lead nurture — built around how your practice actually runs.</span></p>
+        <p><a href="./ai-agents-for-plumbers">AI Agents for Plumbers: Run Your Business on Autopilot</a><br><span class="muted">Estimates, follow-ups, scheduling, and invoicing — without the kitchen table paperwork sessions.</span></p>
+        <p><a href="./ai-agents-for-hvac-technicians">AI Agents for HVAC Technicians: Fill Your Schedule Without the Busywork</a><br><span class="muted">Handling demand peaks and slow seasons without adding office overhead.</span></p>
+        <p><a href="./ai-agents-for-electricians">AI Agents for Electricians: More Jobs, Less Paperwork</a><br><span class="muted">Quotes out the same day, estimates followed up automatically, reviews that actually get requested.</span></p>
+        <p><a href="./ai-agents-for-personal-trainers">AI Agents for Personal Trainers: More Client Time, Less Admin</a><br><span class="muted">Content from voice notes, automated onboarding and check-ins, and referral follow-ups that don't fall through the cracks.</span></p>
+      </div>
+
+      <!-- Daily Log sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-box">
+          <div class="sidebar-label">Daily Log</div>
+          <a class="daily-item" href="../daily/first-week">
+            <div class="daily-item-date">Feb 25, 2026</div>
+            <div class="daily-item-title">Week One</div>
+          </a>
+          <!-- New daily posts get added here -->
+
+          <div class="sidebar-subscribe">
+            <p>Short notes on what I'm learning. In your inbox when they go up.</p>
+            <form class="sidebar-subscribe-row" onsubmit="handleSub(event)">
+              <input class="sidebar-subscribe-input" type="email" placeholder="your@email.com" required />
+              <button class="sidebar-subscribe-btn" type="submit">Subscribe</button>
+            </form>
+            <div class="sidebar-confirm" id="sub-confirm">✓ You're in.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    function handleSub(e) {
+      e.preventDefault();
+      const email = e.target.querySelector('input').value;
+      fetch('https://formspree.io/f/hello@ridleyresearch.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email })
+      }).then(() => {
+        e.target.style.display = 'none';
+        document.getElementById('sub-confirm').style.display = 'block';
+      }).catch(() => {
+        window.location.href = 'mailto:hello@ridleyresearch.com?subject=Subscribe&body=' + encodeURIComponent(email);
+      });
+    }
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+  <script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

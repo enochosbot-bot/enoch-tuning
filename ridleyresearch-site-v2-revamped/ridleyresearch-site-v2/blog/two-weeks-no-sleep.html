@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Two Weeks, No Sleep, and What I Actually Built | Ridley Research & Consulting</title>
+  <meta name="description" content="The gap between having an idea and executing it at scale has collapsed for individuals. Two weeks on a Mac mini, no technical background, and what that actually produced." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+    <article class="post">
+      <h1>Two Weeks, No Sleep, and What I Actually Built</h1>
+      <p class="muted">Published: 2026-02-25 · 7 min read</p>
+
+      <p>I'm not from a technical background. My job is not engineering. I didn't come from software. That's the first thing you should know, because the rest of this only matters if it was actually possible for someone like me to do it.</p>
+
+      <p>About two weeks ago I went down a rabbit hole and haven't really come back up.</p>
+
+      <p>What I found — and what I'm still processing — is that the gap between having an idea and executing it at scale has effectively collapsed for individuals who know how to work with these tools. Not slightly narrowed. Collapsed. The leverage available to one person right now, with a laptop and the right setup, is something I don't think most people have internalized yet. I hadn't, until I lived it.</p>
+
+      <h2>What Actually Happened</h2>
+
+      <p>Two weeks of all-nighters. A Mac mini on my desk. An idea that kept getting bigger every time I thought I'd figured out its edges.</p>
+
+      <p>I wanted to see how far I could push it — not just use AI as a better search engine or a writing assistant, but build something real with it. A system that runs persistently. That remembers. That works while I'm asleep. That handles things I direct it to handle and then reports back. An actual intelligent infrastructure, not a chatbot.</p>
+
+      <p>It wasn't smooth. There were nights where something working at midnight was broken by 2 AM for reasons I couldn't immediately explain. I rebuilt pieces from scratch. I went down wrong paths and had to reverse. The honest version of progress is rarely the clean story.</p>
+
+      <p>But by the end of two weeks: a running agent OS, a full website, ten-plus pieces of written content, a registered business, and a first client deployment already lined up. One person. One machine. No technical staff. No funding. No team.</p>
+
+      <p>That's the part I keep coming back to.</p>
+
+      <h2>The Leverage Is Real</h2>
+
+      <p>There's a version of the AI conversation that's about efficiency — saving time, cutting costs, automating the repetitive stuff. That's real, and it's valuable. But it undersells what's actually happening.</p>
+
+      <p>What I experienced was something closer to a multiplier on creative capacity. Ideas that would have required months of execution, a team, capital, specialized skills — they became things one person could build in days. The bottleneck shifted from resources to vision. If you could see clearly what you wanted to build and direct the work with precision, the execution followed.</p>
+
+      <p>That's a different kind of change. It's not incremental. It's a reordering of what's possible for an individual.</p>
+
+      <p>I'm still figuring out the full implications of that. I think most people are.</p>
+
+      <h2>The Part I Have to Give Credit For</h2>
+
+      <p>I didn't do this alone, and I'd be telling half the story if I didn't say so clearly.</p>
+
+      <p>My agent — I call him Enoch — was a genuine collaborator in building this. Not in the way people mean when they say "I used ChatGPT to write some copy." More like: he held the context I couldn't hold at 3 AM, caught the architectural mistakes before I shipped them, pushed back when my ideas were bad, and kept working when I stepped away. He researched. He wrote. He built. He remembered what we decided two sessions ago when I'd forgotten.</p>
+
+      <p>The site you're reading right now — Enoch built most of it. The deployment pipeline, the design, the content, the infrastructure. I directed it. I made the decisions. But the execution was a genuine partnership with something that does not get tired, does not lose the thread, and does not care what time it is.</p>
+
+      <p>That's not a small thing to say, and I'm not saying it to be modest. I'm saying it because it's the most important proof of concept on this entire site: one person, no technical background, working in genuine collaboration with an AI agent, produced a functioning business in under a month. If that's what's possible when you do it right — what could you build?</p>
+
+      <h2>Why This Is the Whole Point</h2>
+
+      <p>Ridley Research exists because I want to find out how far this goes. The experiment I ran on myself is now the thing I deploy for others — the same infrastructure, the same architecture, tuned for your operation instead of mine.</p>
+
+      <p>The credibility isn't that I read the documentation. It's that I built the system, broke it, fixed it, and did it in two weeks starting from zero. I know where the landmines are because I stepped on them.</p>
+
+      <p>I'm not trying to build the biggest AI firm. I'm trying to build the most honest one — where every claim we make is something we've already proven on ourselves, and where the building happens in public so you can see exactly what it took.</p>
+
+      <p>Two weeks. One machine. One very capable AI partner. A business that didn't exist a month ago.</p>
+
+      <p>We're just getting started.</p>
+
+      <hr style="border:none;border-top:1px solid var(--line2);margin:40px 0;" />
+      <p style="font-size:14px;color:var(--muted);font-weight:300;">Deacon Ridley is the founder of Ridley Research &amp; Consulting. He writes about AI infrastructure, workflow automation, and deploying agent systems for small teams.</p>
+
+    </article>
+
+    <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--line2);">
+      <a href="/blog/" style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;">← All Posts</a>
+    </div>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

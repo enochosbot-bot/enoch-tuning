@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pricing — Ridley Research & Consulting</title>
+  <meta name="description" content="No packages. Every build starts with understanding how your business runs. Here's how the pricing works." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+  <style>
+
+    /* ── PAGE HERO ── */
+    .pricing-hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--line2);
+      margin-bottom: 64px;
+    }
+    .pricing-eyebrow {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .pricing-headline {
+      font-family: var(--serif);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin: 0 0 24px;
+      line-height: 1.12;
+    }
+    .pricing-intro {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 60ch;
+      margin: 0;
+    }
+
+    /* ── SECTION BLOCKS ── */
+    .pricing-section {
+      margin-bottom: 64px;
+    }
+    .pricing-section-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line2);
+    }
+
+    /* ── PLATFORM SETUP CARD ── */
+    .setup-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 44px;
+      position: relative;
+      overflow: hidden;
+    }
+    .setup-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.22), rgba(255,255,255,0.03));
+    }
+    .setup-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .setup-title {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 400;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.2;
+    }
+    .setup-price {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .setup-qualifier {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .setup-desc {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 62ch;
+      margin: 0;
+    }
+
+    /* ── MODULE TABLE ── */
+    .modules-intro {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 62ch;
+      margin: 0 0 32px;
+    }
+    .modules-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .modules-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 16px 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .modules-table th:last-child { padding-right: 0; }
+    .modules-table td {
+      padding: 18px 16px 18px 0;
+      border-bottom: 1px solid var(--line2);
+      vertical-align: top;
+    }
+    .modules-table td:last-child { padding-right: 0; }
+    .modules-table tr:last-child td { border-bottom: none; }
+    .module-name {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .module-price {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .module-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted2);
+      font-weight: 300;
+    }
+
+    /* Mobile table scroll */
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ── MAINTENANCE CARD ── */
+    .maintenance-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 36px 44px;
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .maintenance-title {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 400;
+      color: var(--text);
+      margin: 0;
+    }
+    .maintenance-price {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--muted2);
+      white-space: nowrap;
+    }
+    .maintenance-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      font-weight: 300;
+      margin: 12px 0 0;
+      width: 100%;
+    }
+
+    /* ── EXAMPLES ── */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 640px) {
+      .examples-grid { grid-template-columns: 1fr; }
+    }
+    .example-card {
+      background: var(--surface);
+      border: 1px solid var(--line2);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+    .example-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .example-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      margin: 0 0 10px;
+      line-height: 1.3;
+    }
+    .example-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted2);
+      font-weight: 300;
+      margin: 0;
+    }
+    .example-total {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line2);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── CTA ── */
+    .pricing-cta {
+      padding: 64px 0 56px;
+      border-top: 1px solid var(--line2);
+    }
+    .pricing-cta-heading {
+      font-family: var(--serif);
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin: 0 0 14px;
+      line-height: 1.2;
+    }
+    .pricing-cta-sub {
+      font-size: 15px;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 52ch;
+      line-height: 1.75;
+      margin: 0 0 36px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+
+    <!-- ── HERO ── -->
+    <section class="pricing-hero">
+      <div class="pricing-eyebrow">Pricing</div>
+      <h1 class="pricing-headline">What It Costs to Build<br>Your AI Stack</h1>
+      <p class="pricing-intro">No packages. No one-size-fits-all. Every build starts with understanding how your business actually runs — then we configure the agents around that. Here's how the pricing works.</p>
+    </section>
+
+    <!-- ── PLATFORM SETUP ── -->
+    <div class="pricing-section">
+      <div class="pricing-section-label">Where Every Engagement Starts</div>
+      <div class="setup-card">
+        <div class="setup-price-row">
+          <h2 class="setup-title">Platform Setup</h2>
+          <span class="setup-price">$500</span>
+          <span class="setup-qualifier">one-time</span>
+        </div>
+        <p class="setup-desc">We install the base agent stack, configure your chief-of-staff agent, set up memory and session persistence, and get the system running on your hardware. Everything else builds on top of this.</p>
+      </div>
+    </div>
+
+    <!-- ── MODULES ── -->
+    <div class="pricing-section">
+      <div class="pricing-section-label">Automation Modules</div>
+      <p class="modules-intro">Add the modules that match your biggest pain points. Each is built specifically for your workflow — not a generic template dropped in.</p>
+      <div class="table-scroll">
+        <table class="modules-table">
+          <thead>
+            <tr>
+              <th>Module</th>
+              <th>Investment</th>
+              <th>What It Does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="module-name">Lead Follow-Up Engine</span></td>
+              <td><span class="module-price">$400</span></td>
+              <td><span class="module-desc">Monitors your pipeline, drafts follow-ups in your voice, queues for your review</span></td>
+            </tr>
+            <tr>
+              <td><span class="module-name">Content Draft Machine</span></td>
+              <td><span class="module-price">$400</span></td>
+              <td><span class="module-desc">Turns voice notes or rough thoughts into polished posts, emails, and outreach</span></td>
+            </tr>
+            <tr>
+              <td><span class="module-name">Inbox Triage</span></td>
+              <td><span class="module-price">$300</span></td>
+              <td><span class="module-desc">Categorizes, prioritizes, and drafts replies — you review and send</span></td>
+            </tr>
+            <tr>
+              <td><span class="module-name">Meeting Prep Automator</span></td>
+              <td><span class="module-price">$400</span></td>
+              <td><span class="module-desc">Pulls client data, builds agendas, formats post-meeting summaries automatically</span></td>
+            </tr>
+            <tr>
+              <td><span class="module-name">Client Onboarding Flow</span></td>
+              <td><span class="module-price">$500</span></td>
+              <td><span class="module-desc">Automates your onboarding sequence from first contact to fully onboarded</span></td>
+            </tr>
+            <tr>
+              <td><span class="module-name">Nightly Ops Brief</span></td>
+              <td><span class="module-price">$300</span></td>
+              <td><span class="module-desc">Daily summary of open tasks, pipeline status, and key actions — delivered every morning</span></td>
+            </tr>
+            <tr>
+              <td><span class="module-name">Research Agent</span></td>
+              <td><span class="module-price">$400</span></td>
+              <td><span class="module-desc">Monitors industry news, competitor moves, and client company updates on a schedule</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── MAINTENANCE ── -->
+    <div class="pricing-section">
+      <div class="pricing-section-label">Ongoing</div>
+      <div class="maintenance-card">
+        <h2 class="maintenance-title">Monthly Maintenance</h2>
+        <span class="maintenance-price">$250 / month</span>
+        <p class="maintenance-desc">Your business changes. Your agents should too. Includes monitoring, updates, and prompt tuning as your needs evolve.</p>
+      </div>
+    </div>
+
+    <!-- ── EXAMPLES ── -->
+    <div class="pricing-section">
+      <div class="pricing-section-label">What a Typical Engagement Looks Like</div>
+      <div class="examples-grid">
+        <div class="example-card">
+          <div class="example-label">Getting Started</div>
+          <h3 class="example-title">Platform + 2 Modules</h3>
+          <p class="example-desc">A focused build around your highest-leverage pain point. Enough to change your week without overbuilding before you know what you need.</p>
+          <div class="example-total">$1,100 – $1,300 upfront</div>
+        </div>
+        <div class="example-card">
+          <div class="example-label">Full Stack</div>
+          <h3 class="example-title">Platform + 4–5 Modules + Maintenance</h3>
+          <p class="example-desc">A complete operating infrastructure for your business. Built out across the areas that eat your time, with ongoing tuning as your business evolves.</p>
+          <div class="example-total">$2,100 – $3,150 upfront · $250/month</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CTA ── -->
+    <div class="pricing-cta">
+      <div class="pricing-cta-heading">Not sure which modules you need?</div>
+      <p class="pricing-cta-sub">Book a 20-minute call and we'll tell you exactly what we'd build for your business.</p>
+      <div class="btn-row">
+        <a class="cta" href="mailto:hello@ridleyresearch.com?subject=Pricing%20Question">Book a 20-Minute Call</a>
+        <a class="ghost" href="/products/">See All Products</a>
+      </div>
+    </div>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+  <script>
+    const revealEls = document.querySelectorAll(".setup-card, .modules-table, .maintenance-card, .example-card, .pricing-cta");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = "1";
+          e.target.style.transform = "translateY(0)";
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    revealEls.forEach((el, i) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(16px)";
+      el.style.transition = `opacity 0.45s ease ${i * 0.05}s, transform 0.45s ease ${i * 0.05}s`;
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+gateway.env
+gateway.env.bak*
+*.key
+*.pem
+*.secret
+*.bak
+
+# Sensitive runtime directories
+credentials/
+logs/
+delivery-queue/
+
+# OAuth tokens and API credential files
+scripts/google-yt-photos-token.json
+scripts/x-oauth-token.json
+scripts/x-oauth-creds.json
+scripts/x-user-tokens.json
+*-token.json
+*-creds.json
+*-tokens.json
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+.venv*/
+venv/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Large binary files — never commit these
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.sqlite3
+*.db
+*.pkl
+*.parquet
+
+# Generated PDFs
+tmp/*.pdf
+
+# Photos (managed externally)
+deacon-photos/
+
+# Large media — clips and generated images
+clips/
+creative-output/
+
+# Temp image files
+tmp/*.jpg
+tmp/*.jpeg
+tmp/*.png
+tmp/*.gif
+tmp/*.webp
+
+# Misnamed ~ directory (from scripts that didn't expand tilde)
+~/
+
+# Virtual environments anywhere
+**/.venv/
+**/.venv-*/
+
+# Nested repos — tracked separately, not ingested here
+research/openplanter-repo/

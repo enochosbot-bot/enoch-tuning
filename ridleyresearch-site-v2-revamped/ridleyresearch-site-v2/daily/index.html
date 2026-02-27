@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Log | Ridley Research & Consulting</title>
+  <meta name="description" content="Short, real notes on what I'm learning building with OpenClaw every day. Subscribe to get each one in your inbox." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+  <style>
+    .subscribe-box {
+      background: linear-gradient(135deg, rgba(91,143,255,0.08), rgba(30,50,140,0.1));
+      border: 1px solid rgba(91,143,255,0.2);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 40px 0;
+    }
+    .subscribe-box h3 {
+      margin: 0 0 8px;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 18px;
+    }
+    .subscribe-box p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 20px;
+    }
+    .subscribe-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .subscribe-input {
+      flex: 1;
+      min-width: 200px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: Inter, sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .subscribe-input:focus { border-color: rgba(91,143,255,0.4); }
+    .subscribe-input::placeholder { color: var(--muted); }
+    .subscribe-btn {
+      background: linear-gradient(135deg, #5b8fff, #3d6eff);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 22px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: Inter, sans-serif;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .subscribe-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(91,143,255,0.3); }
+
+    .post-list { margin-top: 16px; }
+    .post-item {
+      display: block;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.15s;
+    }
+    .post-item:last-child { border-bottom: none; }
+    .post-item:hover .post-item-title { color: var(--accent2); }
+    .post-item-date { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .post-item-title { font-size: 17px; font-weight: 600; font-family: "Space Grotesk", Inter, sans-serif; margin: 0 0 6px; transition: color 0.15s; }
+    .post-item-excerpt { font-size: 14px; color: var(--muted); line-height: 1.55; margin: 0; }
+    @media (max-width: 600px) { .subscribe-box { padding: 20px 18px; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+
+    <h1>Daily Log</h1>
+    <p class="sub">Short notes on what I'm actually learning building with OpenClaw — what works, what breaks, and what I'd do differently. Posted at least daily. Under 600 words each.</p>
+
+    <div class="subscribe-box" id="subscribe">
+      <h3>Get it in your inbox</h3>
+      <p>Each post delivered when it goes up. No roundups, no noise — just the log.</p>
+      <form class="subscribe-form" action="https://formspree.io/f/hello@ridleyresearch.com" method="POST" onsubmit="handleSubscribe(event)">
+        <input class="subscribe-input" type="email" name="email" placeholder="your@email.com" required />
+        <button class="subscribe-btn" type="submit">Subscribe</button>
+      </form>
+      <p id="subscribe-confirm" style="display:none;color:#4ade80;margin-top:12px;font-size:14px;">✓ You're in. First post incoming.</p>
+    </div>
+
+    <div class="post-list">
+      <a class="post-item" href="./first-week">
+        <div class="post-item-date">Feb 25, 2026</div>
+        <div class="post-item-title">Week One</div>
+        <div class="post-item-excerpt">What it actually felt like to set this up from scratch — the first thing that worked and the first thing that broke.</div>
+      </a>
+    </div>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.querySelector('input[type=email]').value;
+      fetch('https://formspree.io/f/hello@ridleyresearch.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email })
+      }).then(() => {
+        form.style.display = 'none';
+        document.getElementById('subscribe-confirm').style.display = 'block';
+      }).catch(() => {
+        window.location.href = 'mailto:hello@ridleyresearch.com?subject=Subscribe%20%E2%80%94%20Daily%20Log&body=Please%20add%20me%20to%20the%20Daily%20Log%3A%20' + encodeURIComponent(email);
+      });
+    }
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+  <script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

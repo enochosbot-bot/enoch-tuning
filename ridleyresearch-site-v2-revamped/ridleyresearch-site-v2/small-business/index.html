@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Agents for Small Business — Ridley Research & Consulting</title>
+  <meta name="description" content="One-person businesses can now operate like a team. AI agents handle scheduling, client follow-up, content, bookkeeping admin, lead gen, and local SEO — automatically." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+  <style>
+
+    /* ── HERO ── */
+    .sb-hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--line2);
+      margin-bottom: 64px;
+    }
+    .sb-eyebrow {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .sb-headline {
+      font-family: var(--serif);
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin: 0 0 28px;
+      line-height: 1.08;
+    }
+    .sb-sub {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 58ch;
+      margin: 0;
+    }
+
+    /* ── USE CASES ── */
+    .usecases-section {
+      padding: 0 0 72px;
+      border-bottom: 1px solid var(--line2);
+      margin-bottom: 72px;
+    }
+    .usecases-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .usecases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .usecase-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .usecase-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));
+    }
+    .usecase-icon {
+      font-size: 22px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .usecase-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      margin: 0 0 10px;
+      line-height: 1.3;
+    }
+    .usecase-desc {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--muted2);
+      font-weight: 300;
+      margin: 0;
+    }
+
+    @media (max-width: 700px) {
+      .usecases-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── SEE IT IN ACTION ── */
+    .seeitinaction {
+      padding: 0 0 72px;
+      border-bottom: 1px solid var(--line2);
+      margin-bottom: 72px;
+    }
+    .action-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .action-heading {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin: 0 0 12px;
+      line-height: 1.2;
+    }
+    .action-sub {
+      font-size: 15px;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 54ch;
+      line-height: 1.75;
+      margin: 0 0 36px;
+    }
+    .industry-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .industry-link {
+      display: block;
+      padding: 16px 20px;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.4;
+      transition: color 0.18s ease, border-color 0.18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .industry-link::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+    }
+    .industry-link:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .industry-link-arrow {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    @media (max-width: 700px) {
+      .industry-links { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 420px) {
+      .industry-links { grid-template-columns: 1fr; }
+    }
+
+    /* ── CTA ── */
+    .sb-cta {
+      padding: 0 0 64px;
+    }
+    .sb-cta-heading {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+    .sb-cta-sub {
+      font-size: 15px;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 54ch;
+      line-height: 1.75;
+      margin: 0 0 36px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+
+    <!-- ── HERO ── -->
+    <section class="sb-hero">
+      <div class="sb-eyebrow">Small Business</div>
+      <h1 class="sb-headline">AI Agents<br>for Small Business.</h1>
+      <p class="sb-sub">A one-person business can now operate like a team. AI agents handle the repetitive work — scheduling, follow-up, content, admin — so you can focus on what only you can do.</p>
+    </section>
+
+    <!-- ── USE CASES ── -->
+    <section class="usecases-section">
+      <div class="usecases-label">What Your Agents Handle</div>
+      <div class="usecases-grid">
+
+        <div class="usecase-card">
+          <span class="usecase-icon">📅</span>
+          <h2 class="usecase-title">Scheduling & Follow-Up</h2>
+          <p class="usecase-desc">Your agent monitors your pipeline, drafts follow-up messages in your voice, and queues them for a single tap to send. No lead falls through the cracks. No reminder needed.</p>
+        </div>
+
+        <div class="usecase-card">
+          <span class="usecase-icon">💬</span>
+          <h2 class="usecase-title">Client Communication</h2>
+          <p class="usecase-desc">From inquiry to invoice, your agent handles the repetitive back-and-forth — intake emails, status updates, meeting prep, post-meeting summaries. You stay focused on the actual work.</p>
+        </div>
+
+        <div class="usecase-card">
+          <span class="usecase-icon">✍️</span>
+          <h2 class="usecase-title">Social & Content</h2>
+          <p class="usecase-desc">Turn a voice note or rough idea into a polished post, email, or newsletter. Your agent keeps your content calendar moving without requiring hours at a keyboard every week.</p>
+        </div>
+
+        <div class="usecase-card">
+          <span class="usecase-icon">🧾</span>
+          <h2 class="usecase-title">Bookkeeping & Admin</h2>
+          <p class="usecase-desc">Invoice tracking, receipt organization, expense categorization, reporting — the background noise of running a business that eats your evenings. Automated and off your plate.</p>
+        </div>
+
+        <div class="usecase-card">
+          <span class="usecase-icon">🎯</span>
+          <h2 class="usecase-title">Lead Generation</h2>
+          <p class="usecase-desc">Your agent monitors target lists, researches prospects, drafts personalized outreach, and surfaces the warmest opportunities. A full-time BDR at a fraction of the cost.</p>
+        </div>
+
+        <div class="usecase-card">
+          <span class="usecase-icon">📍</span>
+          <h2 class="usecase-title">Local SEO & Visibility</h2>
+          <p class="usecase-desc">Review monitoring, response drafting, Google Business updates, local keyword content — the slow-burn work that compounds into new customers. Running in the background, every week.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SEE IT IN ACTION ── -->
+    <section class="seeitinaction">
+      <div class="action-label">See It In Action</div>
+      <h2 class="action-heading">Built for your trade.<br>Not a generic template.</h2>
+      <p class="action-sub">We've written industry-specific breakdowns showing exactly how AI agents apply to your business — what they automate, how they integrate, and what a typical setup looks like.</p>
+      <div class="industry-links">
+        <a class="industry-link" href="/blog/ai-agents-for-electricians">
+          Electricians
+          <span class="industry-link-arrow">Read the breakdown →</span>
+        </a>
+        <a class="industry-link" href="/blog/ai-agents-for-hvac-technicians">
+          HVAC Technicians
+          <span class="industry-link-arrow">Read the breakdown →</span>
+        </a>
+        <a class="industry-link" href="/blog/ai-agents-for-personal-trainers">
+          Personal Trainers
+          <span class="industry-link-arrow">Read the breakdown →</span>
+        </a>
+        <a class="industry-link" href="/blog/ai-agents-for-plumbers">
+          Plumbers
+          <span class="industry-link-arrow">Read the breakdown →</span>
+        </a>
+        <a class="industry-link" href="/blog/ai-agents-for-real-estate-agents">
+          Real Estate Agents
+          <span class="industry-link-arrow">Read the breakdown →</span>
+        </a>
+        <a class="industry-link" href="/blog/ai-agents-for-salespeople">
+          Salespeople
+          <span class="industry-link-arrow">Read the breakdown →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="sb-cta">
+      <h2 class="sb-cta-heading">Ready to run your business<br>like a team of one?</h2>
+      <p class="sb-cta-sub">We come to you, build the system on your machine, and hand you the keys the same day. No subscriptions, no ongoing fees. Just an AI that works while you sleep — starting at $497 for an in-person install in the DFW area.</p>
+      <div class="btn-row">
+        <a class="cta" href="/products/">See What We Offer</a>
+        <a class="ghost" href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call%20-%20Small%20Business">Book a Discovery Call</a>
+      </div>
+    </section>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+  <script>
+    const revealEls = document.querySelectorAll(".sb-hero, .usecase-card, .seeitinaction, .industry-link, .sb-cta");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = "1";
+          e.target.style.transform = "translateY(0)";
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    revealEls.forEach((el, i) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(20px)";
+      el.style.transition = `opacity 0.5s ease ${i * 0.06}s, transform 0.5s ease ${i * 0.06}s`;
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

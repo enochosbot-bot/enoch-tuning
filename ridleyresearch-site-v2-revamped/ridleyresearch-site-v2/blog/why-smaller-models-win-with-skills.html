@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why a $20 Model Beats a $200 Model (If You Do This) | Ridley Research & Consulting</title>
+  <meta name="description" content="The variable that drives agent performance isn't the model tier — it's the procedural knowledge you give it to work from. Here's what I learned building with skills." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+<link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <article class="post">
+      <h1>Why a $20 Model Beats a $200 Model (If You Do This)</h1>
+      <p class="muted">Published: 2026-02-24 · 6 min read</p>
+
+      <p>Everyone starting out assumes the expensive model is the answer. Bigger subscription, more parameters, frontier tier — that's how you get good results. I believed that too.</p>
+
+      <p>Then I actually started building with it, and I realized the model is maybe 30% of the equation. The other 70% is what you give it to work from.</p>
+
+      <h2>The Difference Between a Prompt and a Skill</h2>
+
+      <p>A prompt tells the agent what you want. A skill tells it exactly how to do it — step by step, with decision rules for the edge cases you've already hit. The agent stops reasoning from scratch and follows a tested playbook instead.</p>
+
+      <p>I noticed this clearly when I started adding skills to OpenClaw. The same model handling the same task — one time improvising, one time with a skill loaded — produced noticeably different results. With the skill, it was faster, more consistent, and didn't make the same mistakes twice.</p>
+
+      <p>Without skills, every session is day one. The agent figures things out freshly each time. That's fine for one-off questions. It's a problem for recurring work you need done the same way every time.</p>
+
+      <h2>The Trap of Asking the AI to Figure It Out</h2>
+
+      <p>The way most people use AI tools is basically: "figure out how to do this for me." Sometimes it works. Often it kind of works. But you're not building anything — every run is improvised.</p>
+
+      <p>What actually builds leverage is documented procedure. The agent follows what you've already thought through and tested. When it hits an edge case you've seen before, the skill covers it. When something breaks, the failure is visible because it's deviating from a known process.</p>
+
+      <p>The model isn't getting smarter by improvising — it's just guessing better or worse each time. The skill is what makes the difference repeatable.</p>
+
+      <h2>Smaller and Cheaper Can Win</h2>
+
+      <p>Once I started building this way, the model tier mattered less. A well-configured lighter model with good procedural context handles most of my recurring work — cron jobs, triage, formatting, summaries — without touching the premium API.</p>
+
+      <p>I keep the heavier model for things that genuinely need judgment: drafting, research synthesis, anything going to a real person. Everything else runs lean.</p>
+
+      <p>The mistake is defaulting the heavy model to everything because it feels safer. It's not safer — it's just more expensive, and it hides the fact that your procedural setup isn't doing its job.</p>
+
+      <h2>One Warning</h2>
+
+      <p>A badly built skill is worse than no skill. If the procedure is too broad, internally contradictory, or based on how you thought a workflow would go rather than how it actually goes — it'll make things worse, not better.</p>
+
+      <p>The discipline is building skills from real operation. Write it after you've done the task a few times, not before. The procedure should reflect what actually worked, not what you hoped would work.</p>
+
+      <p>That's also why copy-pasting someone else's agent setup rarely lands. The skills that work are specific to the workflows you've actually run.</p>
+
+      
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0;" />
+      <p><strong>Want the full setup?</strong> The <a href="../#guide" style="color:var(--accent)">AI Ops Setup Guide</a> covers the complete implementation — agent OS setup, memory architecture, cron automation, Telegram integration, and deployment. Everything in one place.</p>
+      <p class="muted">— Ridley Research &amp; Consulting, February 2026</p>
+    </article>
+  </main>
+
+<script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

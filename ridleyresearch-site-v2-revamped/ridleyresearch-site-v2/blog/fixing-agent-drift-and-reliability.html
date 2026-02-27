@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fixing Agent Drift and Reliability | Ridley Research & Consulting</title>
+  <meta name="description" content="Agent systems don't fail dramatically — they drift. Here's what drift looks like, what causes it, and how to fix it when it happens." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+<link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <article class="post">
+      <h1>Fixing Agent Drift and Reliability</h1>
+      <p class="muted">Published: 2026-02-23 · 7 min read</p>
+
+      <p>Agent stacks rarely fail in one dramatic moment. The API doesn't throw a 500. The cron doesn't crash. The model doesn't refuse. Instead, something subtler happens: the system keeps running, outputs keep appearing, but the outputs stop being right. Status reports diverge from reality. Tasks are marked done without artifacts. The agent starts narrating its process instead of completing it. Everything looks operational from the dashboard and is quietly broken underneath.</p>
+
+      <p>This is drift. It has specific causes, specific signals, and a specific recovery sequence. Here's all three.</p>
+
+      <h2>The Signals</h2>
+
+      <p>Drift announces itself early if you know what to look for:</p>
+
+      <ul>
+        <li><strong>Verbosity increases without utility increasing.</strong> Responses get longer. The agent explains what it's about to do before doing it. Summaries of summaries appear in outputs that used to be direct.</li>
+        <li><strong>Status reports disagree with live runtime state.</strong> The agent says a cron job is running; it isn't. The agent says a task completed; there's no artifact. The agent says a model is active; the config says otherwise.</li>
+        <li><strong>Instructions are technically followed but spiritually missed.</strong> The rule said "send a daily brief"; the agent sends something that fits that description but no longer contains what the brief was supposed to contain.</li>
+        <li><strong>Completion counts rise while outcomes stall.</strong> Queue items get processed. Nothing changes in the actual business. Activity theater is a classic late-stage drift indicator.</li>
+        <li><strong>Double replies, double tool calls, redundant check-ins.</strong> The agent starts narrating, then executing, then confirming, then confirming the confirmation. Each message is technically compliant. The aggregate behavior is broken.</li>
+      </ul>
+
+      <p>Any one of these in isolation might be noise. Two or more at the same time is a drift event. Treat it as one.</p>
+
+      <h2>What Causes It</h2>
+
+      <p>The root cause is almost always the same thing: too many rules competing with each other. Over time, operating files grow. Every new rule feels like an improvement in the moment. What you end up with is a system where three different rules apply to the same situation and point in different directions — so the agent picks one inconsistently depending on what's most prominent in context.</p>
+
+      <p>It's not the model getting dumber. It's the instructions getting noisier.</p>
+
+      <p><strong>Instruction accumulation.</strong> This is the most common cause. You add rules as problems come up. By month two, the operating file is twice as long as it needs to be, half the rules contradict each other in edge cases, and the agent spends cognitive budget resolving conflicts instead of just doing the work.</p>
+
+      <p><strong>Context rot.</strong> Sessions get long. Memory gets disorganized. The agent starts pulling outdated context into current decisions. Things that were true three weeks ago pollute things that are true now. I've seen the agent report a cron job as active when it had been removed days earlier — pulled from stale memory and presented as fact.</p>
+
+      <p><strong>No failure memory.</strong> Agents that don't log tool failures retry the same dead endpoints every session, every time. I had a web fetch hitting a blocked URL for two weeks before I noticed. The fix took thirty seconds once I saw it. The problem was I had no log telling me it kept happening.</p>
+
+      <h2>The Recovery Sequence</h2>
+
+      <p>When a drift event is confirmed, the recovery order matters. Don't start adding rules — that's what caused the problem. Start by reducing scope:</p>
+
+      <ol>
+        <li><strong>Freeze new features and configs.</strong> Nothing new until the system is stable. Every additional change during a drift event adds signal noise and makes root cause harder to isolate.</li>
+        <li><strong>Run live verification on core jobs.</strong> Don't read status docs — run the actual commands. Pull cron state, check active processes, verify model assignments. Replace any stale status notes with runtime snapshots. What you wrote two weeks ago is historical; what the system is doing right now is truth.</li>
+        <li><strong>Diff against the last known-good baseline.</strong> What changed since the system was working? Operating files, model routing, scheduled jobs, active skills. The diff usually points directly at the cause.</li>
+        <li><strong>Strip operating rules to a minimum.</strong> Our reset protocol brings rules down to four to six core principles. Remove anything that's redundant with something else, anything that only applied to a case that no longer exists, anything that requires interpretation to apply. If two rules apply to the same situation, pick the cleaner one and delete the other.</li>
+        <li><strong>Pin model routing explicitly.</strong> No defaults. No ambiguity. Every scheduled job gets an explicit model assignment. When local models are involved, verify they're healthy before assigning work — local inference under memory pressure produces silent failures that are harder to debug than a straightforward API error.</li>
+        <li><strong>Run behavior verification before resuming normal operations.</strong> Five consecutive behavior tests against expected outputs. Don't call the system stable until it passes all five.</li>
+      </ol>
+
+      <h2>Stop Retrying the Same Broken Approach</h2>
+
+      <p>One pattern I kept seeing: the agent hits a blocker, retries, hits the same blocker, retries again. Nothing changes between attempts. It just runs the same broken path three times and reports failure each time.</p>
+
+      <p>The fix is forcing a stop before any retry. When something blocks mid-execution, don't immediately try again — stop and ask three questions:</p>
+
+      <ul>
+        <li>Is the original goal still achievable via this approach?</li>
+        <li>Has this blocker revealed information that changes the approach?</li>
+        <li>Is there a better path from the current state than pushing through?</li>
+      </ul>
+
+      <p>Only then resume — or change direction. Retrying the same broken approach without replanning isn't persistence. It's wasted compute and a signal that the plan was wrong from step one.</p>
+
+      <h2>Hard Rules That Prevent Regression</h2>
+
+      <p>Once a drift event is resolved, the goal is to not repeat it. The structural rules that prevent regression:</p>
+
+      <ul>
+        <li><strong>One change, one verification.</strong> Never ship two config changes in the same session without testing the first. Agent systems are sensitive to instruction surface area. Changes interact in ways that aren't obvious until they're both live.</li>
+        <li><strong>No completion without artifact.</strong> If there is no file path, run ID, sent timestamp, or command output, the task didn't complete. The agent's confidence in its own reporting is not sufficient evidence. The artifact is.</li>
+        <li><strong>Archived notes never trigger action.</strong> Historical context is context. It can inform decisions. It cannot confirm current state. Before acting on anything written more than a session ago, verify it live.</li>
+        <li><strong>Recurring core failures are P1 incidents, not known issues.</strong> If the same job fails twice in a row, it's an incident. It gets a root cause analysis and a fix before anything else moves forward. Logging a failure and moving on is how "known issues" accumulate into system collapse.</li>
+        <li><strong>Write tool failures to memory.</strong> When a tool call fails in a way that reveals a structural limit — blocked URL, dead API endpoint, auth failure — write it to a failure log immediately: date, tool, what failed, why, what to avoid next time. Check the log before retrying anything that has failed before.</li>
+      </ul>
+
+      <h2>The Living Soul Protocol</h2>
+
+      <p>One class of drift deserves specific protection: behavioral constraint drift. This is when an agent's core operating identity — what it will and won't do, what its values are — gradually shifts over long interactions. The fix isn't constant re-reading of rules. It's making those rules structurally hard to modify.</p>
+
+      <p>We implement what we call a Living Soul Protocol: the agent's core identity file is read unconditionally at session start and cannot be modified by the agent itself. If someone asks the agent to change its own rules, it refuses and flags the request. Any actual changes go through a human-controlled edit process with a documented rationale. The rules don't drift because the agent doesn't touch them.</p>
+
+      <p>Most agents don't have this. Their operating rules live in the same mutable context as everything else. The most important behavioral constraints are the ones most at risk of drift.</p>
+
+      <h2>Reliability Is the Prerequisite</h2>
+
+      <p>Every operator running agent systems for clients eventually learns the same lesson: reliability is the product, not a feature. The model quality, the clever retrieval system, the elaborate skill library — none of it matters if the system can't be trusted to run correctly when no one's watching it.</p>
+
+      <p>Fixing drift isn't perfectionism. It's prerequisite infrastructure. The mistake we see teams make is polishing features while drift is actively accumulating. By the time they notice, recovery takes longer than building from a clean baseline would have.</p>
+
+      <p>The right sequence is: make it reliable first. Then make it capable. Reliability earns the trust that lets you add capability without breaking it.</p>
+
+      
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0;" />
+      <p><strong>Want the full setup?</strong> The <a href="../#guide" style="color:var(--accent)">AI Ops Setup Guide</a> covers the complete implementation — agent OS setup, memory architecture, cron automation, Telegram integration, and deployment. Everything in one place.</p>
+      <p class="muted">— Ridley Research &amp; Consulting, February 2026</p>
+    </article>
+  </main>
+
+
+
+
+<script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

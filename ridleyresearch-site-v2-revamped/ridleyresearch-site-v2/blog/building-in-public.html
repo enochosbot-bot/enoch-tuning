@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>We're Building in Public | Ridley Research & Consulting</title>
+  <meta name="description" content="What Ridley Research is, what we're building, and why we're documenting every step of it." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="post">
+      <h1>We're Building in Public</h1>
+      <p class="muted">Published: 2026-02-24 · 3 min read</p>
+
+      <p>Most consulting firms don't show their work. We're going to.</p>
+
+      <p>Ridley Research &amp; Consulting exists to help small teams — operators, builders, political teams — do more with less by deploying AI agents that actually work. Not demos. Not pilots. Agents that run overnight, write memory, monitor systems, and surface what matters when you need it.</p>
+
+      <p>We built our own before we started selling it. Everything on this site comes from a live system that's been running on a Mac mini in Plano, Texas — handling security audits, research digests, client outreach drafts, memory consolidation, and now this blog post.</p>
+
+      <p>That's the point of this site. We're documenting what we build, what breaks, and what we learn while we build it. The lessons here are real because they cost us something — tokens, time, or a late-night session figuring out why a permissions misconfiguration was blocking deploys at midnight.</p>
+
+      <h2>What we're building</h2>
+
+      <p>The core product is a replicable AI infrastructure stack for small teams. One agent as chief of staff. Specialized sub-agents for security, research, content, and ops. Memory that persists across sessions. Crons that run while you sleep and brief you in the morning.</p>
+
+      <p>We're calling it the Enoch stack, and we're pressure-testing it ourselves before we bring it to clients.</p>
+
+      <h2>Why document it</h2>
+
+      <p>Because the gap between "AI is amazing" and "AI is running my operations" is enormous, and almost nobody is publishing honest content about what it actually takes to cross it. We are.</p>
+
+      <p>Every post here is drawn from something that actually happened in the build. If a cron job failed fourteen times before we fixed the allowlist, that's a post. If we learned the hard way that model swaps from chat (not Claude Code) can take down the gateway — that's a post too.</p>
+
+      <p>Subscribe or check back. We'll keep shipping.</p>
+
+      <p>— Deacon Ridley, Ridley Research &amp; Consulting</p>
+    </article>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+  <script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

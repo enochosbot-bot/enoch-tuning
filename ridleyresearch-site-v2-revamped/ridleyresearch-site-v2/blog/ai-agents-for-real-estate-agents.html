@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Agents for Real Estate Agents: More Listings, Less Admin | Ridley Research & Consulting</title>
+  <meta name="description" content="Real estate agents spend half their time on work that isn't real estate. Here's what a custom AI agent setup actually looks like in a busy agent's business." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+  <link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleDropdown(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      document.addEventListener('click', function handler(e) {
+        if (!el.contains(e.target)) { el.classList.remove('open'); document.removeEventListener('click', handler); }
+      });
+    }
+  </script>
+
+  <main class="wrap">
+    <article class="post">
+      <h1>AI Agents for Real Estate Agents: More Listings, Less Admin</h1>
+      <p class="muted">Published: 2026-02-26 · 6 min read</p>
+
+      <h2>The Problem</h2>
+
+      <p>A productive real estate agent is essentially running a small business with no staff. Every transaction is a project: buyer or seller, lender coordination, inspection scheduling, contract deadlines, title company back-and-forth, disclosures, and then the part where you're also supposed to be nurturing your pipeline so there's a next transaction waiting when this one closes.</p>
+
+      <p>The admin is relentless. Listing descriptions written and rewritten. Showing feedback logged and compiled. Client update emails drafted and sent. CRM contacts tagged and sorted. Social media posts that need to stay current so leads don't wonder if you're still active. Comps pulled before every listing consultation. Transaction checklists managed across five or six active deals at once — each with its own set of deadlines that can't slip.</p>
+
+      <p>Most agents handle it through sheer volume of hours. Early mornings, late nights, weekends that aren't really weekends. The ones who build teams hand off some of it to an assistant, but then they're managing a person instead of the work. Neither of those is a clean solution. You're either burning yourself out or adding overhead.</p>
+
+      <h2>What Changes</h2>
+
+      <p>A custom agent setup built for your business starts with the work that happens on every transaction and every lead, then automates the parts that don't require your judgment.</p>
+
+      <p>Listing descriptions are a good example. You take a new listing, drop in the property details — square footage, features, upgrades, neighborhood — and the agent drafts the MLS description, the social post, and the email announcement to your database. In your voice, at your quality level, ready for your review. What used to take forty-five minutes takes five.</p>
+
+      <p>Transaction management works differently. Your agent monitors active deal timelines, surfaces anything coming up in the next 48 hours that needs action, and drafts the coordination messages — lender status checks, title company follow-ups, inspection scheduling confirmations. You review and send. The tracking and the writing happen automatically.</p>
+
+      <p>Lead nurture — the long game that most agents do inconsistently because they're too busy — becomes something that actually runs on a schedule. Past clients get touched. Your sphere hears from you. New leads get a follow-up sequence that doesn't require you to remember who they were and where they were in the conversation.</p>
+
+      <h2>What "Custom" Actually Means</h2>
+
+      <p>The way you run your business is specific to you. Your CRM isn't the same as another agent's. The way you write client emails is different from a template. Your listing process has steps and preferences that a generic tool doesn't know about. Your farm area, your typical client profile, the way you handle multiple offers — all of it is particular to how you've built your practice.</p>
+
+      <p>We build around that. We spend time understanding your workflow before we build anything. The agent configuration, the automations, the memory architecture — everything is designed to fit how you operate. When you use it, it doesn't feel like you're adapting to a tool. It feels like the tool was built for you, because it was.</p>
+
+      <h2>The Result</h2>
+
+      <p>Active transactions get managed without things falling through the cracks. Your database stays warm without you carving out time to write nurture emails. Listings get marketed faster because the content production isn't a bottleneck. Your weekends start looking more like weekends.</p>
+
+      <p>You're still the agent — the relationships, the negotiations, the judgment calls are yours. What changes is that everything supporting that work runs with a fraction of the manual effort it used to require.</p>
+
+      <p>If you're a real estate agent and want a custom agent setup built for your business, <a href="mailto:hello@ridleyresearch.com?subject=Real%20Estate%20AI%20Setup">start here</a>.</p>
+    </article>
+
+    <p class="foot">© <span id="y"></span> Ridley Research &amp; Consulting. All rights reserved.</p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

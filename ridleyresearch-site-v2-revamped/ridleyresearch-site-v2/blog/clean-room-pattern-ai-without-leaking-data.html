@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Clean-Room Pattern: Using Cloud AI Without Leaking Client Data | Ridley Research & Consulting</title>
+  <meta name="description" content="A practical architecture for using cloud language models in data-sensitive environments — without exposing sensitive information to third-party servers." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+<link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <article class="post">
+      <h1>The Clean-Room Pattern: Using Cloud AI Without Leaking Client Data</h1>
+      <p class="muted">Published: 2026-02-24 · 6 min read</p>
+
+      <p>The most common objection to AI agents in data-sensitive environments is also the most legitimate one: if the agent is calling a cloud API, sensitive data is transiting a third-party server. Zero-training policies help, but they don't change the fact that the context window — which may contain names, internal records, and proprietary details — is being processed externally.</p>
+
+      <p>The clean-room pattern solves this. It's a specific architecture for using cloud AI without exposing sensitive data to cloud providers. It's not a workaround — it's the correct design for any environment where data control matters.</p>
+
+      <h2>The Problem with Naive AI Agent Deployment</h2>
+
+      <p>A long-running AI agent accumulates context. Over the course of a workday, a single session might hold dozens of client names, internal records, recent activity details, communication history, and proprietary business information. Every cloud API call sends that context window to the provider's servers for processing.</p>
+
+      <p>Most agents don't sanitize before sending. They send whatever is in context — because that's the default behavior, and because there's no automatic mechanism that says "strip the PII before this leaves the building."</p>
+
+      <p>There's a second problem: as the context window fills, earlier instructions get pushed out. If you add a rule at the start of a session that says "never include client names in API calls," that instruction may have low effective weight by hour four when the context is dense. The agent's compliance with the rule degrades as the session extends.</p>
+
+      <p>One sloppy request can expose everything accumulated since session start. The naive approach — run one agent, let it accumulate context, call cloud APIs as needed — is not appropriate for any business handling sensitive client or internal data.</p>
+
+      <h2>The Architecture: Local Orchestrator, Clean-Room Sub-Agents</h2>
+
+      <p>The clean-room pattern separates the two roles that get conflated in naive deployments: <em>holding context</em> and <em>doing cloud processing.</em></p>
+
+      <p>The local orchestrator runs on your hardware. It holds everything sensitive: client names, account details, communication history, relationship context. It makes decisions about what work needs to happen. Critically, it never calls cloud APIs directly.</p>
+
+      <p>When the work requires cloud-level reasoning — drafting a nuanced client communication, synthesizing complex research, generating a structured report — the orchestrator sanitizes the relevant information, creates a minimal task description, and spawns a clean-room sub-agent.</p>
+
+      <p>The clean-room sub-agent gets a fresh context window containing only the sanitized task. It doesn't know who the client is. It doesn't have account numbers. It has a generic description of the task and the information strictly necessary to complete it. It processes the request, returns the output, and the session is deleted.</p>
+
+      <p>The orchestrator takes the output, re-hydrates it with the real client information (adding names, specific details), and stages it for human review. The cloud model never sees the client's actual identity.</p>
+
+      <h2>What Sanitization Looks Like in Practice</h2>
+
+      <p>Instead of sending: "Draft a follow-up email to Sarah Chen at Meridian Group (contract #49201) regarding their Q1 renewal. She's expressed concern about the pricing changes."</p>
+
+      <p>The orchestrator sends: "Draft a professional follow-up email to a client regarding their upcoming contract renewal. The client has expressed concern about pricing changes. Tone: warm and direct, 3–4 paragraphs."</p>
+
+      <p>The output comes back as a generic template. The orchestrator fills in Sarah's name, the specific contract reference, and any detail that only belongs in the final version. The result is personalized; the cloud model never processed the personal information.</p>
+
+      <p>Standard sanitization rules:</p>
+      <ul>
+        <li>Client names → "the client" or a placeholder</li>
+        <li>Internal IDs / reference numbers → removed entirely</li>
+        <li>Any identifying codes or credentials → never included under any circumstances</li>
+        <li>Dollar amounts → rounded to ranges ("mid five figures") if needed at all</li>
+        <li>Specific dates → relative references ("recently," "last quarter")</li>
+        <li>Addresses → city and state only if necessary</li>
+      </ul>
+
+      <h2>Why This Strengthens the Data Conversation</h2>
+
+      <p>Any business running AI agents will eventually face a simple question from clients or leadership: can you demonstrate that sensitive data is not being sent to third-party servers?</p>
+
+      <p>With naive deployment, the honest answer is "no — but our vendor has a zero-training policy." That's a weak position.</p>
+
+      <p>With the clean-room pattern, the honest answer is: "Yes. Here's the architecture. The local orchestrator holds all sensitive data. Cloud API calls receive sanitized payloads only. Here's the audit log of what was sent." That's a defensible position.</p>
+
+      <p>The difference matters when your firm is evaluated for data handling practices, and it matters when a client asks directly how their information is being used.</p>
+
+      <h2>The Prerequisites</h2>
+
+      <p>Implementing this pattern requires three components:</p>
+
+      <p><strong>1. A capable local model.</strong> The orchestrator needs to be smart enough to make decisions, sanitize data, and coordinate the overall workflow. A 14B parameter local model running on a Mac Mini handles this adequately for most professional services tasks. The local model doesn't need to be frontier-class — it needs to be reliable at orchestration decisions, which is a different (and lower) bar.</p>
+
+      <p><strong>2. A sanitization protocol.</strong> A documented, tested procedure for what gets stripped before any cloud API call. This isn't ad hoc — it's a defined set of rules that the orchestrator applies consistently, not a judgment call made fresh each time.</p>
+
+      <p><strong>3. An audit log.</strong> A record of what payloads were sent to cloud providers (post-sanitization), timestamped, for compliance review. The log doesn't contain PII — it contains the sanitized payload. That's intentional: the log proves compliance without creating a second PII exposure.</p>
+
+      <h2>The Honest Current-State Assessment</h2>
+
+      <p>This pattern is fully implementable today with current AI agent infrastructure. The sub-agent spawning mechanism exists. Local model hosting exists. The sanitization logic is straightforward to implement.</p>
+
+      <p>The deployment sequence that makes sense: start with the clean-room pattern in place from day one, even if the local orchestrator model is basic. As local model capability improves (and it's improving fast), the orchestrator gets more capable without any architectural changes. The pattern scales forward.</p>
+
+      <p>For firms that currently use AI tools in an ad hoc way — staff members using ChatGPT or Claude directly, without any structured architecture — the clean-room pattern represents a meaningful upgrade. It takes an informal practice and puts it behind a documented, auditable architecture.</p>
+
+      <h2>The Broader Principle</h2>
+
+      <p>The clean-room pattern is an application of a general principle that good system design applies everywhere: don't give any component more access than it needs to do its job.</p>
+
+      <p>The cloud model's job is language processing — drafting, summarizing, reasoning. It doesn't need the client's name to do that job. The local orchestrator's job is context management and workflow coordination. It needs the full picture. Keep those roles separated and you get both capability and control.</p>
+
+      <p>The goal isn't to avoid cloud AI — it's to use it correctly. The clean-room pattern is how you get the performance of frontier models without the data exposure that comes from sending your full client context to an external server.</p>
+
+      
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0;" />
+      <p><strong>Want the full setup?</strong> The <a href="../#guide" style="color:var(--accent)">AI Ops Setup Guide</a> covers the complete implementation — agent OS setup, memory architecture, cron automation, Telegram integration, and deployment. Everything in one place.</p>
+      <p class="muted">— Ridley Research &amp; Consulting, February 2026</p>
+    </article>
+  </main>
+
+<script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

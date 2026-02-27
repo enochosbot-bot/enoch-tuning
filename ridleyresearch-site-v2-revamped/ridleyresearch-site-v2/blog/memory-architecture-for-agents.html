@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memory Architecture for Agents | Ridley Research & Consulting</title>
+  <meta name="description" content="The three memory failure modes that break production agents, what the research says about each one, and a practical tiered architecture that holds up over time." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+<link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <article class="post">
+      <h1>Memory Architecture for Agents</h1>
+      <p class="muted">Published: 2026-02-23 · 7 min read</p>
+
+      <p>Most teams get memory wrong in the same direction: they add more of it. The agent starts forgetting things, so they expand the context window. It starts making errors on old information, so they add more retrieval. The system gets slower, less coherent, and more expensive — and the underlying problem is never fixed.</p>
+
+      <p>The problem isn't that the agent needs more memory. It's that the memory it has isn't structured. Context rot, noisy recall, and constraint drift are three distinct failure modes. Each one has a specific fix. Throwing more context at all three makes all three worse.</p>
+
+      <h2>The Three Failure Modes</h2>
+
+      <p>There are three distinct ways memory breaks down in agent systems. They're worth naming because they have different causes and different fixes — and most teams treat all three as the same problem and apply the same wrong solution (more context) to all of them.</p>
+
+      <p>The three failure modes:</p>
+
+      <ul>
+        <li><strong>Context rot</strong> — enlarging the context window without management degrades performance non-linearly. Simply loading everything the agent might ever need into context worked in demos. It collapsed under production workloads. Retrieval became expensive, earlier instructions degraded, costs compounded.</li>
+        <li><strong>Noisy recall / memory poisoning</strong> — when agents retrieve memories by vector similarity, they surface contextually similar but factually irrelevant content. The more memories you accumulate, the worse the signal-to-noise ratio. The agent starts reasoning from retrieved content that sounds relevant but isn't.</li>
+        <li><strong>Constraint drift</strong> — over long interactions, agents gradually lose track of behavioral rules loaded earlier in the session. Not because they forgot the rules — because new context pushed them out. Rules that were followed at session start are violated by session end.</li>
+      </ul>
+
+      <p>The dominant fix teams try — persistent memory via transcript replay — makes all three failure modes worse. More context means more rot, more noise, more drift. The solution is architecture, not volume.</p>
+
+      <h2>What the Benchmarks Say</h2>
+
+      <p>Three memory architectures have accumulated enough production data to compare:</p>
+
+      <p><strong>Vector store (retrieval by similarity)</strong> — fast, scalable, surface-level recall. Finds things that sound related, not necessarily things that are related. Best for large knowledge bases where fuzzy retrieval is acceptable.</p>
+
+      <p><strong>Summarization (rolling compression)</strong> — periodic condensation of conversation history into structured summaries. Cheaper, more stable, but lossy. Best for operational context where recency matters more than completeness.</p>
+
+      <p><strong>Knowledge graph (structured relationships)</strong> — memories stored as typed nodes and relationships: people, decisions, events, commitments, time. "Who said what about whom and when." Most expensive to maintain, highest accuracy over long horizons.</p>
+
+      <p>In practice, knowledge graphs win on long-horizon accuracy but cost more to maintain. Summarization is cheaper and more stable but loses specifics over time. The right choice depends on what you actually need to remember and for how long.</p>
+
+      <p>One thing I've found that surprised me: plain markdown files with clear structure outperform more complex retrieval systems for most operational memory. LLMs are trained on markdown — they work with it naturally. You don't always need a vector database. Start simple and add complexity only when the simple version demonstrably fails.</p>
+
+      <h2>The Architecture That Works in Practice</h2>
+
+      <p>The system we run and recommend to clients is a three-tier structure. Not three tools — three tiers with different jobs:</p>
+
+      <p><strong>Tier 1: Always-loaded memory.</strong> A single distilled file — hard-capped at 3,500 characters — containing stable facts, active project summaries, critical decisions with rationale, and standing preferences. This loads every session, first, unconditionally. It never grows unbounded. Anything that would push it over the cap gets demoted to Tier 2 or archived.</p>
+
+      <p><strong>Tier 2: Typed memory files.</strong> Structured notes organized by type: decisions, people, lessons, commitments, preferences, projects. Each file has YAML frontmatter (date, category, priority tag). A vault index file — a single document with every note plus a one-line description — lets the agent scan the full memory catalog without loading everything into context. The agent reads the index first, then fetches only what's relevant.</p>
+
+      <p><strong>Tier 3: Semantic recall.</strong> Hybrid search (keyword + embedding) with reranking for long-tail retrieval. This is the fallback for queries the vault index can't resolve, not the default lookup. Most sessions don't touch it.</p>
+
+      <p>Priority tagging threads through all three tiers: 🔴 critical (decisions, commitments, blockers), 🟡 notable (insights, preferences, live context), 🟢 background (routine updates, low-signal). When loading context under a token budget, the agent loads red first, yellow next, green if there's room. Low-signal background notes never crowd out critical context.</p>
+
+      <h2>Decay Rules</h2>
+
+      <p>Memory without decay is an archive, not a working system. Information that hasn't been referenced in 30+ days should be archived or removed from active tiers. This isn't about pruning for its own sake — stale context actively drives bad decisions. An agent reasoning from a project status that was accurate three weeks ago will make confident errors.</p>
+
+      <p>The practical implementation: a weekly consolidation job that promotes high-signal observations from daily logs into typed memory files, demotes unreferenced notes to archive, and flags anything that contradicts current runtime state. The job doesn't require human review on every cycle — only on items flagged as contradictions.</p>
+
+      <h2>Memory Is Not Runtime Truth</h2>
+
+      <p>The most important operational rule in any memory architecture is this: for any claim about system state, live checks beat memory every time.</p>
+
+      <p>Memory records what was true when it was written. Running processes, active cron jobs, model assignments, queue state — these can change between when a note was written and when it's read. An agent that reports status from memory without running a live check is reporting what used to be true. In an operational context, that's worse than saying nothing.</p>
+
+      <p>The rule: before making any claim about current system state, verify it live. If live verification isn't possible, the claim is "unconfirmed." Not "working." Not "fixed."</p>
+
+      <h2>The Gap Most Teams Miss: Entity Relationships</h2>
+
+      <p>Most agent memory systems have typed files — people, decisions, projects — but no machine-readable relationships between them. A people file knows about a person. A decisions file knows about a decision. Neither knows about the connection between them.</p>
+
+      <p>This becomes a real limitation at scale. "Find all decisions related to this project" requires either a full-scan search or a knowledge graph layer. Semantic search partially covers it — it can find things that sound related — but it can't traverse: "who was involved in this decision, and what commitments came out of that conversation?"</p>
+
+      <p>This is the long-horizon upgrade path: entity relationship mapping on top of typed memory files. It doesn't require abandoning markdown. The ClawVault pattern implements it with wiki-style links inside notes — <code>[[entity-name]]</code> — that a tool can resolve into a traversable graph. The underlying files stay human-readable.</p>
+
+      <h2>Automated Lesson Extraction</h2>
+
+      <p>The gap in most memory systems: if a task fails and nobody manually writes it down, no lesson gets stored. The agent hits the same wall next session. And the session after that.</p>
+
+      <p>The fix is an automated extraction pass over daily logs — something that identifies failures, retries, and unexpected outcomes and writes them to the lessons file without waiting for a human to catch it. The agent should be learning from its own failures automatically, not only when someone notices.</p>
+
+      <p>I haven't fully automated this yet. Right now I review daily logs manually for lesson candidates. The automated version is on the build list.</p>
+
+      <h2>Bottom Line</h2>
+
+      <p>Memory architecture is the most underbuilt part of most agent deployments. Teams spend weeks tuning prompts and zero hours designing how information persists, decays, and gets retrieved. The result is systems that work well in short sessions and degrade predictably over time.</p>
+
+      <p>The architecture above — tiered memory, typed files, vault index, priority loading, decay rules, and live-verification-over-memory — costs one week to implement and produces measurable improvements in session coherence, token efficiency, and behavioral reliability over long horizons. The research backs it. The production numbers back it.</p>
+
+      <p>Build the memory system before you need it. Retrofitting it after drift sets in is harder than building it right.</p>
+
+      
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0;" />
+      <p><strong>Want the full setup?</strong> The <a href="../#guide" style="color:var(--accent)">AI Ops Setup Guide</a> covers the complete implementation — agent OS setup, memory architecture, cron automation, Telegram integration, and deployment. Everything in one place.</p>
+      <p class="muted">— Ridley Research &amp; Consulting, February 2026</p>
+    </article>
+  </main>
+
+
+
+
+<script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

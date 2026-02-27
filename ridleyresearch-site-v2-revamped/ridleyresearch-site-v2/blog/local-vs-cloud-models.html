@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Local vs Cloud Models for Automation | Ridley Research & Consulting</title>
+  <meta name="description" content="A practical model routing framework: which tasks go local, which go cloud, how to benchmark before you commit, and the failure modes that erase the cost savings you were aiming for." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+<link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <article class="post">
+      <h1>Local vs Cloud Models for Automation</h1>
+      <p class="muted">Published: 2026-02-22 · 7 min read</p>
+
+      <p>The question comes up constantly: should we run local models to save money and keep data on-premise? The correct answer is almost always hybrid — but "hybrid" isn't a routing strategy. It's a commitment to making explicit decisions about which model handles which job, and verifying those decisions work before you rely on them in production.</p>
+
+      <p>This post covers the real trade-offs, a task-based routing framework based on what's actually worked, how to test before committing to an assignment, and the failure modes that quietly erase whatever cost savings you were aiming for.</p>
+
+      <h2>What Local Models Actually Trade Off</h2>
+
+      <p>Local inference on commodity hardware has real advantages: no per-token API cost, no data leaving the machine, no dependency on external availability. These advantages are real. They're also conditional on the model being capable enough for the task, the hardware being underloaded enough to run it without latency issues, and the failure mode being recoverable when the model misfires.</p>
+
+      <p>We ran a local model deployment in production — <code>qwen2.5-coder:14b</code> on an M4 Mac mini via Ollama — for several weeks of scheduled automation. What we found:</p>
+
+      <ul>
+        <li>Timeout behavior was inconsistent. Jobs would silently fall back to cloud models without logging it clearly.</li>
+        <li>When local inference slowed under memory pressure, jobs hit timeout thresholds and cascaded errors.</li>
+        <li>Some runs succeeded on local, some on cloud, some partially on both — debugging required correlating logs from two different systems.</li>
+        <li>The cost savings on per-token API costs were real. The cost of debugging time to diagnose silent failures exceeded them in the first month.</li>
+      </ul>
+
+      <p>We pulled local models from scheduled automation and rebuilt with explicit cloud routing. This was the right decision at that time, for that infrastructure, at that monitoring maturity. It's not the universal answer. The lesson is: local inference is viable in production when you have monitoring, alerting, and failure isolation built specifically around it. Without those, the reliability cost exceeds the API cost savings.</p>
+
+      <h2>The Model-by-Task Routing Matrix</h2>
+
+      <p>Based on tested production deployments, this is the routing logic that holds up:</p>
+
+      <p><strong>Route to local models when:</strong></p>
+      <ul>
+        <li>The task is classification, routing, or triage. High-volume, low-risk, bounded scope. <code>qwen3:8b</code> handles first-pass email classification well. An error triggers a re-queue, not a client incident.</li>
+        <li>The task is structured extraction or formatting — pulling fields from a document, reformatting data, applying a fixed schema. Local models handle this reliably when the schema is explicit.</li>
+        <li>The data is sensitive and should not transit external servers, and the task is within the model's capability ceiling. The privacy benefit of local inference is real; the cost is reliability risk on complex tasks.</li>
+        <li>Volume is high and the per-call error rate is acceptable. High-volume low-consequence tasks — log parsing, routine data transforms — are where local cost savings actually materialize.</li>
+      </ul>
+
+      <p><strong>Route to cloud models when:</strong></p>
+      <ul>
+        <li>Output is client-facing or has direct business consequences. Quality variance on a small local model is acceptable for an internal classification job; it is not acceptable for a client communication draft.</li>
+        <li>The task requires complex reasoning, multi-source synthesis, or judgment about ambiguous inputs. 14B models hallucinate architecture decisions on large tasks. Frontier models don't do it systematically.</li>
+        <li>The workflow has a strict reliability requirement. If the job must complete successfully on every run, run it on infrastructure with consistent availability and clear failure signaling. Local inference under memory pressure fails in ways that are hard to detect.</li>
+        <li>You're debugging. Cloud API failures are usually clean — a 4xx or 5xx with a clear error message. Local inference failures are often silent — a timeout that looks like success until you check the artifact.</li>
+      </ul>
+
+      <h2>The Models Worth Knowing</h2>
+
+      <p>For operators running Ollama on M4-class Apple Silicon:</p>
+
+      <p><strong><code>qwen2.5-coder:14b</code> (9.0 GB)</strong> — Best local option for code generation, script production, and bounded engineering tasks. Strong tool-use behavior. Weak on large architectural reasoning tasks. Good default for cron jobs and automation scripting with clear scope.</p>
+
+      <p><strong><code>gpt-oss:20b</code> (13 GB)</strong> — Better depth than 14B class. Good for heavier local synthesis, security/report generation, and multi-source analysis where privacy is the constraint. Slower. Higher memory footprint. Fits weekly batch jobs better than real-time workflows.</p>
+
+      <p><strong><code>phi4:14b</code> (9.1 GB)</strong> — Efficient, stable. Not as coding-specialized as qwen-coder. Good fallback for structured summaries, checklists, and lightweight planning. Use when qwen-coder is overloaded or unavailable.</p>
+
+      <p><strong><code>qwen3:8b</code> (5.2 GB)</strong> — Fastest, cheapest local option. Highest error rate on nuanced tasks. Best for classification, routing, and first-pass triage where a second human or automated review pass exists downstream.</p>
+
+      <p>For cloud routing, the decision is simpler: use frontier models (Claude, GPT-5 class) for judgment-heavy work, and mid-tier cloud models (Grok, smaller Claude variants) for intermediate tasks where cost matters. Grok's 2M context window is useful for huge-document synthesis. Route by context requirement, not just by cost.</p>
+
+      <h2>Benchmark Before You Commit</h2>
+
+      <p>Assigning a model to a workflow based on specs and benchmarks from someone else's hardware is guesswork. Before promoting any model to a production assignment, run it against real inputs from the actual workflow.</p>
+
+      <p>A reliable benchmark protocol:</p>
+      <ol>
+        <li>Pull 20 real examples from the workflow's actual input queue.</li>
+        <li>Run each candidate model on all 20 inputs.</li>
+        <li>Score each on: completion quality (1–5), error/hallucination rate, latency, tool-use reliability, and cost per run.</li>
+        <li>Set a promotion threshold: no more than 10% critical errors, acceptable latency for the workflow's timing requirements, better cost/performance than the current assignment.</li>
+        <li>Promote only if the threshold is met. Demote the incumbent only after the new assignment passes.</li>
+      </ol>
+
+      <p>This takes a few hours. The cost of skipping it and deploying a mis-assigned model to production — debugging failed runs, recovering from client-visible errors, rebuilding trust in the automation — is measured in days, not hours.</p>
+
+      <h2>The Clean-Room Pattern for Privacy</h2>
+
+      <p>The strongest argument for local models in data-sensitive environments is privacy: sensitive client data shouldn't transit external servers. This argument is valid. The architectural response is a clean-room sub-agent pattern, not necessarily running all inference locally.</p>
+
+      <p>The pattern: a local model (or a trusted local orchestrator) holds all sensitive context. When cloud processing is needed, the orchestrator extracts and sanitizes a minimal payload — no names, no account numbers, no identifying specifics — and spawns a fresh sub-agent with only that payload. The cloud agent does the cognitive work. The local orchestrator re-hydrates the result with real data before delivery. The cloud model never sees client identity.</p>
+
+      <p>Sanitization rules in practice: client names become "the client," account numbers are removed entirely, dollar amounts round to ranges, specific dates become relative time references. The cloud model produces a generic output. The local system makes it specific.</p>
+
+      <p>This architecture gives you frontier model quality on the work that benefits from it and privacy on the data that requires it. It's more complex than pure local inference, but it avoids the capability ceiling that limits small local models on judgment-intensive tasks.</p>
+
+      <h2>Security Doesn't Come Free with Local</h2>
+
+      <p>Local model doesn't mean automatically safe. Prompt injection applies regardless of where inference runs. MCP tool permissions need to be constrained regardless of the model. SecurityScorecard's 2026 analysis of agentic AI exposure patterns names the same hardening priorities whether you're running local or cloud: auth mode, exposure boundaries, prompt-injection controls.</p>
+
+      <p>The specific risk with small local models is different from the risk with cloud frontier models. Small models are more susceptible to prompt injection — they're less trained on adversarial inputs. If a local model is processing external inputs (emails, documents, web content), the attack surface is real. Don't assign high-privilege tool access to small local models processing untrusted data.</p>
+
+      <h2>The Rule of Thumb That Holds</h2>
+
+      <p>Local inference saves money only when orchestration is stable. If local failures trigger repeated retries, fallback chains, and debugging cycles, the cost savings disappear faster than they accumulated.</p>
+
+      <p>The correct sequence: get cloud routing stable first, with clear model assignments and verified outputs. Then identify which cloud jobs are genuinely high-volume, low-risk, and within local model capability. Run the benchmark. Promote selectively. Monitor closely for the first month.</p>
+
+      <p>Every model assignment is infrastructure. Treat it with the same discipline as a network config — explicit, documented, tested, and change-controlled. The cost of a bad routing decision isn't per-token. It's the downstream time cost of unreliable automation nobody trusts anymore.</p>
+
+      
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0;" />
+      <p><strong>Want the full setup?</strong> The <a href="../#guide" style="color:var(--accent)">AI Ops Setup Guide</a> covers the complete implementation — agent OS setup, memory architecture, cron automation, Telegram integration, and deployment. Everything in one place.</p>
+      <p class="muted">— Ridley Research &amp; Consulting, February 2026</p>
+    </article>
+  </main>
+
+
+
+
+<script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

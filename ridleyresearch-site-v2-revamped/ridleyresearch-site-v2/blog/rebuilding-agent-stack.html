@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What We Learned Rebuilding an Agent Stack from Scratch | Ridley Research & Consulting</title>
+  <meta name="description" content="A real account of AI agent model degradation, why local LLMs failed, and the operational reset that brought the system back to reliability." />
+  <link rel="stylesheet" href="../styles.css?v=9" />
+<link rel="icon" href="/rr-favicon.png" type="image/png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" style="text-decoration:none;color:inherit;" class="brand-link">
+        <img src="/rr-mark.png" alt="RR" style="height:32px;width:32px;object-fit:cover;border-radius:2px;display:block;" />
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown" id="ocDropdown">
+          <button class="nav-dropdown-btn" onclick="toggleDropdown('ocDropdown')">
+            Menu <span class="chevron">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-section-label">Explore</div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            <a href="/openclaw/what-is-openclaw">OpenClaw →</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/small-business/">Small Business →</a>
+            <a href="/products/">Products &amp; Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+          </div>
+            <a href="/testimonials/submit">⭐ Leave a Review</a>
+            <a href="/about">About</a>
+            <a href="/blog/">Blog</a>
+            
+            <div class="dropdown-section-label">OpenClaw</div>
+            <a href="/openclaw/what-is-openclaw">What is OpenClaw?</a>
+            <a href="/openclaw/hardware">Hardware Guide</a>
+            <a href="/openclaw/getting-started">Getting Started</a>
+            <div class="dropdown-section-label">Work With Us</div>
+            <a href="/products/">See All Products</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="mailto:hello@ridleyresearch.com?subject=Discovery%20Call">Book a Discovery Call</a>
+            <a href="mailto:hello@ridleyresearch.com">hello@ridleyresearch.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <article class="post">
+      <h1>What We Learned Rebuilding an Agent Stack from Scratch</h1>
+      <p class="muted">Published: 2026-02-23 · 6 min read</p>
+
+      <p>Last week we ran into a problem that most AI teams eventually hit: the system worked, then it didn't, and we couldn't immediately explain why. What followed was a forced education in model degradation, operational bloat, and why simplicity is actually a technical requirement — not a preference.</p>
+
+      <p>Here's what happened, what caused it, and what we changed.</p>
+
+      <h2>What "Model Degradation" Actually Looks Like</h2>
+      <p>Model degradation is when output quality drops over time, even though the underlying model hasn't changed. It's one of the most disorienting problems in agent operations because the system looks like it's running fine from the outside.</p>
+
+      <p>The signals we saw:</p>
+      <ul>
+        <li>Responses got longer and more verbose without getting more useful</li>
+        <li>The agent started narrating its process instead of just executing</li>
+        <li>Multiple messages per task — the "double reply" problem</li>
+        <li>Instructions were technically followed but in spirit missed</li>
+        <li>Context felt correct on inspection but execution felt wrong</li>
+      </ul>
+
+      <p>None of these are hardware failures. They're behavioral drift caused by accumulated complexity in the system's operating instructions.</p>
+
+      <h2>The Root Cause: Instruction Bloat</h2>
+      <p>We had spent over a week layering policies, protocols, and guardrails into the agent's operating files. Each addition felt like an improvement. Cumulatively, they created a system where:</p>
+      <ul>
+        <li>Multiple rules applied to the same situation and produced conflicting behavior</li>
+        <li>The agent spent cognitive budget on policy compliance instead of task execution</li>
+        <li>Session context filled up faster, degrading earlier instructions</li>
+        <li>Every edge case had a documented response, which made normal cases harder to handle</li>
+      </ul>
+      <p>The fix wasn't to add more rules. It was to remove most of them.</p>
+
+      <h2>The Local LLM Problem</h2>
+      <p>We had configured several scheduled jobs to run on local models — specifically <code>qwen2.5-coder:14b</code> running on an M4 Mac mini via Ollama. The theory: reduce API costs for lightweight, repetitive tasks like heartbeat checks.</p>
+
+      <p>The reality: local models introduced a class of failure that was harder to diagnose than a straightforward API error.</p>
+      <ul>
+        <li>Timeout behavior was inconsistent — jobs would silently fall back to cloud models without logging it clearly</li>
+        <li>Fallback routing made it impossible to attribute behavior to a specific model</li>
+        <li>When local inference slowed under memory pressure, jobs would hit timeout thresholds and cascade errors</li>
+        <li>Some runs succeeded on local, some on cloud, some partially on both — debugging was a mess</li>
+      </ul>
+      <p>The lesson: local LLMs are not ready for production-grade scheduled automation unless you have monitoring, alerting, and failure isolation built specifically around them. For most teams, the cost savings aren't worth the reliability cost.</p>
+      <p><strong>We pulled all local models from the stack immediately.</strong> Everything now routes to cloud APIs with clear fallback chains.</p>
+
+      <h2>The Reset Protocol</h2>
+      <p>Once we understood the problem, the fix was intentionally aggressive:</p>
+      <ol>
+        <li><strong>Freeze changes.</strong> No new features, no "quick improvements," nothing new until the system was stable.</li>
+        <li><strong>Revert to the last known-good baseline.</strong> We went back to the original agent operating files from the working version of the stack and ran a diff.</li>
+        <li><strong>Strip policies to a minimum.</strong> We kept four operating rules: one reply per message, lead with the answer, proof before claims, ask before external/destructive actions. Everything else was removed or folded into those four.</li>
+        <li><strong>Pin model routing explicitly.</strong> Every scheduled job now has an explicit model assignment. No defaults. No ambiguity.</li>
+        <li><strong>Establish a no-local-LLM policy.</strong> Until we have proper monitoring infrastructure for local inference, all jobs run on cloud APIs.</li>
+        <li><strong>Verify before resuming.</strong> We did five consecutive behavior tests before calling the system stable.</li>
+      </ol>
+
+      <h2>What We'd Do Differently</h2>
+      <p>The biggest operational mistake wasn't any single change — it was making too many changes without verifying each one first. Agent systems are sensitive to instruction surface area. Every rule you add competes with every other rule in context.</p>
+
+      <p>The principles we're keeping going forward:</p>
+      <ul>
+        <li><strong>One change, one verification.</strong> Never ship two config changes in the same session without testing the first.</li>
+        <li><strong>Simpler is more reliable.</strong> An agent with four clear rules outperforms one with forty conflicting ones.</li>
+        <li><strong>Model routing is infrastructure.</strong> Treat it with the same discipline as a network config — explicit, documented, and tested.</li>
+        <li><strong>Proof-first reporting.</strong> If a job ran and there's no artifact, it didn't run.</li>
+        <li><strong>When something feels worse, it usually is.</strong> Don't rationalize degradation. Fix it.</li>
+      </ul>
+
+      <h2>The Business Case for Operational Discipline</h2>
+      <p>None of this is academic. If the goal is building agent systems that run reliably for clients — in high-stakes environments, in operational workflows, in political and media operations — then the system has to work when you're not watching it.</p>
+
+      <p>That's the whole product. Not clever prompts. Not the latest model. The ability to run clean, unattended, and report accurately.</p>
+
+      <p>We learned that the hard way this week. The upside is we have a much better understanding of exactly where these systems break, and how to rebuild them faster when they do.</p>
+
+      
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0;" />
+      <p><strong>Want the full setup?</strong> The <a href="../#guide" style="color:var(--accent)">AI Ops Setup Guide</a> covers the complete implementation — agent OS setup, memory architecture, cron automation, Telegram integration, and deployment. Everything in one place.</p>
+      <p class="muted">— Ridley Research &amp; Consulting, February 2026</p>
+    </article>
+  </main>
+
+
+
+
+<script src="/chat-widget.js?v=2"></script>
+</body>
+</html>

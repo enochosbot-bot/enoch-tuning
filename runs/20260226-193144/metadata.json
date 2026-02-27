@@ -1,0 +1,29 @@
+{
+  "run_id": "20260226-193144",
+  "topic": "AmericanFireside \u2014 faith and freedom, eagle imagery",
+  "mode": "shorts",
+  "script": {
+    "hook": "They told you AmericanFireside \u2014 faith and freedom, eagle imagery was settled. It isn't.",
+    "body": "Here is the truth in plain English: power follows narratives, and narratives follow courage. If we want a freer future, we have to speak clearly, act boldly, and refuse to outsource conviction.",
+    "cta": "Follow AmericanFireside for fearless, faith-forward takes that actually matter.",
+    "full_script": "They told you AmericanFireside \u2014 faith and freedom, eagle imagery was settled. It isn't. Here is the truth in plain English: power follows narratives, and narratives follow courage. If we want a freer future, we have to speak clearly, act boldly, and refuse to outsource conviction. Follow AmericanFireside for fearless, faith-forward takes that actually matter.",
+    "tts_text": "They told you AmericanFireside \u2014 faith and freedom, eagle imagery was settled. It isn't. Here is the truth in plain English: power follows narratives, and narratives follow courage. If we want a freer future, we have to speak clearly, act boldly, and refuse to outsource conviction. Follow AmericanFireside for fearless, faith-forward takes that actually matter."
+  },
+  "video": {
+    "platform": "placeholder",
+    "file": "/Users/deaconsopenclaw/.openclaw/workspace/runs/20260226-193144/video.mp4",
+    "cost": null
+  },
+  "voice": {
+    "voice_id": "Harry",
+    "file": "/Users/deaconsopenclaw/.openclaw/workspace/runs/20260226-193144/voiceover.mp3"
+  },
+  "final": {
+    "vertical": "/Users/deaconsopenclaw/.openclaw/workspace/runs/20260226-193144/final.mp4",
+    "landscape": "/Users/deaconsopenclaw/.openclaw/workspace/runs/20260226-193144/final-landscape.mp4"
+  },
+  "approval": {
+    "status": "skipped"
+  },
+  "posted": {}
+}

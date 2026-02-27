@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A000001294A6B9100000001 /* OpenNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000294A6B9100000001 /* OpenNotesApp.swift */; };
+		1A000003294A6B9100000001 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000002294A6B9100000001 /* TaskListView.swift */; };
+		1A000005294A6B9300000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A000004294A6B9300000001 /* Assets.xcassets */; };
+		1A000008294A6B9300000001 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A000007294A6B9300000001 /* Preview Assets.xcassets */; };
+		1A000010294A6BD100000001 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A00000F294A6BD100000001 /* TaskItem.swift */; };
+		1A000011294A6BD200000001 /* SubTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000012294A6BD200000001 /* SubTask.swift */; };
+		1A000013294A6BD300000001 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000014294A6BD300000001 /* TaskList.swift */; };
+		1A000015294A6BE100000001 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000016294A6BE100000001 /* TaskRowView.swift */; };
+		1A000017294A6BE200000001 /* TaskEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000018294A6BE200000001 /* TaskEditorView.swift */; };
+		1A000019294A6BE300000001 /* TaskExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A00001A294A6BE300000001 /* TaskExpandedView.swift */; };
+		1A00001B294A6BE400000001 /* FocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A00001C294A6BE400000001 /* FocusTimerView.swift */; };
+		1A00001D294A6BE500000001 /* CompletedArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A00001E294A6BE500000001 /* CompletedArchiveView.swift */; };
+		1A00001F294A6BE600000001 /* DeleteConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000020294A6BE600000001 /* DeleteConfirmationView.swift */; };
+		1A000021294A6BF100000001 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000022294A6BF100000001 /* TaskListViewModel.swift */; };
+		1A000023294A6BF200000001 /* FocusTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000024294A6BF200000001 /* FocusTimerViewModel.swift */; };
+		1A000025294A6C0100000001 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000026294A6C0100000001 /* HapticManager.swift */; };
+		1A000027294A6C0200000001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000028294A6C0200000001 /* Theme.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A000000294A6B9100000001 /* OpenNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenNotesApp.swift; sourceTree = "<group>"; };
+		1A000002294A6B9100000001 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		1A000004294A6B9300000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A000007294A6B9300000001 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1A00000E294A6B9300000001 /* OpenNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A00000F294A6BD100000001 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		1A000012294A6BD200000001 /* SubTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTask.swift; sourceTree = "<group>"; };
+		1A000014294A6BD300000001 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
+		1A000016294A6BE100000001 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
+		1A000018294A6BE200000001 /* TaskEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorView.swift; sourceTree = "<group>"; };
+		1A00001A294A6BE300000001 /* TaskExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskExpandedView.swift; sourceTree = "<group>"; };
+		1A00001C294A6BE400000001 /* FocusTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerView.swift; sourceTree = "<group>"; };
+		1A00001E294A6BE500000001 /* CompletedArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedArchiveView.swift; sourceTree = "<group>"; };
+		1A000020294A6BE600000001 /* DeleteConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteConfirmationView.swift; sourceTree = "<group>"; };
+		1A000022294A6BF100000001 /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
+		1A000024294A6BF200000001 /* FocusTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerViewModel.swift; sourceTree = "<group>"; };
+		1A000026294A6C0100000001 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		1A000028294A6C0200000001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		1A00002A294A6C1000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A00000B294A6B9300000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A000001294A6B9100000001 = {
+			isa = PBXGroup;
+			children = (
+				1A000002294A6B9100000001 /* OpenNotes */,
+				1A00000D294A6B9300000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A000002294A6B9100000001 /* OpenNotes */ = {
+			isa = PBXGroup;
+			children = (
+				1A00002A294A6C1000000001 /* Info.plist */,
+				1A000000294A6B9100000001 /* OpenNotesApp.swift */,
+				1A00002B294A6C2000000001 /* Models */,
+				1A00002C294A6C2100000001 /* Views */,
+				1A00002D294A6C2200000001 /* ViewModels */,
+				1A00002E294A6C2300000001 /* Utilities */,
+				1A000004294A6B9300000001 /* Assets.xcassets */,
+				1A000006294A6B9300000001 /* Preview Content */,
+			);
+			path = OpenNotes;
+			sourceTree = "<group>";
+		};
+		1A000006294A6B9300000001 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1A000007294A6B9300000001 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1A00000D294A6B9300000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A00000E294A6B9300000001 /* OpenNotes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A00002B294A6C2000000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A00000F294A6BD100000001 /* TaskItem.swift */,
+				1A000012294A6BD200000001 /* SubTask.swift */,
+				1A000014294A6BD300000001 /* TaskList.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1A00002C294A6C2100000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A000002294A6B9100000001 /* TaskListView.swift */,
+				1A000016294A6BE100000001 /* TaskRowView.swift */,
+				1A000018294A6BE200000001 /* TaskEditorView.swift */,
+				1A00001A294A6BE300000001 /* TaskExpandedView.swift */,
+				1A00001C294A6BE400000001 /* FocusTimerView.swift */,
+				1A00001E294A6BE500000001 /* CompletedArchiveView.swift */,
+				1A000020294A6BE600000001 /* DeleteConfirmationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1A00002D294A6C2200000001 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1A000022294A6BF100000001 /* TaskListViewModel.swift */,
+				1A000024294A6BF200000001 /* FocusTimerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1A00002E294A6C2300000001 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1A000026294A6C0100000001 /* HapticManager.swift */,
+				1A000028294A6C0200000001 /* Theme.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A00000D294A6B9300000001 /* OpenNotes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A00001C294A6B9300000001 /* Build configuration list for PBXNativeTarget "OpenNotes" */;
+			buildPhases = (
+				1A00000A294A6B9300000001 /* Sources */,
+				1A00000B294A6B9300000001 /* Frameworks */,
+				1A00000C294A6B9300000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenNotes;
+			productName = OpenNotes;
+			productReference = 1A00000E294A6B9300000001 /* OpenNotes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A000002294A6B9100000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					1A00000D294A6B9300000001 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 1A000005294A6B9100000001 /* Build configuration list for PBXProject "OpenNotes" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A000001294A6B9100000001;
+			productRefGroup = 1A00000D294A6B9300000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A00000D294A6B9300000001 /* OpenNotes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A00000C294A6B9300000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A000008294A6B9300000001 /* Preview Assets.xcassets in Resources */,
+				1A000005294A6B9300000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A00000A294A6B9300000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A000010294A6BD100000001 /* TaskItem.swift in Sources */,
+				1A000011294A6BD200000001 /* SubTask.swift in Sources */,
+				1A000013294A6BD300000001 /* TaskList.swift in Sources */,
+				1A000003294A6B9100000001 /* TaskListView.swift in Sources */,
+				1A000015294A6BE100000001 /* TaskRowView.swift in Sources */,
+				1A000017294A6BE200000001 /* TaskEditorView.swift in Sources */,
+				1A000019294A6BE300000001 /* TaskExpandedView.swift in Sources */,
+				1A00001B294A6BE400000001 /* FocusTimerView.swift in Sources */,
+				1A00001D294A6BE500000001 /* CompletedArchiveView.swift in Sources */,
+				1A00001F294A6BE600000001 /* DeleteConfirmationView.swift in Sources */,
+				1A000021294A6BF100000001 /* TaskListViewModel.swift in Sources */,
+				1A000023294A6BF200000001 /* FocusTimerViewModel.swift in Sources */,
+				1A000025294A6C0100000001 /* HapticManager.swift in Sources */,
+				1A000027294A6C0200000001 /* Theme.swift in Sources */,
+				1A000001294A6B9100000001 /* OpenNotesApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1A00001A294A6B9300000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1A00001B294A6B9300000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A00001C294A6B9300000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"OpenNotes/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OpenNotes/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenNotes;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.opennotes.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1A00001D294A6B9300000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"OpenNotes/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OpenNotes/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenNotes;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.opennotes.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A000005294A6B9100000001 /* Build configuration list for PBXProject "OpenNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A00001A294A6B9300000001 /* Debug */,
+				1A00001B294A6B9300000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A00001C294A6B9300000001 /* Build configuration list for PBXNativeTarget "OpenNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A00001C294A6B9300000001 /* Debug */,
+				1A00001D294A6B9300000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A000002294A6B9100000001 /* Project object */;
+}

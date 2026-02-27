@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission Control v5 — Pixel War Room</title>
+  <style>
+    :root {
+      --bg: #1b1713;
+      --parchment: #d6c39a;
+      --parchment-dark: #b49b6f;
+      --ink: #3d2a17;
+      --gold: #b18a3e;
+      --gold-bright: #e1bf6b;
+      --leather: #5c3b27;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(145deg, #1a1511, #120f0c);
+      color: var(--ink);
+      font-family: "Georgia", "Times New Roman", serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 65% 35%;
+      height: 100vh;
+      width: 100vw;
+    }
+    .scene-wrap {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      background: #0d0b09;
+      padding: 10px;
+      border-right: 2px solid #2a2118;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      background: #000;
+      border: 3px solid #3a2e21;
+      box-shadow: inset 0 0 0 2px #705736, 0 0 18px rgba(0, 0, 0, 0.55);
+    }
+
+    .ledger {
+      background:
+        radial-gradient(circle at 15% 12%, rgba(255,255,255,.24), transparent 32%),
+        radial-gradient(circle at 83% 76%, rgba(90,50,20,.24), transparent 35%),
+        repeating-linear-gradient(0deg, rgba(120,88,50,0.07) 0 2px, rgba(80,56,32,0.05) 2px 4px),
+        linear-gradient(180deg, var(--parchment) 0%, #ccb283 68%, var(--parchment-dark) 100%);
+      border-left: 3px solid #6f5431;
+      box-shadow: inset 0 0 0 2px #e4c97e, inset 0 0 36px rgba(70, 42, 19, 0.25);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+    }
+    .ledger h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #4a2f19;
+      border: 2px solid var(--gold);
+      background: linear-gradient(180deg, rgba(245,222,164,.55), rgba(194,157,90,.35));
+      padding: 10px 12px;
+      text-align: center;
+      box-shadow: inset 0 0 0 1px #6a5125;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .card {
+      background: rgba(255, 242, 210, 0.52);
+      border: 1px solid #8f6b38;
+      padding: 8px;
+      box-shadow: inset 0 0 0 1px rgba(255, 215, 146, 0.62);
+    }
+    .label { font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; opacity: .82; }
+    .value { font-size: 1.2rem; font-weight: bold; color: #3f2514; }
+
+    .search {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .search input {
+      border: 2px solid #7b5b33;
+      background: rgba(255, 250, 232, .75);
+      color: #3e2818;
+      padding: 8px;
+      font-size: .9rem;
+      outline: none;
+    }
+
+    .feed {
+      border: 1px solid #8b6538;
+      background: rgba(252, 238, 206, 0.5);
+      padding: 8px;
+      overflow: auto;
+      min-height: 0;
+      flex: 1;
+    }
+    .feed h2, .calendar h2 { margin: 0 0 8px; font-size: .9rem; text-transform: uppercase; letter-spacing: .07em; }
+    .entry { font-size: .84rem; padding: 6px 2px; border-bottom: 1px dashed rgba(91,63,35,.35); }
+
+    .calendar {
+      border: 1px solid #8b6538;
+      background: rgba(252, 238, 206, 0.44);
+      padding: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+      font-size: .75rem;
+      text-align: center;
+    }
+    .d { padding: 4px 0; background: rgba(130, 95, 52, .18); }
+    .d.h { background: rgba(130,95,52,.38); font-weight: bold; }
+    .d.a { background: rgba(177,138,62,.65); color: #fff8de; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="scene-wrap">
+      <canvas id="game" width="320" height="240" aria-label="Pixel Art Throne Room"></canvas>
+    </div>
+
+    <aside class="ledger">
+      <h1>War Room Ledger</h1>
+      <section class="stats">
+        <div class="card"><div class="label">Messages Today</div><div class="value">47</div></div>
+        <div class="card"><div class="label">Tasks Complete</div><div class="value">12</div></div>
+        <div class="card"><div class="label">Uptime</div><div class="value">99.7%</div></div>
+        <div class="card"><div class="label">Memory Files</div><div class="value">36</div></div>
+      </section>
+      <div class="search">
+        <label class="label" for="search">Archive Search</label>
+        <input id="search" type="text" placeholder="Search dispatches, plans, scripture..." />
+      </div>
+      <section class="feed">
+        <h2>Activity Feed</h2>
+        <div class="entry">05:14 — Enoch updated siege route map at war table.</div>
+        <div class="entry">05:09 — Arnold completed southern gate patrol cycle.</div>
+        <div class="entry">04:58 — Fire pit embers refreshed by page staff.</div>
+        <div class="entry">04:51 — Banner wardens inspected gold trim integrity.</div>
+        <div class="entry">04:39 — Royal memory vault synchronized (36 ledgers).</div>
+        <div class="entry">04:22 — Candle pair beneath tapestry relit.</div>
+        <div class="entry">04:11 — Billiards side chamber reopened.</div>
+        <div class="entry">03:55 — Chandelier chains reinforced.</div>
+      </section>
+      <section class="calendar">
+        <h2>Mini Calendar</h2>
+        <div class="grid">
+          <div class="d h">S</div><div class="d h">M</div><div class="d h">T</div><div class="d h">W</div><div class="d h">T</div><div class="d h">F</div><div class="d h">S</div>
+          <div class="d">1</div><div class="d">2</div><div class="d">3</div><div class="d">4</div><div class="d">5</div><div class="d">6</div><div class="d">7</div>
+          <div class="d">8</div><div class="d">9</div><div class="d">10</div><div class="d">11</div><div class="d">12</div><div class="d">13</div><div class="d">14</div>
+          <div class="d a">15</div><div class="d">16</div><div class="d">17</div><div class="d">18</div><div class="d">19</div><div class="d">20</div><div class="d">21</div>
+          <div class="d">22</div><div class="d">23</div><div class="d">24</div><div class="d">25</div><div class="d">26</div><div class="d">27</div><div class="d">28</div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d', { alpha: false });
+
+    const W = 320, H = 240;
+    const P = {
+      floorA: '#5a5349', floorB: '#4a4239', floorC: '#6b6358',
+      wallA: '#7a7066', wallB: '#635b52', wallC: '#8a8175',
+      woodA: '#6b3a1e', woodB: '#8a5231', woodC: '#4a2812',
+      goldA: '#d4a843', goldB: '#f2d986', goldC: '#8a6a25',
+      crimA: '#8a1a22', crimB: '#b82832', crimC: '#5f0d14',
+      fireA: '#ff6a00', fireB: '#ffaa22', fireC: '#ff3300', fireD: '#ffdd55',
+      skin: '#e8b878', creamA: '#f0e6d0', creamB: '#d6c8aa',
+      shadow: '#1a1612'
+    };
+
+    function px(x, y, c, a = 1) {
+      if (!c) return;
+      ctx.globalAlpha = a;
+      ctx.fillStyle = c;
+      ctx.fillRect(x | 0, y | 0, 1, 1);
+      ctx.globalAlpha = 1;
+    }
+    function rect(x,y,w,h,c,a=1){
+      ctx.globalAlpha = a; ctx.fillStyle = c; ctx.fillRect(x|0,y|0,w|0,h|0); ctx.globalAlpha = 1;
+    }
+
+    function drawTileFloor() {
+      const tile = 8;
+      for (let y = 0; y < H; y += tile) {
+        for (let x = 0; x < W; x += tile) {
+          const n = ((x / tile * 17 + y / tile * 13 + 31) % 9);
+          const c = n < 3 ? P.floorA : (n < 6 ? P.floorB : P.floorC);
+          rect(x, y, tile, tile, c);
+          for (let i = 0; i < tile; i++) {
+            px(x + i, y, P.shadow, 0.06);
+            px(x, y + i, P.shadow, 0.06);
+          }
+          if ((x + y) % 24 === 0) {
+            px(x + 2, y + 5, P.shadow, 0.25);
+            px(x + 4, y + 4, P.shadow, 0.22);
+            px(x + 5, y + 3, P.shadow, 0.18);
+          }
+        }
+      }
+    }
+
+    function masonry(x,y,w,h,thick=false){
+      rect(x,y,w,h, P.wallA);
+      let cy = y;
+      while (cy < y + h) {
+        let cx = x;
+        const bh = [6,6,8][(cy*7)%3];
+        while (cx < x + w) {
+          const bw = [8,10,12][(cx + cy*3) % 3];
+          const bc = ((cx+cy)%4===0)?P.wallC:(((cx+cy)%3===0)?P.wallB:P.wallA);
+          rect(cx, cy, Math.min(bw, x+w-cx), Math.min(bh, y+h-cy), bc);
+          rect(cx, cy, Math.min(bw, x+w-cx), 1, P.shadow, .18);
+          rect(cx, cy, 1, Math.min(bh, y+h-cy), P.shadow, .18);
+          cx += bw;
+        }
+        cy += bh;
+      }
+      if (thick) rect(x, y+h-2, w, 2, P.shadow, 0.35);
+    }
+
+    function drawTapestry(frame) {
+      const tx = 128, ty = 12, tw = 64, th = 72;
+      for (let y = 0; y < th; y++) {
+        for (let x = 0; x < tw; x++) {
+          const c = (y % 2 === 0) ? P.crimA : P.crimB;
+          px(tx + x, ty + y, c);
+        }
+      }
+      // knot border
+      for (let i = 0; i < tw; i++) {
+        px(tx + i, ty, i%4<2?P.goldA:P.goldC);
+        px(tx + i, ty + th -1, i%4<2?P.goldA:P.goldC);
+      }
+      for (let j = 0; j < th; j++) {
+        px(tx, ty + j, j%4<2?P.goldA:P.goldC);
+        px(tx + tw -1, ty + j, j%4<2?P.goldA:P.goldC);
+      }
+      // cross 20x30
+      const cx = tx + 32, cy = ty + 20;
+      rect(cx-2, cy-12, 5, 30, P.goldB);
+      rect(cx-10, cy-2, 21, 5, P.goldB);
+      rect(cx-1, cy-11, 3, 28, P.goldA);
+      rect(cx-9, cy-1, 19, 3, P.goldA);
+      for (let r = 8; r <= 18; r += 5) {
+        px(cx-r, cy-r+2, P.goldC, .6); px(cx+r, cy-r+2, P.goldC, .6);
+        px(cx-r, cy+r-2, P.goldC, .6); px(cx+r, cy+r-2, P.goldC, .6);
+      }
+      // tassels
+      for(let i=0;i<6;i++) rect(tx+6+i*10, ty+th, 2, 3, P.goldA);
+
+      // candles beneath
+      const flick = frame % 2;
+      const cY = ty + th + 2;
+      rect(tx + 18, cY, 2, 4, P.creamA);
+      rect(tx + 44, cY, 2, 4, P.creamA);
+      px(tx+19, cY-1, flick?P.fireB:P.fireD);
+      px(tx+18, cY-2, flick?P.fireA:P.fireB);
+      px(tx+45, cY-1, flick?P.fireD:P.fireB);
+      px(tx+44, cY-2, flick?P.fireA:P.fireC);
+    }
+
+    function drawThroneArea() {
+      rect(118, 86, 84, 16, P.wallC);
+      rect(118, 101, 84, 2, P.shadow, 0.35);
+      // throne
+      rect(145, 76, 30, 28, P.woodA);
+      rect(148, 78, 24, 16, P.woodB);
+      rect(151, 90, 18, 9, P.crimB);
+      rect(144, 92, 2, 9, P.goldA);
+      rect(174, 92, 2, 9, P.goldA);
+      rect(150, 74, 20, 2, P.goldC);
+    }
+
+    function drawDoorAndWalls() {
+      masonry(0, 0, 320, 26, true);
+      masonry(0, 0, 18, 240);
+      masonry(302, 0, 18, 240);
+      // south door arch
+      rect(140, 212, 40, 28, P.woodC);
+      rect(142, 214, 17, 24, P.woodA);
+      rect(161, 214, 17, 24, P.woodA);
+      for(let i=0;i<20;i++){ px(150+i,212-(Math.abs(10-i)>>1), P.woodB); }
+      rect(159, 214, 2, 24, P.shadow, .4);
+    }
+
+    function drawWarTable() {
+      rect(200, 122, 70, 28, P.woodC);
+      rect(202, 124, 66, 24, P.woodA);
+      for(let y=124;y<148;y+=3) rect(203,y,64,1, P.woodB, .45);
+      rect(212, 129, 12, 8, P.creamB);
+      rect(236, 133, 16, 7, P.creamA);
+      rect(254, 128, 9, 6, P.creamB);
+    }
+
+    function drawBilliards() {
+      rect(34, 132, 58, 34, P.woodC);
+      rect(37, 135, 52, 28, '#1d6b35');
+      rect(37,135,52,2,P.woodA); rect(37,161,52,2,P.woodA);
+      [[37,135],[88,135],[37,162],[88,162]].forEach(([x,y])=>rect(x,y,2,2,P.shadow));
+      [[50,145,'#d1342f'],[59,152,'#f8f3de'],[73,147,'#2f4dd1']].forEach(([x,y,c])=>{
+        px(x,y,c);px(x+1,y,c);px(x,y+1,c);px(x+1,y+1,c);
+      });
+    }
+
+    function drawShelves() {
+      rect(20, 48, 36, 62, P.woodC);
+      for (let y=54;y<=102;y+=12) rect(22,y,32,2,P.woodA);
+      const cols = ['#8a1a22','#2342a0','#2c7b35','#6b3a1e','#d4a843'];
+      for(let y=56;y<102;y+=12){
+        for(let x=24;x<50;x+=3){ rect(x,y,2,4,cols[(x+y)%cols.length]); }
+        rect(50,y+1,3,3,P.creamA);
+      }
+    }
+
+    function drawWeapons() {
+      rect(274, 56, 24, 38, P.woodC);
+      rect(276, 62, 20, 2, P.woodA);
+      // swords
+      for(let i=0;i<2;i++){
+        const sx = 281 + i*8;
+        rect(sx,64,1,10,'#b6b9be'); rect(sx-1,74,3,2,P.woodA);
+      }
+      // shield
+      for(let y=-5;y<=5;y++) for(let x=-5;x<=5;x++) if(x*x+y*y<=25) px(286+x,84+y,'#787f89');
+      rect(285,79,2,10,P.woodC); rect(281,83,10,2,P.woodC);
+    }
+
+    function drawBanners() {
+      const spots = [[74,28],[242,28],[20,118],[298,118]];
+      spots.forEach(([x,y])=>{
+        rect(x,y,10,2,P.goldA);
+        rect(x+1,y+2,8,16,P.crimB);
+        rect(x+3,y+18,4,3,P.crimA);
+        rect(x+1,y+2,1,16,P.goldC); rect(x+8,y+2,1,16,P.goldC);
+      });
+    }
+
+    function drawRugs() {
+      function rug(x,y,w,h){
+        rect(x,y,w,h,P.crimA);
+        rect(x+1,y+1,w-2,h-2,P.crimB);
+        for(let i=3;i<w-3;i+=4){ rect(x+i,y+2,2,h-4,P.goldA,.7); }
+        for(let j=3;j<h-3;j+=4){ rect(x+2,y+j,w-4,1,P.goldC,.7); }
+      }
+      rug(108,130,36,22);
+      rug(166,154,40,24);
+    }
+
+    function drawChandeliers(torchFrame) {
+      [[108,58],[212,58]].forEach(([cx,cy])=>{
+        for(let y=-7;y<=7;y++)for(let x=-7;x<=7;x++) if (x*x+y*y>=36 && x*x+y*y<=49) px(cx+x,cy+y,'#2a2622');
+        [[0,-7],[7,0],[0,7],[-7,0]].forEach(([ox,oy],i)=>px(cx+ox,cy+oy,(torchFrame+i)%2?P.fireD:P.fireB));
+      });
+    }
+
+    const fireFrames = [
+      ['0011100','0123210','1233321','0132310','0011100'],
+      ['0012100','0123320','1233231','0122310','0011100'],
+      ['0001100','0113210','1233321','0123310','0012100'],
+      ['0011100','0122310','1233321','0133320','0011200']
+    ];
+    const fireColors = {'0':null,'1':P.fireA,'2':P.fireB,'3':P.fireD};
+
+    function drawFirePit(frame) {
+      const cx=160, cy=140;
+      // glow pixels
+      for(let y=-28;y<=28;y++){
+        for(let x=-28;x<=28;x++){
+          const d = Math.sqrt(x*x+y*y);
+          if (d < 28) {
+            const a = Math.max(0, (28-d)/60);
+            px(cx+x, cy+y, '#ff9b2f', a);
+          }
+        }
+      }
+      // stone ring (8 stones)
+      const stones = [[0,-10],[7,-7],[10,0],[7,7],[0,10],[-7,7],[-10,0],[-7,-7]];
+      stones.forEach(([ox,oy],i)=>rect(cx+ox-2,cy+oy-2,4,4,i%2?P.wallC:P.wallB));
+      rect(cx-8,cy-8,16,16,P.shadow,.35);
+      const fr = fireFrames[frame%fireFrames.length];
+      for(let y=0;y<fr.length;y++) for(let x=0;x<fr[y].length;x++){
+        const col = fireColors[fr[y][x]];
+        if(col) px(cx-3+x, cy-3+y, col);
+      }
+    }
+
+    const embers = [];
+    function updateEmbers(dt){
+      if (Math.random()<0.35) embers.push({x:158+Math.random()*6, y:138, vx:(Math.random()-.5)*0.12, vy:-0.2-Math.random()*0.25, life:600+Math.random()*500, age:0, c:Math.random()<.5?P.fireB:P.fireD});
+      for (let i=embers.length-1;i>=0;i--){
+        const e = embers[i]; e.age += dt; e.x += e.vx*dt*0.06; e.y += e.vy*dt*0.06;
+        if (e.age>=e.life) embers.splice(i,1);
+      }
+    }
+    function drawEmbers(){ embers.forEach(e=>px(e.x,e.y,e.c,1-e.age/e.life)); }
+
+    // 2D sprite arrays (hex colors)
+    const T = null;
+    const deacon = [
+      [T,T,T,T,'#d4a843','#f2d986','#d4a843',T,T,T,T,T,T,T,T,T],
+      [T,T,T,T,T,'#e8b878','#e8b878',T,T,T,T,T,T,T,T,T],
+      [T,T,T,'#8a1a22','#8a1a22','#8a1a22','#8a1a22','#8a1a22','#8a1a22',T,T,T,T,T,T,T],
+      [T,T,'#8a1a22','#b82832','#b82832','#d4a843','#d4a843','#b82832','#b82832','#8a1a22',T,T,T,T,T,T],
+      [T,T,'#8a1a22','#b82832','#b82832','#b82832','#b82832','#b82832','#b82832','#8a1a22',T,T,T,T,T,T],
+      [T,T,T,'#8a6a25','#8a6a25',T,T,'#8a6a25','#8a6a25',T,T,T,T,T,T,T]
+    ];
+
+    function buildEnoch(direction='down',step=0,glow=0){
+      const robe = '#f0e6d0', robe2='#d6c8aa', gold='#d4a843', skin='#e8b878', beard='#f0f0f0';
+      const arr = Array.from({length:16},()=>Array(16).fill(null));
+      const set=(x,y,c)=>{if(x>=0&&y>=0&&x<16&&y<16)arr[y][x]=c;};
+      for(let y=7;y<15;y++) for(let x=5;x<11;x++) set(x,y,(x+y)%2?robe:robe2);
+      for(let x=6;x<10;x++) set(x,6,skin);
+      set(7,7,beard); set(8,7,beard);
+      set(5,8,gold); set(10,8,gold);
+      const b = step?1:0;
+      if(direction==='left'){ set(4,9,robe2); set(4,10,robe2); }
+      if(direction==='right'){ set(11,9,robe2); set(11,10,robe2); }
+      set(6,14,robe2); set(9,14,robe2);
+      set(6,15-b,robe2); set(9,15-(1-b),robe2);
+      // staff + crystal
+      if(direction!=='left') { set(11,6,gold); set(11,7,gold); set(11,8,gold); }
+      const gc = glow===0 ? '#9cf0ff' : (glow===1 ? '#dffcff' : '#63d7ff');
+      set(11,5,gc);
+      return arr;
+    }
+
+    function buildArnold(direction='down',step=0){
+      const s1='#a8adb4', s2='#7d838c', s3='#cfd3d9', wood='#6b3a1e';
+      const arr = Array.from({length:16},()=>Array(16).fill(null));
+      const set=(x,y,c)=>{if(x>=0&&y>=0&&x<16&&y<16)arr[y][x]=c;};
+      for(let y=7;y<14;y++) for(let x=5;x<11;x++) set(x,y,(x+y)%2?s1:s2);
+      for(let x=6;x<10;x++) set(x,6,s3);
+      set(6,14,s2); set(9,14,s2);
+      set(6,15-step,s2); set(9,15-(1-step),s2);
+      // shield left, sword right hip
+      set(4,9,s2); set(3,9,s2); set(4,10,s1); set(3,10,s1);
+      set(10,10,wood); set(11,10,'#c4c9cf');
+      return arr;
+    }
+
+    function drawSprite(data, x, y) {
+      for (let j = 0; j < data.length; j++) {
+        for (let i = 0; i < data[j].length; i++) {
+          const c = data[j][i];
+          if (c) px(x + i, y + j, c);
+        }
+      }
+    }
+
+    const enoch = { x: 60, y: 92, speed: 19, dir: 'down', step: 0, wp: 0, pause: 0,
+      waypoints: [{x:58,y:92},{x:230,y:136},{x:160,y:84}] };
+    const arnold = { x: 154, y: 204, speed: 14, dir: 'left', step: 0, minX: 140, maxX: 174, forward: true };
+
+    function moveNPC(n, dt){
+      if (n.pause>0){ n.pause-=dt; return; }
+      const t = n.waypoints[n.wp];
+      const dx=t.x-n.x, dy=t.y-n.y;
+      const d=Math.hypot(dx,dy);
+      if(d<0.8){
+        n.x=t.x; n.y=t.y;
+        if(n.wp===2){ n.pause=3000; }
+        n.wp=(n.wp+1)%n.waypoints.length;
+        return;
+      }
+      const vx = dx/d, vy=dy/d;
+      n.x += vx*n.speed*dt/1000;
+      n.y += vy*n.speed*dt/1000;
+      n.dir = Math.abs(dx)>Math.abs(dy) ? (dx>0?'right':'left') : (dy>0?'down':'up');
+    }
+
+    function moveArnold(dt){
+      const sp = arnold.speed*dt/1000;
+      arnold.x += arnold.forward ? sp : -sp;
+      if (arnold.x >= arnold.maxX){ arnold.x = arnold.maxX; arnold.forward=false; }
+      if (arnold.x <= arnold.minX){ arnold.x = arnold.minX; arnold.forward=true; }
+      arnold.dir = arnold.forward ? 'right' : 'left';
+    }
+
+    let last = performance.now();
+    let fireTick = 0, torchTick = 0, walkTick = 0, glowTick = 0;
+    let fireFrame = 0, torchFrame = 0, walkFrame = 0, glowFrame = 0;
+
+    function frame(now){
+      const dt = Math.min(50, now-last); last = now;
+      fireTick += dt; torchTick += dt; walkTick += dt; glowTick += dt;
+      if (fireTick>150){ fireTick=0; fireFrame=(fireFrame+1)%4; }
+      if (torchTick>200){ torchTick=0; torchFrame=(torchFrame+1)%3; }
+      if (walkTick>200){ walkTick=0; walkFrame=1-walkFrame; enoch.step=walkFrame; arnold.step=walkFrame; }
+      if (glowTick>180){ glowTick=0; glowFrame=(glowFrame+1)%3; }
+
+      moveNPC(enoch, dt);
+      moveArnold(dt);
+      updateEmbers(dt);
+
+      drawTileFloor();
+      drawRugs();
+      drawDoorAndWalls();
+      drawBanners();
+      drawShelves();
+      drawWeapons();
+      drawBilliards();
+      drawWarTable();
+      drawTapestry(torchFrame);
+      drawThroneArea();
+      drawChandeliers(torchFrame);
+      // torches
+      [[24,34],[294,34],[24,102],[294,102]].forEach(([x,y],i)=>{
+        rect(x,y,2,5,P.woodA);
+        const t = (torchFrame+i)%3;
+        px(x+1,y-1,t===0?P.fireA:P.fireD);
+        px(x,y-2,t===1?P.fireB:P.fireA);
+        px(x+1,y-3,t===2?P.fireD:P.fireB);
+      });
+      drawFirePit(fireFrame);
+      drawEmbers();
+
+      // sprites layering
+      const deaconBob = walkFrame ? 0 : 1;
+      drawSprite(deacon, 152, 84 + deaconBob);
+      drawSprite(buildEnoch(enoch.dir, enoch.step, glowFrame), enoch.x|0, enoch.y|0);
+      drawSprite(buildArnold(arnold.dir, arnold.step), arnold.x|0, arnold.y|0);
+
+      requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+  </script>
+</body>
+</html>
