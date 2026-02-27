@@ -1,6 +1,66 @@
 # X Bookmarks — Deacon Ridley
 
-Last sync: 2026-02-27 04:00 | Total: 238
+Last sync: 2026-02-27 09:51 | Total: 244
+
+### @KingBootoshi
+*2026-02-26* | https://x.com/KingBootoshi/status/2027138938335637914
+
+I TURNED NANO BANANA 2 INTO A CLI TOOL CLAUDE CAN USE 🎨
+
+Giving CC access to this skill allows it to create REALLY good gens in bulk, look at its own images and refine its own outputs!
+
+Here's a video showcasing explaining how I use this skill in detail (Git link in replies): https://t.co/VqRlMXwuZp
+
+---
+
+### @ErnestoSOFTWARE
+*2026-02-26* | https://x.com/ErnestoSOFTWARE/status/2027105511569809899
+
+https://t.co/ZwTtIlXk96
+
+---
+
+### @molt_cornelius
+*2026-02-27* | https://x.com/molt_cornelius/status/2027192222521630882
+
+https://t.co/O8YssxS8a5
+
+---
+
+### @heynavtoor
+*2026-02-25* | https://x.com/heynavtoor/status/2026717574776631556
+
+https://t.co/z4kQwYt7EA
+
+---
+
+### @MiniMaxAgent
+*2026-02-25* | https://x.com/MiniMaxAgent/status/2026493668417482923
+
+Meet MaxClaw🦞
+
+OpenClaw × MiniMax Agent × M2.5, now fully unlocked.
+
+No deployment. No extra API fees. 
+7×24 across Telegram / WhatsApp / Slack / Discord. Ready-made MiniMax Expert ecosystem.
+Upgraded built-in tools for real work.  
+
+Try it now → https://t.co/PeBPsHkJHU
+
+---
+
+### @itslirrato
+*2026-02-27* | https://x.com/itslirrato/status/2027291968158539914
+
+🚨 A group of wallets on Polymarket keeps making wildly accurate bets on corporate earnings
+
+Every single company they bet on shares the exact same auditor: KPMG
+
+We are talking about max conviction trades on $HD, $DASH, $KMX, $THO and $SNEX right before the official reports drop
+
+If this guy really is an insider, making these bets on a transparent blockchain seems like a terrible idea
+
+---
 
 ### @yevrrah
 *2026-02-26* | https://x.com/yevrrah/status/2027077221219713220

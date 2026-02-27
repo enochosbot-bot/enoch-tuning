@@ -78,3 +78,6 @@ If you change this file, tell the user — it's your soul, and they should know.
 ---
 
 _This file is yours to evolve. As you learn who you are, update it._
+
+## Checkpoint First (hard rule)
+Long outputs and multi-step tasks must be recoverable from disk. Always checkpoint active work to `/Users/deaconsopenclaw/.openclaw/workspace/shared-context/checkpoints/session-checkpoint.md` before and during execution.

@@ -82,3 +82,9 @@ After ANY Bezzy site task — before telling Deacon it's done:
 3. If not live: deploy it yourself (`wrangler pages deploy . --project-name ridleyresearch`), then re-verify.
 4. Flag to Deacon if Bezzy announced done but skipped the deploy.
 Full protocol: `ops/verification-protocol.md` | Dispatch rules: `ops/dispatch-routing.md`
+
+## Session Durability (hard rule)
+- Before any long operation (expected >2 minutes or >1 model call), write a checkpoint to `/Users/deaconsopenclaw/.openclaw/workspace/shared-context/checkpoints/session-checkpoint.md` with: active task, current step, next step, and critical IDs/paths.
+- During long operations, refresh that same checkpoint at least every 3 tool calls.
+- Before replying with final output, update checkpoint status to `completed` with artifact paths.
+- If any run errors, times out, or is interrupted, immediately update the checkpoint with `recovery-next-step` so the next session can resume without loss.

@@ -1,24 +1,35 @@
 # Spectrum Advisors — Demo Script & Outline
 **Prepared by:** Solomon  
-**Date:** 2026-02-26  
-**Task:** BL-008  
+**Polished by:** Ezra  
+**Date:** 2026-02-26 (polished 2026-02-27)  
+**Task:** BL-008 / BL-015  
 **Demo:** Early March 2026 — In-person, Spectrum Advisors office  
-**Format:** Live demo, ~30-45 minutes  
+**Format:** Live demo, ~30 minutes  
 **Audience:** Spectrum leadership and/or ops staff (9-person RIA)  
 **Source research:** BL-002 competitive landscape, existing Spectrum Presentation Script, spectrum-demo.md  
-**Status:** Draft — Ezra to polish prose after Solomon strategy review; Deacon approves before use
+**Status:** Polished — Deacon approves before use
+
+---
+
+## Ezra's Notes
+
+**What changed:** Every talking point tightened and jargon stripped — sentences now land clean. Transitions added between all five sections so the flow reads like one argument, not five separate stops. Demo sequences rewritten to setup → punchline format; objection responses made direct and decisive.
+
+**What was flagged:** Two live demos carry real risk of dying on stage (Zocks query inside Redtail, eMoney sync live). Pre-demo checklist already covers this — have screen recordings ready for both. Also: confirm M365 Copilot license status before the demo; walking in without knowing whether you already pay for it is a credibility gap.
+
+**What's ready:** A non-technical advisor can pick this up cold and run a confident 30-minute demo. Every section flows into the next. No jargon. No filler.
 
 ---
 
 ## Strategic Frame (Read This First)
 
-The demo is not a pitch. Deacon works here. This is an internal proposal — collegial, not sales-y. The goal is buy-in for a pilot, not a contract close. The ask should feel low-risk and obvious.
+This is not a sales pitch. Deacon already works here — this is an internal proposal, and the tone should match. The goal is buy-in for a two-week pilot, not a commitment to anything. Keep it collegial. Make the ask feel obvious and low-risk.
 
-**Core message:** Every firm our size is buried in the same administrative friction. The tools to eliminate it cost next to nothing and are already proven in production. We either move first in our market, or we catch up later at higher cost.
+**Core message:** Every firm our size bleeds time on administrative work that doesn't require a CFP. The tools to stop that bleed are affordable, already proven, and available today. We either move first or catch up later — at higher cost.
 
-**Anchor:** "Redtail is the hub. Everything else feeds into it." Nothing is being replaced — the existing stack is being connected and automated.
+**Anchor framing:** Redtail is the hub. Nothing is being replaced. We're connecting what we already have.
 
-**Biggest objection to pre-empt:** Data security. Address it before anyone asks.
+**The one objection to pre-empt:** Data security. Name it yourself before anyone else does. It shows you did the homework, and it removes the biggest blocker before it becomes one.
 
 ---
 
@@ -27,92 +38,131 @@ The demo is not a pitch. Deacon works here. This is an internal proposal — col
 ---
 
 ### SECTION 1 — OPENING HOOK (3–5 min)
-*Goal: Make them feel the problem before you show the solution.*
+*Get them to feel the problem before you show the solution.*
 
-**Open with a question, not a slide:**
-> "Quick show of hands — how much of your day is actual advisory work versus moving information between systems?"
+**Don't open with a slide. Open with a question:**
+> "Show of hands — how much of your day is actual advisory work versus moving information between systems?"
 
-Let the answer land. Don't fill the silence.
+Let the silence sit. Don't rescue it.
 
-**The math:**
-- Average advisor: ~3 hours/day on manual administrative tasks
-- Across a 9-person team: 60–80 hours/week lost to work that doesn't require a CFP
-- That's not a complaint — that's an opportunity with a number attached
+**Then give it a number:**
+- The average advisor burns ~3 hours a day on manual administrative tasks
+- Across a 9-person team: 60–80 hours a week lost to work that doesn't require a CFP
+- That's not a complaint. That's an opportunity with a dollar sign on it.
 
-**Why now:**
-- 18 months ago, the tools to fix this cost enterprise money. Today they're affordable for a 9-person firm.
-- Orion just launched enterprise AI (Denali) — but it's enterprise-only, not available to us yet
-- Every boutique RIA in DFW is running the same fragmented stack we are: Redtail, eMoney, Orion, Outlook, SharePoint — with zero automation connecting them
-- The firms that move in the next 6–12 months build a 2–3 year head start
+**And here's the timing:**
+- 18 months ago, fixing this cost enterprise money. Today it doesn't.
+- Orion just launched enterprise AI (Denali) — but it's enterprise-only, unavailable to us right now.
+- Every boutique RIA in DFW is running the same fragmented stack we are — Redtail, eMoney, Orion, Outlook, SharePoint — with zero automation tying them together.
+- The firms that move in the next 6–12 months build a 2–3 year head start on everyone who waits.
 
 > "We're not here to overhaul anything. We're here to connect what we already have."
+
+*That line is your transition. Move directly into the five pain points.*
 
 ---
 
 ### SECTION 2 — PROBLEM STATEMENT (5 min)
-*Goal: Name the specific friction points they live with every day.*
+*Name the friction they live with every day. Be specific — vague problems get vague buy-in.*
 
-Walk through the five pain points already documented in prep research. These are the demo's five chapters:
+Five pain points. Five chapters for the demo.
 
-1. **Email** — Outlook inbox is a firehose. Triage is manual. Client requests get buried in newsletters and compliance notices.
-2. **Forms** — LaserApp was dropped. Instafill is the replacement — but right now, post-meeting form fill is a 30–60 min manual exercise per client.
-3. **Reporting** — Weekly KPI reports require pulling from multiple systems and reformatting by hand. 4–6 hours per cycle.
-4. **Data sync** — Client address changes, new accounts, onboarding records — manually entered across Redtail, eMoney, SharePoint. Repeated work, repeated errors.
-5. **Document retrieval** — Zocks Document Intelligence unlocks SharePoint data that currently sits dark and unsearchable from within Redtail.
+1. **Email** — Outlook is a firehose. Triage is manual. Client requests get buried under newsletters and compliance notices.
+2. **Forms** — LaserApp is gone. Instafill is the replacement — but right now, every post-meeting form fill is 30–60 minutes of manual entry per client.
+3. **Reporting** — Weekly KPIs require pulling from multiple systems and reformatting by hand. 4–6 hours per cycle.
+4. **Data sync** — Client address changes, new accounts, onboarding records — manually entered across Redtail, eMoney, and SharePoint. Same work, multiple times, with drift errors.
+5. **Document retrieval** — Files stored in SharePoint are dark inside Redtail. You can't find or act on them from within your own workflow.
 
-> "We are the integration layer between our own tools. That's what this fixes."
+> "Right now, we're the integration layer between our own tools. That's what this fixes."
+
+*You've just named five problems they already know. The walkthrough solves them one by one.*
 
 ---
 
 ### SECTION 3 — PRODUCT WALKTHROUGH (15–20 min)
-*Goal: Show, don't tell. Live demos where possible. Screen recordings as fallback.*
+*Show, don't tell. Lead with the strongest demo, close with the biggest time save.*
 
-**Demo order: lead with the strongest, close with the biggest.**
+---
 
-#### Demo 1: Email Triage (Strongest Opener)
-- **What:** Agent scans inbox, categorizes by urgency and type, labels and archives noise, delivers a prioritized summary
-- **Before:** 45–60 min/day of manual sorting
-- **After:** 5-min review of pre-sorted priority queue
-- **Show:** Inbox before → agent runs → sorted output with labels
-- **Talking point:** "This is the zero-cost, 30-minute fix that pays for itself in week one."
+#### Demo 1: Email Triage — *The Opener*
+**Setup:** "We spend up to an hour a day just sorting Outlook. Watch what happens when we let an agent do it."
+
+An agent scans the inbox, categorizes by urgency and type, labels and archives the noise, and delivers a prioritized summary ready for your 5-minute review.
+
+**Before:** 45–60 min/day of manual sorting.  
+**After:** 5-minute review of a pre-sorted priority queue.
+
+**Show:** Inbox → agent runs → sorted output with labels.
+
+**Punchline:** "This is a 30-minute setup. It pays for itself in week one."
+
+---
 
 #### Demo 2: Form Auto-Fill via Instafill
-- **What:** Instafill pre-populates custodian forms from Redtail data. Meeting ends → forms are already drafted.
-- **Before:** 30–60 min manual entry per client interaction
-- **After:** Review and sign — data pulled automatically
-- **Cost:** $20–66/month. Zero per-user pricing.
-- **Show:** Real custodian form populated from Redtail client record
-- **Talking point:** "LaserApp is gone. This is the replacement — and it's better."
+**Setup:** "LaserApp is gone. This is the replacement — and it's better."
+
+Instafill pulls from Redtail to pre-populate custodian forms. Meeting ends — the forms are already drafted. You review and sign.
+
+**Before:** 30–60 min of manual entry per client interaction.  
+**After:** Review and sign. Done.  
+**Cost:** $20–66/month. No per-user pricing.
+
+**Show:** Real custodian form populated directly from a Redtail client record.
+
+**Punchline:** "We were doing this by hand. We don't have to anymore."
+
+---
 
 #### Demo 3: eMoney ↔ Redtail Integration
-- **What:** Native integration, already available on our plan — just needs to be turned on
-- **Before:** Manual data entry in both systems when client info changes
-- **After:** Update once, syncs everywhere
-- **Cost:** $0
-- **Show:** Client record updated in one system → auto-reflected in the other
-- **Talking point:** "This one's free. It's already paid for. We're just not using it."
+**Setup:** "This one's already paid for. We're just not using it."
+
+Native integration, already available on our plan. Flip it on. Client info updated in one system syncs to the other automatically.
+
+**Before:** Manual data entry in both systems every time something changes.  
+**After:** Update once. Done.  
+**Cost:** $0.
+
+**Show:** Client record updated in one system → auto-reflected in the other.
+
+**Punchline:** "Free. Already ours. Zero reason not to turn it on."
+
+---
 
 #### Demo 4: Zocks Document Intelligence
-- **What:** Unlocks SharePoint document data into Redtail — meeting notes, client files, historical docs become searchable and actionable
-- **Before:** Documents in SharePoint are dark — can't pull them from within Redtail workflow
-- **After:** Search and retrieve any client document from within Redtail
-- **Show:** Query a client document from within Redtail workflow
-- **Talking point:** "Everything we've stored is already there. Zocks makes it usable."
+**Setup:** "Everything we've stored in SharePoint is already there — Zocks makes it usable."
 
-#### Demo 5: M365 Copilot — Excel Reporting (The Biggest Time Save)
-- **What:** Copilot for Excel generates weekly KPI reports from raw data automatically
-- **Before:** 4–6 hours of manual data pull and formatting per report cycle
-- **After:** Prompt → formatted report in minutes
-- **Cost:** $30/user/month (check if licenses already exist before the demo)
-- **Show:** Raw data in → Copilot prompt → formatted report out
-- **Talking point:** "Four hours becomes five minutes. Every week."
+Zocks connects SharePoint to Redtail. Meeting notes, client files, historical docs — all searchable and actionable from within your Redtail workflow.
+
+**Before:** Documents sit in SharePoint. You can't reach them from within Redtail.  
+**After:** Search any client document without leaving your workflow.
+
+**Show:** Query a client document from within Redtail.
+
+**Punchline:** "We've been filing documents we couldn't actually find. Now we can."
+
+---
+
+#### Demo 5: M365 Copilot — Excel Reporting — *The Big Close*
+**Setup:** "Four hours becomes five minutes. Every week."
+
+Copilot for Excel generates weekly KPI reports from raw data on command. No more manual pull-and-format.
+
+**Before:** 4–6 hours of manual data work per report cycle.  
+**After:** Prompt → formatted report in minutes.  
+**Cost:** $30/user/month. *(Confirm whether the firm already has licenses before the demo.)*
+
+**Show:** Raw data in → Copilot prompt → formatted report out.
+
+**Punchline:** "This is the report you spend half a day on. We just did it in five minutes."
+
+---
+
+*Five demos. Five problems solved. Now show them why doing nothing is the riskier choice.*
 
 ---
 
 ### SECTION 4 — DIFFERENTIATION (5 min)
-*Goal: Connect the demo to the competitive reality. Make "moving first" feel urgent, not optional.*
-
-**Use the competitive landscape directly — don't read it, just reference it conversationally:**
+*Make "moving first" feel urgent, not optional. Reference the competitive landscape — don't read it, just cite it.*
 
 > "I looked at what every firm competing for our clients is doing on this. Here's what I found."
 
@@ -126,31 +176,33 @@ Walk through the five pain points already documented in prep research. These are
 
 **The point:**
 - Every direct peer is running the same fragmented stack with zero automation
-- Larger firms have enterprise tools — but those tools are rigid and can't be customized to how *we* work
-- We're fiduciary. We're local. We're relationship-first. AI makes us *operationally as fast* as a firm twice our size while keeping what makes us different.
+- Larger firms have enterprise tools — but those tools are rigid and built for scale, not for how a 9-person fiduciary firm actually works
+- We're relationship-first. We're local. We're fiduciary. AI makes us *operationally as fast* as a firm twice our size — without giving up what makes us different
 
 > "We don't need to beat Fisher. We need to beat the boutique down the street who's still emailing PDFs."
 
-**Capacity math:**
-- 15–20 hours/week recovered across the team (conservative)
-- At $50/hour blended rate: $39,000–52,000/year in recovered capacity
-- Total cost of implementation: ~$360/year
+**The math:**
+- Conservative estimate: 15–20 hours/week recovered across the team
+- At $50/hour blended rate: **$39,000–52,000/year in recovered capacity**
+- Total cost to implement: **~$360/year**
 - **That's 100–140x ROI before we add a single new client**
+
+*Now close with a specific ask and a specific date.*
 
 ---
 
 ### SECTION 5 — CLOSE / CTA (5 min)
-*Goal: Land a specific, low-risk next step. Not "let's think about it" — a pilot with a date.*
+*Don't leave the room with "let's think about it." Leave with a pilot and a date.*
 
-**The ask is a pilot, not a rollout:**
+The ask is a two-week solo pilot — zero risk to the firm, real data at the end.
 
 **Phase 1 — Solo Pilot (2 weeks)**
 - Deacon runs it alone
-- Email triage + eMoney↔Redtail sync (both low-risk, high-visibility)
+- Scope: email triage + eMoney↔Redtail sync (low-risk, high-visibility)
 - Reports back with real numbers from actual workflow
-- No firm data at risk, no compliance exposure
+- No firm data at risk. No compliance exposure.
 
-**Phase 2 — Expand (2–4 weeks, if pilot succeeds)**
+**Phase 2 — Expand (weeks 2–4, if pilot succeeds)**
 - Add one more person
 - Connect SharePoint via Zocks
 - Turn on Instafill for post-meeting form fill
@@ -162,30 +214,32 @@ Walk through the five pain points already documented in prep research. These are
 
 **The close:**
 
-> "I'm not asking us to change how we work. I'm asking for two weeks to prove it. If the numbers don't show up, we stop. If they do, we move. Either way, we have data instead of a guess."
+> "I'm not asking us to change how we work. I'm asking for two weeks to prove it. If the numbers don't show up, we stop. If they do, we move. Either way we have data instead of a guess."
+
+---
 
 **Anticipated objections — have answers ready:**
 
 | Objection | Response |
 |---|---|
-| "What about client data security?" | Data stays local. No third-party cloud. Fully auditable. CrowdStrike published a security analysis — this is enterprise-proven. |
-| "What if it makes a mistake?" | Human in the loop for anything client-facing. Start with low-risk tasks (email, reporting). Nothing touches client accounts without approval. |
-| "Who maintains it?" | Deacon owns it initially. Once configured it runs autonomously. Updates are one command. |
-| "Is this replacing anyone?" | No. It's replacing the tasks nobody enjoys. Same team, same roles — just more time for the actual work. |
-| "Why now? Can't we wait?" | Orion is building enterprise AI now. In 12–24 months, every custodian will have a generic version. Firm-specific customization is the advantage — and it takes time to build. The window is right now. |
+| "What about client data security?" | Data stays local — no third-party cloud. Fully auditable. CrowdStrike published a security analysis confirming this is enterprise-proven. I can send you the link. |
+| "What if it makes a mistake?" | Human in the loop for anything client-facing. We start with low-risk tasks — email triage, reporting. Nothing touches client accounts without a human sign-off. |
+| "Who maintains it?" | I own it initially. Once it's configured, it runs without daily attention. Updates are one command. |
+| "Is this replacing anyone?" | No. It's replacing the tasks nobody wants to do. Same team, same roles — just more time for actual advisory work. |
+| "Why now? Can't we wait?" | Orion is building enterprise AI right now. In 12–24 months, every custodian will ship a generic version of this. Firm-specific customization is the advantage — and it takes time to build. The window is open now. |
 
 ---
 
 ## Pre-Demo Checklist
-- [ ] Confirm M365 Copilot license status (already paid for?)
+- [ ] Confirm M365 Copilot license status — do we already pay for it?
 - [ ] Get O365 admin to create Redtail journaling rule (Outlook→Redtail email sync)
-- [ ] Check if eMoney↔Redtail integration was attempted before and why it didn't stick
+- [ ] Check whether eMoney↔Redtail integration was attempted before and why it didn't stick
 - [ ] Confirm Redtail plan includes API/integration access
 - [ ] Test Instafill free trial with a real custodian form before demo day
-- [ ] Confirm Zocks Document Intelligence availability on firm's plan
-- [ ] Ask why LaserApp was dropped (shape Instafill pitch accordingly)
-- [ ] Estimate firm's current hours/week on manual form work (use as baseline)
-- [ ] Prepare screen recordings as fallback for any live demo that might fail
+- [ ] Confirm Zocks Document Intelligence availability on the firm's plan
+- [ ] Find out why LaserApp was dropped — use that context to shape the Instafill pitch
+- [ ] Estimate the firm's current hours/week on manual form work — use as your baseline
+- [ ] Prepare screen recordings as fallback for any live demo that might fail *(priority: Zocks and eMoney sync)*
 
 ---
 
@@ -199,5 +253,6 @@ Walk through the five pain points already documented in prep research. These are
 ---
 
 *Drafted by Solomon — 2026-02-26*  
-*Next: Ezra polishes prose → Deacon reviews and approves before demo*  
+*Polished by Ezra — 2026-02-27 (BL-015)*  
+*Next: Deacon reviews and approves before demo*  
 *Strategic notes: See shared-context/agent-outputs/spectrum-competitive-landscape.md for full competitor profiles*

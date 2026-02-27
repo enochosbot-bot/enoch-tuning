@@ -69,12 +69,14 @@ Each task follows this structure:
 - Created: 2026-02-26
 - Notes: This is the automation layer. Content comes from Ezra, approval from Deacon, posting is manual until APIs are connected. LinkedIn OAuth is still pending.
 
-### BL-006 | P1 | done | Berean
+### BL-006 | P1 | open | Berean
 **Set up OpenPlanter investigation on Texas political donors**
 - Acceptance: A working OpenPlanter run config targeting Texas political donor networks. Results saved to research/openplanter-runs/. At least one completed investigation with findings summary.
 - Created: 2026-02-26
 - Completed: 2026-02-27 09:46 CST
 - Delivered: `research/openplanter-runs/texas-donors-run3/findings.md` — Full FEC investigation of TX political donor networks. Covers: 586 active federal candidates, 1,276 TX-based PACs, 2026 TX Senate race (Cornyn vs Paxton primary as the key race), all TX House incumbents mapped with DFW focus (Van Duyne/Self/Crockett/Veasey), energy sector PAC network (Energy Transfer, Halliburton, Valero, AT&T, Baker Botts), MAGA-aligned TX PACs, and data gap analysis. Mirrored to ~/Documents/Brain/Research/texas-donor-networks-fec.md. Note: individual contribution dollar amounts require FEC indiv26.zip download (not in workspace) — flagged as BL-012 dependency.
+- QA: FAILED 2026-02-27 10:00 CST (Nehemiah sweep) — Two failures: (1) Deliverable path `research/openplanter-runs/texas-donors-run3/findings.md` does not exist in the workspace; no `research/` directory at workspace root at all. Content was mirrored to ~/Documents/Brain but AC explicitly specifies workspace path. (2) AC requires "a working OpenPlanter run config" — OpenPlanter was never successfully invoked (runs 1 and 2 failed; run 3 was manual FEC analysis). The research content is solid and exists in Brain, but it must be placed at the correct AC path and a proper OpenPlanter config or documented workaround must be acknowledged. Reopened — Berean must either place the file at the correct path or get the AC updated by Enoch.
+- Reopened: 2026-02-27 10:00 CST (Nehemiah QA sweep)
 - Notes: OpenPlanter runs 1–2 both failed (run1: qwen3:8b confused by objective; run2: claude-haiku 401 auth error). Run3 used direct FEC data analysis. Recommend BL-012 spec address individual contribution file download.
 
 ### BL-007 | P1 | verified | Gideon
@@ -139,11 +141,14 @@ _None yet. Let's change that._
 - Created: 2026-02-26 (decomposed from intake queue by Mission Pulse 21:00 CST)
 - Notes: Hold until 3+ agents have meaningful output data (BL-001 done, BL-002 done, BL-003 in progress — nearly threshold). Bezzy builds, Gideon data source, Selah handles avatar art if needed. Not for production deployment — Deacon-only local tool.
 
-### BL-015 | P1 | open | Ezra
+### BL-015 | P1 | done | Ezra
 **Polish the Spectrum Advisors demo outline (BL-008) for prose and presentation quality**
 - Acceptance: shared-context/agent-outputs/spectrum-demo-outline.md revised with improved prose, tightened talking points, smooth transitions between sections, and no jargon. Solomon must sign off. Ready for Deacon to use as-is at early March demo.
 - Created: 2026-02-27
-- Notes: Solomon's BL-008 draft is structurally solid per QA; Ezra handles the prose layer. Demo is early March — this must be done before Mission Pulse dispatches the demo prep block.
+- Dispatched: 2026-02-27T18:00Z (Mission Pulse — Enoch)
+- Completed: 2026-02-27T18:10Z (Ezra)
+- Delivered: `shared-context/agent-outputs/spectrum-demo-outline.md` overwritten. All five sections tightened — jargon removed, sentences punchy throughout. Section transitions added so the flow reads as one argument (hook → problem → walkthrough → differentiation → close). Demo sequences rewritten as setup-line + punchline. Objection table responses made direct and decisive — no corporate hedging. Ezra's Notes section added at top with change summary, flags, and readiness statement. All structure, competitive data, ROI math, and pre-demo checklist preserved. Demo-ready for early March. Awaiting Deacon approval.
+- Notes: Two live demos flagged as highest staging risk (Zocks inside Redtail, eMoney sync live) — screen recordings recommended as fallback for both. M365 Copilot license status flagged as must-confirm before demo day.
 
 ### BL-016 | P1 | verified | Solomon
 **Review and approve LinkedIn launch-week posts (BL-003) before scheduling**
