@@ -1,7 +1,7 @@
 # LinkedIn Launch Week — Ridley Research
 **Drafted by:** Ezra  
 **Date:** 2026-02-26  
-**Status:** Draft — awaiting Solomon review + Deacon approval  
+**Status:** DO NOT USE — Wrong ICP (RIA-focused, not bootstrappers). See linkedin-launch-week-reviewed.md. Solomon verdict: BL-016.  
 **Task:** BL-003
 
 ---

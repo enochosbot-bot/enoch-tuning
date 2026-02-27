@@ -53,6 +53,12 @@ def post(text):
         print(f"https://www.linkedin.com/feed/update/urn:li:ugcPost:{post_id}/")
 
 if __name__ == "__main__":
+    # KILL SWITCH — personal profile posting disabled until org page (w_organization_social) is approved
+    # Do NOT remove until Ridley Research company page URN is configured and MDP approval confirmed
+    print("ERROR: Personal LinkedIn posting is disabled. Posts must go to the Ridley Research company page.")
+    print("Apply for Marketing Developer Platform at: https://www.linkedin.com/developers/apps/869fp76go0gr0x/products")
+    sys.exit(1)
+
     if len(sys.argv) < 2:
         print("Usage: python3 linkedin-post.py 'text'")
         sys.exit(1)

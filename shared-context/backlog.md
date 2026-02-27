@@ -57,20 +57,24 @@ Each task follows this structure:
 - QA: VERIFIED 2026-02-26 22:00 CST — 5 posts present. Word counts confirmed (131/167/193/160/149 — all within 100-200). All 5 required angles covered. ridleyresearch.com linked in Posts 4 and 5. Solomon review gate correctly noted as pending. PASS.
 - Notes: ops/social-ops-policy.md was missing — used tone rules from task prompt as guide.
 
-### BL-004 | P1 | done | Ezra
+### BL-004 | P1 | verified | Ezra
 **Draft 5 X/Twitter posts for Ridley Research launch week**
 - Acceptance: 5 tweets in shared-context/drafts/x-launch-week.md, each under 280 chars, punchy, policy-focused. Mix of standalone takes and thread-starters.
 - Created: 2026-02-26
 - Completed: 2026-02-27T13:10Z
 - Delivered: `shared-context/drafts/x-launch-week.md` — 5 posts, all <280 chars. Mon–Fri sequence: Intro/Mission, Policy thread, Data/Math, Story thread, CTA. No hashtags, no fluff. Awaiting Deacon approval.
+- QA: VERIFIED 2026-02-27 16:00 CST — File present. All 5 posts confirmed <280 chars (219/230/243/258/237). Policy-focused ✅. Mix of 3 standalone + 2 thread-starters ✅. No hashtags per brand voice ✅. PASS. Awaiting Deacon approval before scheduling.
 - Notes: Same policy review as LinkedIn. Berean can research trending political topics to inform angles.
 
 ### BL-005 | P1 | done | Bezzy
 **Build daily social posting pipeline script**
 - Acceptance: A script at scripts/social-post-pipeline.sh (or .py) that: reads from shared-context/drafts/, picks the next scheduled post, sends it to Deacon via Telegram for approval, and logs what was sent. Cron-ready.
 - Created: 2026-02-26
-- Completed: 2026-02-27T13:18Z
-- Delivered: `scripts/social-post-pipeline.py` + `scripts/social-post-pipeline.sh`. Reads shared-context/drafts/, extracts posts by section, deduplicates via SHA1 IDs, sends Telegram approval message, logs JSONL. --dry-run supported. Note: existing post queue is linkedin-launch-week.md drafts — approved posts need to be copied to shared-context/drafts/ to flow through pipeline.
+- Completed: 2026-02-27T13:18Z (claimed)
+- Delivered (claimed): `scripts/social-post-pipeline.py` + `scripts/social-post-pipeline.sh`. Reads shared-context/drafts/, extracts posts by section, deduplicates via SHA1 IDs, sends Telegram approval message, logs JSONL. --dry-run supported.
+- QA: FAILED 2026-02-27 16:00 CST (Basher sweep) — Files exist but at wrong path. Both `social-post-pipeline.py` and `social-post-pipeline.sh` are at `/Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/` (Bezzy's private coder workspace), NOT at the shared workspace `scripts/` directory. AC says `scripts/social-post-pipeline.sh (or .py)` — convention is shared workspace at `/Users/deaconsopenclaw/.openclaw/workspace/scripts/`, same directory as all other system scripts (vidgen.py, generate-health-dashboard.py, x-post.py, etc.). Wrong path means other agents can't reference it, cron integration is workspace-coder-specific only. Fix: copy/move to `/Users/deaconsopenclaw/.openclaw/workspace/scripts/` and update any cron references.
+- Reopened: 2026-02-27 16:00 CST (Basher QA sweep)
+- Fixed: 2026-02-27 16:04 CST — copied both scripts to shared workspace path: `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.py` and `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.sh`; updated cron example path in wrapper from `workspace-coder` to `workspace`.
 - Notes: This is the automation layer. Content comes from Ezra, approval from Deacon, posting is manual until APIs are connected. LinkedIn OAuth is still pending.
 
 ### BL-006 | P1 | verified | Berean
@@ -120,13 +124,14 @@ Each task follows this structure:
 - Created: 2026-02-26
 - Notes: De-prioritized by Tom on 2026-02-26 in favor of video generation spec/build. Marked for pruning unless reactivated.
 
-### BL-010 | P2 | done | Gideon
+### BL-010 | P2 | verified | Gideon
 **Create system health dashboard in shared-context/kpis/**
 - Acceptance: A daily-updated kpis/system-health.md with: gateway uptime, session count, disk usage, cron success rate, agent activity (messages sent in last 24h). Script to generate it.
 - Created: 2026-02-26
 - Dispatched: 2026-02-27T21:00Z (Mission Pulse)
 - Completed: 2026-02-27 15:02 CST
 - Delivered: `shared-context/kpis/system-health.md` + executable generator `scripts/generate-health-dashboard.py`. Dashboard includes gateway PID/uptime, active session count, workspace disk usage, 24h cron pass/fail success rate from `ops/task-ledger.md`, and per-agent 24h activity from sessions `updatedAt`.
+- QA: VERIFIED 2026-02-27 16:00 CST (Basher sweep) — `shared-context/kpis/system-health.md` present ✅. Gateway uptime ✅, session count (32) ✅, disk usage (4.0G) ✅, cron success rate (66.7%, 12/18) ✅, per-agent activity table ✅. Generator script present and executable (-rwxr-xr-x) ✅. Note: "messages sent" is proxied via session updatedAt — acceptable approximation, flagged in script. PASS.
 - Notes: Run `./scripts/generate-health-dashboard.py` to refresh. Cron-ready via direct invocation.
 
 ### BL-011 | P2 | blocked (prune-candidate) | Berean
@@ -135,12 +140,13 @@ Each task follows this structure:
 - Created: 2026-02-26
 - Notes: De-prioritized by Tom on 2026-02-26 in favor of video generation spec/build. Marked for pruning unless reactivated.
 
-### BL-012 | P2 | done | Berean
+### BL-012 | P2 | verified | Berean
 **Spec out FEC donor data access and Texas ethics cross-referencing tooling**
 - Acceptance: Spec document at shared-context/agent-outputs/fec-ethics-tooling-spec.md covering: (1) what FEC bulk data downloads/APIs are available and how to access them, (2) what Texas Ethics Commission data exists (donors, lobbyists, officeholders), (3) a concrete cross-referencing approach (donor → officeholder → vote record or influence mapping), (4) relevant open-source tools or libraries already built for this. No build yet — research and spec only.
 - Created: 2026-02-26
 - Completed: 2026-02-27T13:18Z
 - Delivered: `shared-context/agent-outputs/fec-ethics-tooling-spec.md` — SQLite schema (7 tables), TEC bulk download URLs, 4 SQL investigation patterns, MVP vs Phase 2 effort estimates.
+- QA: VERIFIED 2026-02-27 16:00 CST (Basher sweep) — File present (large, comprehensive). AC#1: FEC bulk downloads + OpenFEC REST API documented with direct URLs, field specs, and pagination strategy ✅. AC#2: TEC bulk CSV documented with table structure, field mappings, filing deadlines ✅ (lobbyist data included). AC#3: Cross-reference approach fully specified — SQLite schema (7 tables), 4 SQL investigation patterns (DFW donor map, Paxton network, bipartisan donors, lobbyist → officeholder chain) ✅. AC#4: Open-source tools documented (OpenPlanter, python-fec, fec-loader, rapidfuzz, Transparency USA, FollowTheMoney) + build gaps called out ✅. PASS. Ready for Deacon review → Bezzy build.
 - Notes: Decomposed from intake queue. Tied to political operations mission. Berean does the research; Bezzy builds once spec is approved by Deacon.
 
 ## Completed Tasks

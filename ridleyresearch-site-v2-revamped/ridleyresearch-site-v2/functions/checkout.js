@@ -2,6 +2,15 @@
 // POST /checkout → creates a Stripe Checkout session, returns redirect URL
 // GET  /checkout?session_id=xxx → verify payment (used by success page)
 
+function getSiteOrigin(env) {
+  const configured = env.PUBLIC_SITE_ORIGIN || 'https://ridleyresearch.com';
+  try {
+    return new URL(configured).origin;
+  } catch {
+    return 'https://ridleyresearch.com';
+  }
+}
+
 export async function onRequestPost(context) {
   const { env } = context;
   const secretKey = env.STRIPE_SECRET_KEY;
@@ -13,7 +22,8 @@ export async function onRequestPost(context) {
     });
   }
 
-  const origin = context.request.headers.get('origin') || 'https://ridleyresearch.com';
+  // SECURITY: never trust request headers for redirect URLs.
+  const origin = getSiteOrigin(env);
 
   // Create Stripe Checkout Session
   const params = new URLSearchParams({

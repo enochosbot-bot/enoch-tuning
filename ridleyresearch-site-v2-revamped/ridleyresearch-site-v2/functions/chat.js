@@ -21,19 +21,107 @@ What Ridley Research does:
 
 Target clients: small-to-medium businesses, professional services, teams drowning in manual work.`;
 
-export async function onRequestPost(context) {
-  const { request, env } = context;
+const RATE_BUCKET = new Map();
+const WINDOW_MS = 60_000;
 
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
+function getAllowedOrigins(env) {
+  const raw = env.CHAT_ALLOWED_ORIGINS || 'https://ridleyresearch.com,https://www.ridleyresearch.com';
+  return new Set(raw.split(',').map((s) => s.trim()).filter(Boolean));
+}
+
+function resolveOrigin(request) {
+  const origin = request.headers.get('origin');
+  if (origin) return origin;
+
+  // Non-browser callers may omit Origin; fall back to request URL origin.
+  try {
+    return new URL(request.url).origin;
+  } catch {
+    return '';
+  }
+}
+
+function corsHeaders(origin) {
+  return {
+    'Access-Control-Allow-Origin': origin,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, X-Chat-Token, X-Requested-With',
+    'Vary': 'Origin',
     'Content-Type': 'application/json',
   };
+}
+
+function getClientIp(request) {
+  return request.headers.get('cf-connecting-ip') || request.headers.get('x-forwarded-for') || 'unknown';
+}
+
+function checkRateLimit(ip, limitPerMin) {
+  const now = Date.now();
+  const entry = RATE_BUCKET.get(ip);
+
+  if (!entry || now - entry.windowStart >= WINDOW_MS) {
+    RATE_BUCKET.set(ip, { count: 1, windowStart: now });
+    return { allowed: true, remaining: Math.max(0, limitPerMin - 1) };
+  }
+
+  if (entry.count >= limitPerMin) {
+    return { allowed: false, remaining: 0 };
+  }
+
+  entry.count += 1;
+  return { allowed: true, remaining: Math.max(0, limitPerMin - entry.count) };
+}
+
+function unauthorizedResponse(origin, message = 'Unauthorized') {
+  return new Response(JSON.stringify({ error: message }), {
+    status: 401,
+    headers: corsHeaders(origin),
+  });
+}
+
+export async function onRequestPost(context) {
+  const { request, env } = context;
+  const origin = resolveOrigin(request);
+  const allowedOrigins = getAllowedOrigins(env);
+
+  if (!allowedOrigins.has(origin)) {
+    return new Response(JSON.stringify({ error: 'Forbidden origin' }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const headers = corsHeaders(origin);
+
+  // Optional API token validation: if CHAT_API_TOKEN is set, require it.
+  const requiredToken = env.CHAT_API_TOKEN;
+  if (requiredToken) {
+    const supplied = request.headers.get('x-chat-token');
+    if (!supplied || supplied !== requiredToken) {
+      return unauthorizedResponse(origin, 'Invalid API token');
+    }
+  }
+
+  const ip = getClientIp(request);
+  const limitPerMin = Number(env.CHAT_RATE_LIMIT_PER_MIN || 5);
+  const limiter = checkRateLimit(ip, Number.isFinite(limitPerMin) ? limitPerMin : 5);
+
+  if (!limiter.allowed) {
+    return new Response(JSON.stringify({ error: 'Rate limit exceeded. Try again in a minute.' }), {
+      status: 429,
+      headers,
+    });
+  }
 
   try {
     const { messages } = await request.json();
 
     if (!Array.isArray(messages)) {
       return new Response(JSON.stringify({ error: 'Invalid request.' }), { status: 400, headers });
+    }
+
+    if (messages.length > 30) {
+      return new Response(JSON.stringify({ error: 'Too many messages in request.' }), { status: 400, headers });
     }
 
     const apiKey = env.OPENAI_API_KEY;
@@ -85,12 +173,16 @@ export async function onRequestPost(context) {
   }
 }
 
-export async function onRequestOptions() {
+export async function onRequestOptions(context) {
+  const { request, env } = context;
+  const origin = resolveOrigin(request);
+  const allowedOrigins = getAllowedOrigins(env);
+
+  if (!allowedOrigins.has(origin)) {
+    return new Response(null, { status: 403 });
+  }
+
   return new Response(null, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    },
+    headers: corsHeaders(origin),
   });
 }

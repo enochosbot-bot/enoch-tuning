@@ -1,20 +1,21 @@
 # Session Checkpoint
-**Updated:** 2026-02-27
+**Updated:** 2026-02-27 16:05 CST
 **Status:** completed
 
 ## Task
-BL-010 — System health dashboard generation
+BL-005 — QA FAIL path correction for social post pipeline
 
 ## Artifacts
-- `shared-context/kpis/system-health.md`
-- `scripts/generate-health-dashboard.py`
+- `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.py`
+- `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.sh`
+- `/Users/deaconsopenclaw/.openclaw/workspace/shared-context/backlog.md` (BL-005 status/notes updated)
 
 ## What Was Done
-- Built executable generator script (`scripts/generate-health-dashboard.py`)
-- Generated dashboard markdown with gateway PID/uptime, active session count, workspace disk usage, cron pass/fail success rate (last 24h), and per-agent 24h session activity
-- Updated `shared-context/backlog.md` (BL-010 marked done with delivery details)
-- Updated `ops/in-flight.md` (moved BL-010 row from Active to Completed)
-- Sent one-line completion ping to Deacon on Telegram (`messageId: 6289`)
+- Copied both pipeline files from coder workspace to shared workspace scripts directory.
+- Set executable permissions on shared-path scripts.
+- Updated cron example in shell wrapper from `workspace-coder` to `workspace`.
+- Verified wrapper execution from shared workspace with dry-run.
+- Marked BL-005 as `done` in backlog and recorded fix details.
 
-## Recovery Next Step
-N/A — task complete
+## Verification Command
+`cd /Users/deaconsopenclaw/.openclaw/workspace && ./scripts/social-post-pipeline.sh --dry-run --verbose`
