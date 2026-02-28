@@ -5,8 +5,8 @@ LinkedIn OAuth 2.0 flow — captures access token via local callback server
 import os, sys, json, secrets, urllib.parse, urllib.request
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
-CLIENT_ID = "869fp76go0gr0x"
-CLIENT_SECRET = os.environ.get("LINKEDIN_CLIENT_SECRET", "")  # set via env — never hardcode
+CLIENT_ID = os.environ.get("LINKEDIN_CLIENT_ID", "")
+CLIENT_SECRET = os.environ.get("LINKEDIN_CLIENT_SECRET", "")
 REDIRECT_URI = "http://localhost:8082/callback"
 SCOPES = "w_member_social w_organization_social openid profile"
 STATE = secrets.token_urlsafe(16)

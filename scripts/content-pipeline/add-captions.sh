@@ -96,8 +96,12 @@ with open(out, 'w', encoding='utf-8') as f:
         f.write(f"{i}\n{to_srt(st)} --> {to_srt(en)}\n{tx}\n\n")
 PY
 
+  # Escape colons and backslashes in path for ffmpeg filtergraph
+  escaped_srt="${seg_srt//\\/\\\\}"
+  escaped_srt="${escaped_srt//:/\\:}"
+
   ffmpeg -hide_banner -loglevel error -y -i "$in_clip" \
-    -vf "subtitles='${seg_srt}':force_style='FontName=Arial,FontSize=18,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,Outline=3,Shadow=1,Alignment=2,MarginV=220'" \
+    -vf "subtitles=filename='${escaped_srt}':force_style='FontName=Arial,FontSize=18,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,Outline=3,Shadow=1,Alignment=2,MarginV=220'" \
     -c:v libx264 -preset medium -crf 18 -c:a copy \
     "$out_clip"
 
