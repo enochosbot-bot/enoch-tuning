@@ -1,5 +1,8 @@
 # Production Queue
 
+## Personal Setup
+1. **Claude Code on phone** — Install Tailscale + Termius on phone, SSH to Mac mini (`100.124.44.74`, user: `deaconsopenclaw`), run `claude`. Ask Enoch to set up SSH key auth so no password needed. _Effort: 10 min_ _Priority: whenever_
+
 ## Active
 
 ### Console / Dashboard
