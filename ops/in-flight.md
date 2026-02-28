@@ -8,11 +8,14 @@ _Enoch maintains this file. Updated at dispatch and on close._
 
 
 
+
 ## Completed (last 7 days)
 
 | Task | Agent | Dispatched | Closed | Result |
 |------|-------|------------|--------|--------|
+| BL-014 — RPG pixel agent dashboard | Bezzy (coder) | 2026-02-27T21:00Z | 2026-02-27T21:02Z | ✅ Delivered index.html/styles.css/app.js/refresh-data.mjs/data.js in workspace-coder/scripts/dashboard/. RPG cards for 8 agents. Path bug in refresh-data.mjs fixed by Enoch (doubled cwd issue). Serve via `python3 -m http.server 3333` from dashboard dir. |
 
+| BL-014 — RPG Agent Dashboard | Bezzy (coder) | 2026-02-28T03:00Z | 2026-02-28T03:20Z | ✅ Delivered `scripts/dashboard/` static dashboard (index.html, styles.css, app.js, refresh-data.mjs, data.js). Shows 8 RPG agent cards with tasks completed (backlog), last active (in-flight + session logs), and 24h message counts (session jsonl). Verified served on localhost:3333 with no JS syntax errors. |
 | BL-010 — System health dashboard | Gideon (observer) | 2026-02-27T21:00Z | 2026-02-27T21:03Z | ✅ Delivered `shared-context/kpis/system-health.md` + `scripts/generate-health-dashboard.py`. Gateway PID/uptime, session count, disk usage, 24h cron pass/fail, per-agent activity. |
 | BL-005 — Build daily social posting pipeline script | Bezzy (coder) | 2026-02-27T12:55Z | 2026-02-27T13:18Z | ✅ Delivered scripts/social-post-pipeline.py + .sh. Reads shared-context/drafts/, extracts posts by section, deduplicates via SHA1 IDs, sends Telegram approval message, logs JSONL. --dry-run supported. Note: existing 11-post queue is linkedin-launch-week.md drafts — approved queue in research/social-drafts/queue/ needs to be copied into shared-context/drafts/ to flow through pipeline. |
 | BL-004 — Draft 5 X/Twitter posts for Ridley Research launch week | Ezra (scribe) | 2026-02-27T12:53Z | 2026-02-27T13:10Z | ✅ 5 posts delivered to shared-context/drafts/x-launch-week.md. All <280 chars. Mon–Fri sequence: Intro/Mission, Policy thread, Data/Math, Story thread, CTA. No hashtags, no fluff. Awaiting Deacon approval. |

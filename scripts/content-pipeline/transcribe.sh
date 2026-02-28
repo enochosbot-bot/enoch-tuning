@@ -94,7 +94,17 @@ transcribe_chunk_openai() {
   fi
 
   if jq -e '.error' >/dev/null 2>&1 < "$out_json"; then
-    echo "❌ OpenAI transcription error: $(jq -r '.error.message // .error' "$out_json")" >&2
+    local err_msg
+    err_msg="$(jq -r '.error.message // .error' "$out_json")"
+    echo "⚠️  OpenAI transcription error: $err_msg" >&2
+    # Check for quota/billing errors — fall back to local whisper
+    if echo "$err_msg" | grep -qi "quota\|billing\|rate.limit\|insufficient"; then
+      echo "↩️  Falling back to local whisper..." >&2
+      USE_OPENAI=0
+      transcribe_chunk_local "$in_audio" "$out_json"
+      return
+    fi
+    echo "❌ OpenAI transcription error (non-recoverable)" >&2
     exit 1
   fi
 }

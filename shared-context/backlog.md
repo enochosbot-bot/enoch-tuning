@@ -66,7 +66,7 @@ Each task follows this structure:
 - QA: VERIFIED 2026-02-27 16:00 CST — File present. All 5 posts confirmed <280 chars (219/230/243/258/237). Policy-focused ✅. Mix of 3 standalone + 2 thread-starters ✅. No hashtags per brand voice ✅. PASS. Awaiting Deacon approval before scheduling.
 - Notes: Same policy review as LinkedIn. Berean can research trending political topics to inform angles.
 
-### BL-005 | P1 | done | Bezzy
+### BL-005 | P1 | verified | Bezzy
 **Build daily social posting pipeline script**
 - Acceptance: A script at scripts/social-post-pipeline.sh (or .py) that: reads from shared-context/drafts/, picks the next scheduled post, sends it to Deacon via Telegram for approval, and logs what was sent. Cron-ready.
 - Created: 2026-02-26
@@ -75,6 +75,7 @@ Each task follows this structure:
 - QA: FAILED 2026-02-27 16:00 CST (Basher sweep) — Files exist but at wrong path. Both `social-post-pipeline.py` and `social-post-pipeline.sh` are at `/Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/` (Bezzy's private coder workspace), NOT at the shared workspace `scripts/` directory. AC says `scripts/social-post-pipeline.sh (or .py)` — convention is shared workspace at `/Users/deaconsopenclaw/.openclaw/workspace/scripts/`, same directory as all other system scripts (vidgen.py, generate-health-dashboard.py, x-post.py, etc.). Wrong path means other agents can't reference it, cron integration is workspace-coder-specific only. Fix: copy/move to `/Users/deaconsopenclaw/.openclaw/workspace/scripts/` and update any cron references.
 - Reopened: 2026-02-27 16:00 CST (Basher QA sweep)
 - Fixed: 2026-02-27 16:04 CST — copied both scripts to shared workspace path: `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.py` and `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.sh`; updated cron example path in wrapper from `workspace-coder` to `workspace`.
+- QA: VERIFIED 2026-02-27 22:00 CST (Nehemiah sweep) — Files confirmed at correct path: `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.py` (-rwxr-xr-x, 11276 bytes) ✅ and `social-post-pipeline.sh` (-rwxr-xr-x, 1573 bytes) ✅. Reads from shared-context/drafts/ ✅. SHA1 deduplication verified ✅. Telegram approval send logic present ✅. JSONL logging present ✅. --dry-run supported ✅. Cron example in shell wrapper references workspace (not workspace-coder) ✅. All AC met. PASS.
 - Notes: This is the automation layer. Content comes from Ezra, approval from Deacon, posting is manual until APIs are connected. LinkedIn OAuth is still pending.
 
 ### BL-006 | P1 | verified | Berean
@@ -152,11 +153,17 @@ Each task follows this structure:
 ## Completed Tasks
 _None yet. Let's change that._
 
-### BL-014 | P2 | open | Bezzy
+### BL-014 | P2 | done | Bezzy
 **Build RPG-style agent dashboard with live stats and avatars**
 - Acceptance: A local web dashboard (Three.js + React or similar) at `scripts/dashboard/` that: displays each active agent as a named avatar card (Enoch, Bezzy, Berean, Ezra, Gideon, Solomon, Selah, Nehemiah), shows live stats per agent (tasks completed, messages sent in last 24h, last active timestamp), and pulls data from backlog.md + ops/in-flight.md + session logs. Accessible at localhost:3333. Static/no server required for initial version.
 - Created: 2026-02-26 (decomposed from intake queue by Mission Pulse 21:00 CST)
-- Notes: Hold until 3+ agents have meaningful output data (BL-001 done, BL-002 done, BL-003 in progress — nearly threshold). Bezzy builds, Gideon data source, Selah handles avatar art if needed. Not for production deployment — Deacon-only local tool.
+- Dispatched: 2026-02-27T03:00Z (Mission Pulse 21:00 CST)
+- Completed: 2026-02-27 21:20 CST
+- Delivered: `scripts/dashboard/` with `index.html`, `styles.css`, `app.js`, `refresh-data.mjs`, and generated `data.js`. Dashboard renders 8 RPG agent cards with completed-task counts (from backlog), last-active (from in-flight + logs), and assistant messages in last 24h (from session jsonl). Verified via localhost:3333 static server + JS syntax checks.
+- QA: FAILED 2026-02-27 22:00 CST (Nehemiah sweep) — Same wrong-path pattern as BL-005 initial failure. Dashboard files at `/Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/` (Bezzy's private coder workspace). The shared workspace at `/Users/deaconsopenclaw/.openclaw/workspace/scripts/` has NO `dashboard/` subdirectory. AC says `scripts/dashboard/` — by established convention (see BL-005), this means the shared workspace path. Fix: copy/move all 5 files (index.html, styles.css, app.js, data.js, refresh-data.mjs) to `/Users/deaconsopenclaw/.openclaw/workspace/scripts/dashboard/`. Update any hardcoded paths in refresh-data.mjs if needed.
+- Reopened: 2026-02-27 22:00 CST (Nehemiah QA sweep)
+- Fixed: 2026-02-27 22:06 CST — moved all 5 dashboard files to shared workspace path: `/Users/deaconsopenclaw/.openclaw/workspace/scripts/dashboard/` (`index.html`, `styles.css`, `app.js`, `data.js`, `refresh-data.mjs`). Ran `node refresh-data.mjs` from new location; output confirmed at `/Users/deaconsopenclaw/.openclaw/workspace/scripts/dashboard/data.js`.
+- Notes: Hold condition met (10+ verified tasks across agents). Bezzy builds, Gideon data source, Selah handles avatar art if needed. Not for production deployment — Deacon-only local tool.
 
 ### BL-015 | P1 | verified | Ezra
 **Polish the Spectrum Advisors demo outline (BL-008) for prose and presentation quality**

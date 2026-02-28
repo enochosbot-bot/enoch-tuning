@@ -53,3 +53,25 @@ _Newest entries at bottom. Rotate weekly (move to ops/ledger-archive/)._
 [2026-02-27 16:04] [watchdog] [main] [🧹 pruned] — 10h old. Last: no summary
 [2026-02-27 16:00] [cron] [basher] [✅ done] — Nehemiah — Output QA Sweep (287.1s)
 [2026-02-27 15:03] [cron] [observer] [❌ failed] — Session Watchdog — Bloat Cleanup (8.3s) [2 consecutive errors]
+[2026-02-27 17:03] [watchdog] [main] [🧹 pruned] — 635KB. Last: no summary
+[2026-02-27 17:03] [watchdog] [main] [🧹 pruned] — 326KB. Last: no summary
+[2026-02-27 16:04] [cron] [observer] [❌ failed] — Session Watchdog — Bloat Cleanup (6.6s) [3 consecutive errors]
+[2026-02-27 16:30] [cron] [observer] [❌ failed] — qmd Reindex — Memory Freshness (8.3s) — No delivery target resolved for channel "telegram". Set delivery.to. [2 consecutive errors]
+[2026-02-27 18:03] [watchdog] [scribe] [🧹 pruned] — 285KB. Last: no summary
+[2026-02-27 18:01] [cron] [observer] [✅ done] — Session Auto-Prune (5.6s)
+[2026-02-27 18:00] [cron] [main] [✅ done] — Mission Pulse — Idle Self-Direction (51.3s)
+[2026-02-27 17:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (7.9s)
+[2026-02-27 19:03] [watchdog] [basher] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-27 19:03] [watchdog] [main] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-27 18:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (4.6s)
+[2026-02-27 20:03] [watchdog] [scribe] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-27 20:01] [cron] [observer] [✅ done] — Session Auto-Prune (5.1s)
+[2026-02-27 19:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (4.6s)
+[2026-02-27 21:00] [cron] [main] [✅ done] — Mission Pulse — Idle Self-Direction (92.0s)
+[2026-02-27 20:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.8s)
+[2026-02-27 20:30] [cron] [observer] [✅ done] — qmd Reindex — Memory Freshness (5.4s)
+[2026-02-27 22:03] [watchdog] [main] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-27 22:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-27 22:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-27 22:00] [cron] [basher] [✅ done] — Nehemiah — Output QA Sweep (228.5s)
+[2026-02-27 21:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (4.3s)

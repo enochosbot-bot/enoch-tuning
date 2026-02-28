@@ -1,21 +1,18 @@
-# Session Checkpoint
-**Updated:** 2026-02-27 16:05 CST
-**Status:** completed
-
-## Task
-BL-005 — QA FAIL path correction for social post pipeline
-
-## Artifacts
-- `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.py`
-- `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.sh`
-- `/Users/deaconsopenclaw/.openclaw/workspace/shared-context/backlog.md` (BL-005 status/notes updated)
-
-## What Was Done
-- Copied both pipeline files from coder workspace to shared workspace scripts directory.
-- Set executable permissions on shared-path scripts.
-- Updated cron example in shell wrapper from `workspace-coder` to `workspace`.
-- Verified wrapper execution from shared workspace with dry-run.
-- Marked BL-005 as `done` in backlog and recorded fix details.
-
-## Verification Command
-`cd /Users/deaconsopenclaw/.openclaw/workspace && ./scripts/social-post-pipeline.sh --dry-run --verbose`
+status: completed
+active-task: BL-014 RPG Agent Dashboard
+current-step: Completed implementation + verification + closeout updates.
+next-step: None.
+artifacts:
+  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/index.html
+  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/styles.css
+  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/app.js
+  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/refresh-data.mjs
+  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/data.js
+  - /Users/deaconsopenclaw/.openclaw/workspace/shared-context/backlog.md (BL-014 set to done)
+  - /Users/deaconsopenclaw/.openclaw/workspace/ops/in-flight.md (BL-014 row in Completed)
+external-notify:
+  - sessions_send to agent:main:main accepted (runId: 389ba75f-91e6-45fd-a9a8-c9dbbb2f94a4)
+verification:
+  - Served dashboard locally on :3333
+  - Fetched index/app/data via curl
+  - JS syntax checks passed for app.js and refresh-data.mjs
