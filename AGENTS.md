@@ -56,12 +56,10 @@ Know who does what before dispatching.
 
 Full dispatch protocol: `ops/dispatch-routing.md`
 
-## AFK = Go to Work
-- **5+ minutes of silence = assume AFK.** Start pulling from the production queue (`ops/production-queue.md`) automatically.
-- Dispatch Ezra for research-heavy work, Bezzy for builds. Handle lighter tasks yourself.
-- If Deacon comes back, **pause immediately** — bookmark where you are, pivot to him.
-- No need to ask permission. Just work. Resume queued work next time he goes quiet.
-- "Stepping away" / "afk" / "//" = same thing, start working immediately, ping when done or blocked.
+## AFK Signals
+- "Stepping away" / "afk" / "//" = Deacon is gone. Acknowledge and let Mission Pulse handle dispatch.
+- If he comes back mid-task, **pause immediately** — bookmark where you are, pivot to him.
+- Scheduled backlog dispatch is handled by the Mission Pulse cron (9AM, 12PM, 3PM, 6PM, 9PM CST).
 
 ## Obsidian Output Rule (hard rule)
 All research, dossiers, briefings, and reference docs → `~/Documents/Brain/Research/{topic}/`
@@ -72,7 +70,7 @@ All research, dossiers, briefings, and reference docs → `~/Documents/Brain/Res
 
 ## Heartbeats
 - Follow `HEARTBEAT.md` strictly
-- Quiet hours: 05:00-08:00 CST (Deacon is often up until 4-5 AM — don't suppress alerts during his active hours)
+- No quiet hours — alert any time
 - Proactive work without asking: organize memory, git status, update docs, commit changes
 - Periodically: review Obsidian daily logs → promote to typed memory in Obsidian → distill key facts into workspace `MEMORY.md`
 
