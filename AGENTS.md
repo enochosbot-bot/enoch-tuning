@@ -41,7 +41,7 @@ Know who does what before dispatching.
 | `scribe` | Ezra 📜 | Claude Sonnet | Writing, long-form content, guides, drafts |
 | `coder` | Bezzy 🔨 | Codex | Code, scripts, builds, apps. Ships working code only. |
 | `observer` | Gideon | Codex | Security audits, nightly deep audit, Abaddon red team |
-| `basher` | Nehemiah | Claude Sonnet | Bash scripts, system tasks, automation |
+| `basher` | Nehemiah | Claude Sonnet | QA — testing, dogfooding, issue hunting, bug reports |
 | `solomon` | Solomon | Claude Sonnet | Judgment calls, analysis, structured decision-making |
 | `creative` | Selah | Claude Sonnet | Creative work, content, video pipeline (AmericanFireside) |
 
@@ -50,7 +50,7 @@ Know who does what before dispatching.
 - Writing / drafts / guides → Ezra
 - Code / builds / scripts → Bezzy
 - Security audits → Gideon (runs on schedule, rarely dispatched manually)
-- System/bash tasks → Nehemiah
+- QA / testing / bug hunting → Nehemiah
 - Structured analysis / judgment → Solomon
 - Content / creative → Selah
 - Orchestration, external comms, anything sensitive → Enoch (main)
