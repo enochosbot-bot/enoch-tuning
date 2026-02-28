@@ -1,0 +1,721 @@
+{
+  "jobs": [
+    {
+      "id": "84b482b7-c7e7-4890-ac43-fe1746cac3df",
+      "agentId": "main",
+      "name": "Shorty — Monitor for YouTube links & inbox videos",
+      "enabled": true,
+      "createdAtMs": 1772258386296,
+      "updatedAtMs": 1772261770027,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/5 * * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run Shorty pipeline monitor: python3 ~/.openclaw/workspace/scripts/shorty-trigger.py\n\nThis checks for new YouTube links in the creative agent's session and processes new videos in ~/.openclaw/agents/creative/workspace/shorty/inbox/ (NO uploads yet — just process to clips and alert Deacon for QC).\n\nStay silent unless errors occur.",
+        "model": "anthropic/claude-haiku-4-5",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772262000000,
+        "lastRunAtMs": 1772261700016,
+        "lastRunStatus": "ok",
+        "consecutiveErrors": 0,
+        "lastStatus": "ok",
+        "lastDurationMs": 70011,
+        "lastDeliveryStatus": "not-delivered",
+        "lastDelivered": false
+      }
+    },
+    {
+      "id": "a4d836a9-ec46-4b08-acf1-ab816cae1173",
+      "agentId": "observer",
+      "name": "Session Watchdog — Bloat Cleanup",
+      "enabled": true,
+      "createdAtMs": 1772207544815,
+      "updatedAtMs": 1772258633543,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "America/Chicago",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the session watchdog: exec bash /Users/deaconsopenclaw/.openclaw/workspace/scripts/session-watchdog.sh\n\nThen read /tmp/session-watchdog.log and report only if sessions were archived. If zero archived, stay completely silent.\n\nALSO: Run scripts/cron-status-reporter.sh to log recent cron outcomes to ops/task-ledger.md.",
+        "model": "anthropic/claude-haiku-4-5",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772262227365,
+        "lastRunAtMs": 1772258627371,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 6172,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": false
+      }
+    },
+    {
+      "id": "f66b156c-864a-4808-8cd7-13451ede9548",
+      "agentId": "observer",
+      "name": "Session Auto-Prune",
+      "enabled": true,
+      "createdAtMs": 1772097751194,
+      "updatedAtMs": 1772258501812,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */2 * * *",
+        "tz": "America/Chicago",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run session maintenance. Execute these commands:\n\n1. `openclaw sessions cleanup --all-agents --enforce`\n\n2. Check for any session JSONL files over 1MB:\n   `find ~/.openclaw/agents/*/sessions/ -name '*.jsonl' -size +1M -exec ls -lh {} \\;`\n\nIf any files over 1MB are found, report the agent name and file size. The gateway rotates sessions at 2MB, but flag anything approaching that threshold.\n\nIf everything is clean, stay silent — do not send a message.",
+        "model": "anthropic/claude-haiku-4-5",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772265696352,
+        "lastRunAtMs": 1772258496360,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 5452,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": false
+      }
+    },
+    {
+      "id": "2ec8c5a8-c257-444e-836d-87db90f5c941",
+      "agentId": "main",
+      "name": "Nightly Maintenance + Brief Compilation",
+      "description": "Memory gardening, workspace cleanup, API check, brief data compilation",
+      "enabled": true,
+      "createdAtMs": 1771866976574,
+      "updatedAtMs": 1772182900381,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "NIGHTLY MAINTENANCE + BRIEF COMPILATION — 3 AM\n\nRun all steps in order. Compile results to ops/morning-brief-data.md. No Telegram messages — 8 AM brief handles delivery.\n\nIMPORTANT: All memory lives in the Obsidian vault at /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/. NEVER write to workspace/memory/ — Obsidian is the single source of truth.\n\n## 1. Memory Consolidation\nRead today + yesterday daily logs from /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Daily Logs/YYYY-MM-DD.md. Route NEW items to typed Obsidian folders:\n- People → /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/People/\n- Decisions → /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Decisions/\n- Preferences → /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Preferences/\n- Lessons → /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Lessons/\n- Projects → /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Projects/\n- Commitments → /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Commitments/\nSkip duplicates.\n\n## 2. Supersession Scan (Forgetting is Architecture)\nScan /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Decisions/ and /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Lessons/ for files where a newer entry clearly contradicts or replaces an older one. DO NOT auto-mark — only flag candidates (max 3). Format: OLD FILE -> NEW FILE | one-line reason. These surface in the morning brief for Deacon to confirm.\n\n## 3. Archive Pass\nMove daily log files older than 30 days from /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Daily Logs/ to /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Archive/ (create dir if needed). Log count.\n\n## 4. Vault Hygiene (Obsidian Pruning)\nScan the entire Obsidian vault at /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/ for junk and bloat. Run these checks:\n\na) DUPLICATE DETECTION: Within each subfolder (Decisions/, Lessons/, People/, Preferences/, Projects/, Commitments/), compare files for near-duplicate content (same core insight, different wording or dates). Flag pairs with a one-line reason. Max 5 flags.\n\nb) STALE CONTENT:\n- Commitments/ with STATUS: DONE or STATUS: CANCELLED older than 14 days → flag for archive\n- Projects/ with STATUS: ARCHIVED or STATUS: COMPLETED older than 30 days → flag for archive\n- Lessons/ or Decisions/ that reference tools, services, or configs that no longer exist in the stack → flag as outdated\n\nc) VAULT STATS: Count total files, files per subfolder, total size. Flag if vault exceeds 500 files or 5MB.\n\nd) EMPTY FILES: Flag any .md files that are 0 bytes or contain only whitespace/frontmatter with no content.\n\nDO NOT auto-delete or auto-move anything. Only flag candidates. All flags surface in the morning brief under ## Vault Hygiene for Deacon to confirm.\n\n## 5. Workspace Cleanup\nRemove: zip files in workspace root older than 7 days, /tmp/*.zip older than 7 days. Log what was cleaned.\n\n## 6. Git Snapshot\nRun: bash /Users/deaconsopenclaw/.openclaw/workspace/scripts/git-memory-commit.sh\n\n## 7. AI Cost Report\nRun: python3 /Users/deaconsopenclaw/.openclaw/workspace/scripts/daily-cost-report.py\nThis reports yesterday's spend by provider (Anthropic + OpenAI separately).\nAlso run: python3 /Users/deaconsopenclaw/.openclaw/workspace/scripts/daily-cost-report.py --week\nCapture both outputs for the brief. Flag if OpenAI > $5/day or total > $15/day.\n\n## 8. Overnight Work Recap\nRead ops/changelog.md last 24h section. Scan shared-context/agent-outputs/ for any cron output files from last 24h. Summarize in 3-5 bullets what ran and what it accomplished.\n\n## 9. Focus Items + Loose Ends\nRead MISSION.md. Read /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Commitments/ for STATUS: PENDING files. Read top 3 open items from ops/claude-code-todo.md.\n\n## 10. Blog Post Draft (When Warranted)\nReflect on the past 24 hours of work using: ops/changelog.md (last 24h), Overnight Work recap from step 8, /Users/deaconsopenclaw/Documents/Brain/Personal Memories/Enoch/Lessons/, and today's daily log.\n\nAsk: Is there something genuinely worth writing about today? A build milestone, a lesson that cost us something, a pattern that became clear, a system that clicked?\n\nIf YES — write a blog post draft. Criteria: real and specific (not generic AI advice), draws from actual work done in this stack, useful to a technical reader or fellow builder. Voice: direct, no fluff, build-in-public tone.\n\nFormat the draft as a complete HTML blog post matching the style of existing posts in ridleyresearch-site-v2-revamped/ridleyresearch-site-v2/blog/ (dark navy, same CSS). Save it to research/blog-drafts/YYYY-MM-DD-{slug}.md as Markdown (HTML conversion happens at deploy time). Include frontmatter: title, date, slug, status: draft.\n\nIf nothing worth writing: skip silently. Do NOT draft filler content. Quality over frequency.\n\n## 11. Write ops/morning-brief-data.md\nCompile all results into this file with these sections:\n## API Usage\n(output from daily-cost-report.py — yesterday + 7-day total)\n## Overnight Work\n## Memory Garden\n(consolidated N items, archived N logs, cleaned N files)\n## Supersession Candidates\n## Vault Hygiene\n(duplicates flagged, stale files flagged, vault stats: N files / N KB, empty files found. If vault is clean, just say \"Vault healthy — N files, N KB\")\n## Focus Today\n## Loose Ends\n## Security\n(leave as: \"pending — Gideon 3:30 AM\")\n## Blog Drafts\n(list any new drafts in research/blog-drafts/ with status: draft — title, slug, one-line summary. If none, omit section.)\n\nStay completely silent. No Telegram messages.",
+        "model": "anthropic/claude-haiku-4-5",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772269200000,
+        "lastRunAtMs": 1772182811087,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 89294,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "920f1fe4-ad55-4813-aa89-1e5f3e73163c",
+      "agentId": "observer",
+      "name": "Gideon — Nightly Deep Audit",
+      "enabled": true,
+      "createdAtMs": 1771481139769,
+      "updatedAtMs": 1772184785988,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 3 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "0) Before anything else run delivery health check: python3 /Users/deaconsopenclaw/.openclaw/workspace/scripts/cron-delivery-check.py. If exit code 1, include summary at TOP and alert Ops topic immediately. If exit code 0, note Delivery: clean and continue.\n\nRead agents/observer/daily-prompt.md and follow exactly. This is nightly deep audit. Run Offensive, Defensive, Data Privacy, Operational Realism perspectives. Run daily platform checks; add weekly checks on Sunday; add monthly checks on day 1. Number findings (#1, #2, #3...). CRITICAL findings: immediate Telegram alert to chat_id 5801636051. Post summary to Telegram Security topic target=\"-1003772049875\" threadId=\"3061\" only if CRITICAL; otherwise use cron delivery channel only.\n\nVolatile output path (keep at end): memory/audits/YYYY-MM-DD.md\n\nAfter posting to Security topic, also append your letter grade and top finding (1 line each) to ops/morning-brief-data.md under ## Security section.",
+        "model": "anthropic/claude-sonnet-4-6",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "-1003772049875:topic:3061"
+      },
+      "state": {
+        "lastRunAtMs": 1772184600028,
+        "lastStatus": "ok",
+        "lastDurationMs": 185960,
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1772271000000,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "delivered",
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "79e87055-6119-49c0-aeef-7af5cfd61ce6",
+      "agentId": "observer",
+      "name": "Gideon — Abaddon Nightly Red Team",
+      "enabled": true,
+      "createdAtMs": 1771534800000,
+      "updatedAtMs": 1772185666337,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 3 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "RED TEAM SCAN — ABADDON MODE. Run adversarial assessment with breach posture. Read agents/observer/AGENT_PROMPT.md first. Execute checks: exposed ports/listeners/services; credential leaks in env/log/temp; suspicious processes; sensitive file permissions; unauthorized SSH keys/cron/LaunchAgents; anomalies in ops/exec-audit.log and ops/identity-change-audit.log; verify gateway loopback-only; world-readable sensitive files; assign letter grade A-F. CRITICAL findings: immediate Telegram alert to chat_id 5801636051. Post summary to Telegram Security topic target=\"-1003772049875\" threadId=\"3061\" with grade.\n\nVolatile output path (keep at end): memory/audits/abaddon-YYYY-MM-DD.md\n\nAlso append your grade (A-F) and one-line summary to ops/morning-brief-data.md under ## Security section.",
+        "model": "anthropic/claude-sonnet-4-6",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "-1003772049875:topic:3061"
+      },
+      "state": {
+        "lastRunAtMs": 1772185500020,
+        "lastStatus": "ok",
+        "lastDurationMs": 166317,
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1772271900000,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "7270d8de-cf06-4f12-b66e-548d4f9edff7",
+      "agentId": "researcher",
+      "name": "Berean — X Bookmarks Nightly Sync",
+      "enabled": true,
+      "createdAtMs": 1772088453523,
+      "updatedAtMs": 1772195473086,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 4 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "X BOOKMARKS NIGHTLY SYNC\n\nRun the X bookmarks sync and process any new bookmarks.\n\n## Steps\n1. Run: exec python3 /Users/deaconsopenclaw/.openclaw/workspace/scripts/x-bookmarks-sync.py\n2. Check the output — if new bookmarks were found (New: > 0):\n   a. Read /Users/deaconsopenclaw/.openclaw/workspace/research/x-bookmarks-new.json for the new entries\n   b. For each new bookmark: extract the key insight, topic, and relevance to Ridley Research\n   c. Save a brief analysis to shared-context/research/x-bookmarks-digest-{date}.md\n   d. If any bookmark has strategic implications, hand off to Solomon (see ops/research-pipeline-protocol.md)\n   e. If any bookmark is content-worthy, hand off to Ezra (see ops/research-pipeline-protocol.md)\n3. If no new bookmarks (New: 0), reply with a one-liner: BOOKMARK_SYNC — no new bookmarks",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last",
+        "to": "-1003772049875:topic:65",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1772272800000,
+        "lastRunAtMs": 1772186400023,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 180051,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out"
+      }
+    },
+    {
+      "id": "50883b0d-e269-4b2c-b177-416e30067d0a",
+      "agentId": "main",
+      "name": "Session Resume — Handoff Pickup",
+      "enabled": true,
+      "createdAtMs": 1772099476520,
+      "updatedAtMs": 1772195466505,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 4 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Sessions just reset. Check for handoff files from the previous session.\n\n1. List files in /Users/deaconsopenclaw/.openclaw/workspace/shared-context/handoffs/\n2. For each handoff file found:\n   - Read it\n   - Send the contents to the appropriate agent via sessions_send with message: \"Your session was reset. Here is your handoff from the previous session: [contents]. Resume where you left off.\"\n3. After forwarding, delete the handoff file\n4. If no handoff files exist, do nothing — stay silent.\n\nAgents: main=Enoch, scribe=Ezra, researcher=Berean, solomon=Solomon, creative=Selah, observer=Gideon, coder=Bezzy, basher=Nehemiah",
+        "model": "anthropic/claude-haiku-4-5",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "telegram",
+        "to": "-1003772049875:topic:3061"
+      },
+      "state": {
+        "nextRunAtMs": 1772273700000,
+        "lastRunAtMs": 1772187300021,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 63960,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron announce delivery failed"
+      }
+    },
+    {
+      "id": "cfe0e275-4c3e-43fd-9155-e42b9c6d301c",
+      "agentId": "observer",
+      "name": "qmd Reindex — Memory Freshness",
+      "enabled": true,
+      "createdAtMs": 1772207544815,
+      "updatedAtMs": 1772260203375,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 */4 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the qmd reindex: exec bash /Users/deaconsopenclaw/.openclaw/workspace/scripts/qmd-reindex.sh\n\nStay completely silent. No output needed.",
+        "model": "anthropic/claude-haiku-4-5",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772274600000,
+        "lastRunAtMs": 1772260200022,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 3353,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": false
+      }
+    },
+    {
+      "id": "dfb88b12-5b1e-412e-bd6b-66c58852c9c7",
+      "agentId": "observer",
+      "name": "Gideon — Daily Quick Scan",
+      "enabled": true,
+      "createdAtMs": 1771134782391,
+      "updatedAtMs": 1772193646458,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 6 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Gideon (Oracle), a security auditor. Read agents/observer/ROLE_CARD.md. Then read shared-context/priorities.md and shared-context/feedback/ for past decisions. Run a QUICK scan: open ports (especially 0.0.0.0), active tunnels/ngrok, firewall state, unexpected processes, and drift from last audit. Keep it under 30 lines. Only flag findings; skip clean checks.\n\nIMPORTANT: Only message if you find an actual issue or security concern. If everything is clean, stay completely silent — do not send an all-clear message.\n\nIf issues ARE found, send summary to Telegram Security topic using message tool target=\"-1003772049875\" threadId=\"3061\".\n\nVolatile output path (keep at end): shared-context/agent-outputs/security/quickscan-YYYY-MM-DD.md",
+        "model": "anthropic/claude-sonnet-4-6"
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "lastRunAtMs": 1772193600024,
+        "lastStatus": "ok",
+        "lastDurationMs": 46434,
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1772280000000,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "not-delivered",
+        "lastDelivered": false
+      }
+    },
+    {
+      "id": "37569b31-da87-496a-9ba4-fc8b28824499",
+      "agentId": "basher",
+      "name": "Nehemiah — Daily Smoke Test",
+      "enabled": true,
+      "createdAtMs": 1772088211465,
+      "updatedAtMs": 1772195573216,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 6 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "DAILY SMOKE TEST — Production Endpoints\n\nYou are running a scheduled health check on all live production endpoints.\n\n## Targets\n1. ridleyresearch.com — check homepage loads, key pages return 200, no broken links on main nav\n2. re-underwriter (Netlify) — check the app loads\n\n## Protocol\n1. Use web_search or fetch to hit each endpoint\n2. Check: HTTP status, page loads, critical elements present, no error pages\n3. If any endpoint is DOWN or returning errors, immediately alert via Telegram to chat_id 5801636051 (Deacon DM)\n4. Write a brief report — if healthy keep to 3 lines, only go verbose if broken\n\nSave report to shared-context/qa-reports/smoke-test-latest.md",
+        "timeoutSeconds": 120,
+        "model": "anthropic/claude-haiku-4-5"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last",
+        "to": "-1003772049875:topic:3061",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1772281800000,
+        "lastRunAtMs": 1772195561195,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 12021,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "454c0ba1-e104-42a9-a28c-0da09f840201",
+      "agentId": "main",
+      "name": "Backlog Intake — Task Decomposition",
+      "enabled": true,
+      "createdAtMs": 1772103035340,
+      "updatedAtMs": 1772197525254,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "BACKLOG INTAKE — Morning Task Decomposition\n\nYou are Enoch. This runs before the day's first Mission Pulse.\n\n## Step 1: Read the current state\nRead these files:\n- shared-context/backlog.md (task queue)\n- shared-context/priorities.md (what matters)\n- shared-context/mission.md (north star)\n- shared-context/feedback/ (latest reflection, if any)\n\n## Step 2: Assess backlog health\n- Are there enough OPEN tasks for today? (Target: at least 3 open tasks across agents)\n- Are all priorities covered? (Every P0 should have at least one open task)\n- Are tasks well-distributed across agents? (No agent overloaded, no agent idle)\n\n## Step 3: Generate new tasks if needed\nIf the backlog is thin or a priority area has no tasks:\n1. Read Obsidian for recent research, notes, or ideas that could become tasks\n2. Check shared-context/feedback/ for issues flagged by Self-Reflection or QA\n3. Review the Intake Queue at the bottom of backlog.md for vague ideas to decompose\n\nFor each new task, follow the backlog format exactly:\n- ID: next BL-NNN\n- Priority: P0/P1/P2\n- Status: open\n- Owner: the right specialist agent per delegation-matrix.md\n- Description: one sentence, concrete, actionable\n- Acceptance criteria: specific, testable\n- Created date\n- Notes if needed\n\n## Step 4: Clean up\n- Remove verified tasks older than 7 days from Active (move to Completed section)\n- If any task has been blocked for 3+ days, escalate to Deacon via Telegram\n\n## Rules\n- Do NOT dispatch tasks here. That is Mission Pulse's job.\n- Do NOT do the work yourself.\n- Keep the backlog between 5-15 active tasks. More = unfocused. Fewer = idle agents.\n- Stay silent in Telegram unless escalating a blocker.",
+        "model": "anthropic/claude-sonnet-4-6",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "-1003772049875:topic:3061"
+      },
+      "state": {
+        "nextRunAtMs": 1772283600000,
+        "lastRunAtMs": 1772197441679,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 83575,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "5235d2f8-e729-4a4e-8196-844b646d1df3",
+      "agentId": "main",
+      "name": "Morning Brief (8 AM)",
+      "description": "Daily review + objectives",
+      "enabled": true,
+      "createdAtMs": 1771749032013,
+      "updatedAtMs": 1772200877976,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Read ops/morning-brief-data.md (written by the 3 AM maintenance cron + Gideon at 3:30 AM).\n\nBEFORE formatting the brief, run these live verification checks and use the live results — never trust stale values from brief-data for these:\n- OpenClaw version: `openclaw --version` vs `npm show openclaw version`\n- macOS pending updates: `softwareupdate --list`\n- Gateway status: `openclaw status`\n- Cron health: check jobs.json for any enabled jobs with consecutiveErrors > 0\n\nIf brief-data says something is outdated/pending but live check shows it's clean — OMIT it from the brief. Do not report false alarms.\n\nFormat and send a concise morning brief to Deacon's DM (5801636051). Telegram-friendly bullets only — no markdown tables, no markdown links.\n\nFormat:\nGood morning.\n\n🔧 Overnight Work\n[3-5 bullets from brief-data or live cron logs]\n\n🧠 Memory Garden\n[what was consolidated, archived, cleaned overnight]\n\n🔒 Security\n[Abaddon grade + any findings from brief-data, or \"No report\" if missing]\n\n📊 API Usage\n[token/cost summary — flag if approaching limits]\n\n🎯 Focus Today\n[2-3 items from commitments + mission]\n\n⚠️ Loose Ends\n[pending commitments, open claude-code-todo items — verify live before including]\n\n🌱 Supersession Candidates\n[only if any exist — old file -> new file. Ignore to skip, or confirm to mark superseded]\n\n✍️ Blog Drafts Awaiting Approval\n[only if research/blog-drafts/ has files with status: draft — list title + one-line summary. Omit section if none.]\n\nKeep total under 35 bullets. Return the brief as plain text — do NOT call the message tool. Delivery is handled automatically by the cron runner.",
+        "model": "anthropic/claude-sonnet-4-6",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last",
+        "to": "-1003772049875:topic:3061",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1772287200000,
+        "lastRunAtMs": 1772200815886,
+        "lastStatus": "ok",
+        "lastDurationMs": 62090,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "delivered",
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "a74fc77c-6db4-4e17-b7cf-d0dd9cd3a1bb",
+      "name": "Daily Cost Report",
+      "enabled": true,
+      "createdAtMs": 1772043334512,
+      "updatedAtMs": 1772200884923,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the cost report script and post the output to this topic. Command: python3 /Users/deaconsopenclaw/.openclaw/workspace/scripts/cost-report.py — capture the full stdout and send it verbatim as your reply. Do not summarize or reformat it. If the script errors, report the error instead.",
+        "model": "anthropic/claude-haiku-4-5",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "-1003772049875:topic:3061",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1772287200000,
+        "lastRunAtMs": 1772200877976,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 6947,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      },
+      "agentId": "observer"
+    },
+    {
+      "id": "df07756c-b4df-4a3f-997d-dbf62999f71f",
+      "agentId": "researcher",
+      "sessionKey": "agent:researcher:telegram:group:-1003772049875:topic:65",
+      "name": "X Engagement Monitor — Daily Batch",
+      "enabled": true,
+      "createdAtMs": 1772111633362,
+      "updatedAtMs": 1772201099218,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "DAILY TASK: X Engagement Monitor for Ridley Research. Search X (via bookmarks sync + agent-browser on Google/Bing) for posts in 3 buckets: (1) OpenClaw business deployments — anyone with meaningful following talking about deploying OpenClaw in business context, results, use cases; (2) AI panic posts — viral content about AI displacing jobs, automation fear, high engagement 1K+ likes; (3) AI hype posts — vaporware demos, impossible claims, breathless hype from large accounts. Surface 3-5 highest-quality posts. For each: post URL, author handle + estimated follower count, brief description of what it says and why it's worth engaging, which bucket it falls into. Send the compiled batch to Enoch at agent:main:main. Quality over volume — no noise.",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "-1003772049875:topic:65",
+        "channel": "telegram"
+      },
+      "state": {
+        "nextRunAtMs": 1772287200000,
+        "lastRunAtMs": 1772200884923,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 214295,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "237f664f-eeb2-418d-be0a-396fe607a8ce",
+      "agentId": "main",
+      "name": "Mission Pulse — Idle Self-Direction",
+      "enabled": true,
+      "createdAtMs": 1772099476520,
+      "updatedAtMs": 1772247691999,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9,12,15,18,21 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "MISSION PULSE — Backlog Dispatch\n\nYou are Enoch, the coordinator. This is your scheduled dispatch cycle.\n\n## Step 1: Read the backlog\nRead shared-context/backlog.md — this is the task queue.\n\n## Step 2: Check active work\n- Are any tasks currently \"in-progress\"? If so, check on them:\n  - Has the owning agent produced output? (Check shared-context/agent-outputs/, shared-context/drafts/)\n  - If stale (no progress), ping the agent or reassign.\n- If all in-progress tasks are healthy, move to Step 3.\n\n## Step 3: Dispatch the next task\n- Find the highest-priority OPEN task.\n- Dispatch it to the assigned agent using sessions_send with the delegation format:\n  \n- Update the task status in backlog.md to \"in-progress\".\n- Only dispatch ONE task per pulse. Don't flood agents.\n\n## Step 4: Process the intake queue\n- Check the \"Intake Queue\" section at the bottom of backlog.md\n- If there are vague ideas there, decompose ONE into a concrete task with:\n  - Clear description, owner, priority, acceptance criteria\n  - Add it to Active Tasks\n  - Remove it from Intake Queue\n\n## Rules\n- If Deacon is actively working with you (last message < 30 min), SKIP this cycle entirely.\n- Do NOT do the work yourself. You are the dispatcher.\n- Stay silent in Telegram unless you dispatched something or found a blocker.\n- If the backlog is empty and intake is empty, note it in shared-context/feedback/ and stay silent.\n\nAlso check `ops/production-queue.md` and `ops/improvement-queue.md` for pending items. If any high-priority items exist that haven't been dispatched, dispatch the top one following the same dispatch protocol (log to in-flight.md, include closing block in brief).",
+        "model": "anthropic/claude-sonnet-4-6",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772290800000,
+        "lastRunAtMs": 1772247600023,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 91976,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": false
+      }
+    },
+    {
+      "id": "df42afd5-fea7-4f4f-a848-5b0a10c76ffe",
+      "agentId": "basher",
+      "name": "Nehemiah — Output QA Sweep",
+      "enabled": true,
+      "createdAtMs": 1772099700057,
+      "updatedAtMs": 1772251428512,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10,16,22 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "QA SWEEP — Backlog Validation\n\nYou are Nehemiah, the QA agent. This is your scheduled validation sweep.\n\n## Step 1: Read the backlog\nRead shared-context/backlog.md — look for tasks with status \"done\".\n\n## Step 2: Validate done tasks\nFor each \"done\" task:\n1. Read the acceptance criteria\n2. Find the deliverable (check shared-context/agent-outputs/, shared-context/drafts/, shared-context/builds/, or wherever the task says to put it)\n3. Evaluate against the criteria:\n   - Does the output exist?\n   - Does it meet EVERY acceptance criterion?\n   - Are there obvious errors, broken links, missing sections?\n   - Would Deacon be satisfied receiving this?\n4. If PASS: Update backlog.md status to \"verified\"\n5. If FAIL: Update backlog.md status back to \"open\" with a note explaining what's wrong. Send feedback to the owning agent via sessions_send.\n\n## Step 3: Check for stale work\n- Any task \"in-progress\" for more than 24 hours with no visible output? Flag it in the backlog notes.\n- Any agent that has tasks assigned but zero output files? Flag in shared-context/qa-reports/.\n\n## Step 4: Log findings\nWrite to shared-context/qa-reports/qa-sweep-{today's date}.md:\n- Tasks validated (pass/fail)\n- Stale tasks flagged\n- Overall backlog health: X open, Y in-progress, Z done, W verified\n\n## Rules\n- If no \"done\" tasks exist and nothing is stale, stay completely silent.\n- Be specific in failure feedback — \"not good enough\" is useless. Say exactly what's missing.\n- Never mark your own work as verified.",
+        "model": "anthropic/claude-sonnet-4-6",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "-1003772049875:topic:3061"
+      },
+      "state": {
+        "nextRunAtMs": 1772294400000,
+        "lastRunAtMs": 1772251200028,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 228484,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "bdef198a-ef84-43c4-b730-39ac6fb3c7d8",
+      "agentId": "main",
+      "name": "Weekly Memory Hygiene",
+      "enabled": true,
+      "createdAtMs": 1771227336618,
+      "updatedAtMs": 1772049656980,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * 0",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Weekly memory hygiene audit. Do the following:\n\n1. Check MEMORY.md line count. If over 200 lines, distill — remove redundant entries, merge related items, tighten language.\n2. Check SOUL.md, AGENTS.md, USER.md — are they still accurate? Flag anything outdated.\n3. Review daily logs from this week — promote important items to typed memory folders if not already done.\n4. Check for duplicate research files or stale entries.\n5. Run `du -sh` on workspace, memory, and research folders — report sizes.\n6. If any file is getting unwieldy, note it with a recommendation.\n\nKeep the report brief. Only flag issues, don't report 'all clear' on every item.\n\nAlso send the hygiene report to Telegram Ops topic (target=\"-1003772049875\", threadId=\"63\") using workspace size sections and any cleanup recommendations.",
+        "model": "anthropic/claude-sonnet-4-6"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "-1003772049875"
+      },
+      "state": {
+        "nextRunAtMs": 1772355600000
+      }
+    },
+    {
+      "id": "46607546-34cd-4c0d-85a3-6300ed8f8aa1",
+      "agentId": "observer",
+      "name": "Gideon — Weekly Full Audit",
+      "enabled": true,
+      "createdAtMs": 1771134777393,
+      "updatedAtMs": 1772058497745,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * 0",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Read agents/observer/AGENT_PROMPT.md and agents/observer/ROLE_CARD.md. This is the WEEKLY full audit. Run ALL four perspectives (Offensive, Defensive, Data Privacy, Operational Realism) and all daily + weekly platform health checks. Compare against last 3 reports in memory/audits/ and flag recurring unresolved issues with escalated severity. Number all findings #1, #2, #3... for deep dives. CRITICAL findings: send immediate Telegram alert to chat_id 5801636051. Post to Telegram Security topic.\n\nVolatile output paths (keep at end): memory/audits/YYYY-MM-DD-weekly.md and shared-context/agent-outputs/security/audit-YYYY-MM-DD.md.",
+        "model": "anthropic/claude-sonnet-4-6",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "-1003772049875:topic:3061",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1771855748261,
+        "lastStatus": "ok",
+        "lastDurationMs": 24456,
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1772373600000
+      }
+    },
+    {
+      "id": "cc7456e9-c326-4ee9-aacb-ecf634671849",
+      "agentId": "main",
+      "name": "Stonebriar Brass Band Reminder",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1771162711370,
+      "updatedAtMs": 1771696511266,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-15T01:00:00.000Z"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Reminder: Stonebriar Brass Band tomorrow (Sunday March 15) at 7 AM–noon at Stonebriar Community Church, Frisco. Ellisyn is tagged on the calendar event.",
+        "model": "anthropic/claude-haiku-4-5"
+      },
+      "state": {
+        "nextRunAtMs": 1773536400000
+      }
+    },
+    {
+      "id": "f8484f6f-2683-4ebc-abcd-b6fe9820c87c",
+      "agentId": "main",
+      "name": "Reminder: Start looking at Hawaii flights",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1771225517457,
+      "updatedAtMs": 1771696511924,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-04-01T16:00:00.000Z"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "🌺 April's here — time to start looking at Hawaii flights and dates. You said you'd revisit this when the timing and budget were better. Want me to search flights?",
+        "model": "anthropic/claude-haiku-4-5"
+      },
+      "state": {
+        "nextRunAtMs": 1775059200000
+      }
+    }
+  ],
+  "total": 21,
+  "offset": 0,
+  "limit": 21,
+  "hasMore": false,
+  "nextOffset": null
+}
