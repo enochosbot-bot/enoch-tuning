@@ -1,5 +1,5 @@
 window.DASHBOARD_DATA = {
-  "generatedAt": "2026-02-28T04:03:18.745Z",
+  "generatedAt": "2026-02-28T15:06:26.000Z",
   "sources": {
     "backlogPath": "/Users/deaconsopenclaw/.openclaw/workspace/shared-context/backlog.md",
     "inFlightPath": "/Users/deaconsopenclaw/.openclaw/workspace/ops/in-flight.md",
@@ -12,17 +12,17 @@ window.DASHBOARD_DATA = {
       "emoji": "🔮",
       "color": "#8a6bff",
       "tasksCompleted": 0,
-      "messages24h": 46,
-      "lastActive": "2026-02-28T03:01:31.945Z"
+      "messages24h": 105,
+      "lastActive": "2026-02-28T15:06:25.928Z"
     },
     {
       "name": "Bezzy",
       "className": "Artificer / Builder",
       "emoji": "⚙️",
       "color": "#34d399",
-      "tasksCompleted": 3,
-      "messages24h": 28,
-      "lastActive": "2026-02-28T04:03:18.635Z"
+      "tasksCompleted": 4,
+      "messages24h": 0,
+      "lastActive": null
     },
     {
       "name": "Berean",
@@ -30,8 +30,8 @@ window.DASHBOARD_DATA = {
       "emoji": "📚",
       "color": "#60a5fa",
       "tasksCompleted": 4,
-      "messages24h": 18,
-      "lastActive": "2026-02-27T23:31:59.529Z"
+      "messages24h": 65,
+      "lastActive": "2026-02-28T14:58:41.270Z"
     },
     {
       "name": "Ezra",
@@ -40,7 +40,7 @@ window.DASHBOARD_DATA = {
       "color": "#f59e0b",
       "tasksCompleted": 5,
       "messages24h": 0,
-      "lastActive": "2026-02-27T18:10:00.000Z"
+      "lastActive": null
     },
     {
       "name": "Gideon",
@@ -48,8 +48,8 @@ window.DASHBOARD_DATA = {
       "emoji": "👁️",
       "color": "#22d3ee",
       "tasksCompleted": 2,
-      "messages24h": 40,
-      "lastActive": "2026-02-28T03:03:51.623Z"
+      "messages24h": 74,
+      "lastActive": "2026-02-28T15:06:25.816Z"
     },
     {
       "name": "Solomon",
@@ -57,8 +57,8 @@ window.DASHBOARD_DATA = {
       "emoji": "🧠",
       "color": "#f472b6",
       "tasksCompleted": 2,
-      "messages24h": 12,
-      "lastActive": "2026-02-27T23:29:27.809Z"
+      "messages24h": 0,
+      "lastActive": null
     },
     {
       "name": "Selah",
@@ -74,9 +74,9 @@ window.DASHBOARD_DATA = {
       "className": "QA / Guardian",
       "emoji": "🛡️",
       "color": "#fb7185",
-      "tasksCompleted": 0,
-      "messages24h": 16,
-      "lastActive": "2026-02-28T04:03:05.164Z"
+      "tasksCompleted": 1,
+      "messages24h": 23,
+      "lastActive": "2026-02-28T15:03:00.000Z"
     }
   ]
 };

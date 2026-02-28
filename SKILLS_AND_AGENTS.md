@@ -1,5 +1,14 @@
 # SKILLS_AND_AGENTS.md
 
+> ⚠️ **DEPRECATED** — This file is outdated. See:
+> - `AGENTS.md` for agent roster and operating rules
+> - `MEMORY.md` for current agent list and infrastructure
+> - `TOOLS.md` for installed tools and skills
+>
+> Kept for historical reference only. Do not update.
+
+---
+
 ## Primary Agent
 - **Enoch** 🔮 — Main personal assistant (Telegram, voice calls)
   - Model: Claude Opus 4.6

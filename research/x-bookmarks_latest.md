@@ -1,6 +1,25 @@
 # X Bookmarks — Deacon Ridley
 
-Last sync: 2026-02-28 02:45 | Total: 279
+Last sync: 2026-02-28 04:00 | Total: 280
+
+### @aiwithjainam
+*2026-02-27* | https://x.com/aiwithjainam/status/2027353456022016087
+
+Holy shit...A single GitHub repo just made Claude Code 10x more powerful.
+
+It's called "claude-code-best-practice" and it includes:
+
+→ Production-ready agents
+→ Memory that persists across sessions
+→ Custom hooks and skills
+→ Ready-to-use slash commands
+
+Basically transforms Claude Code into a full autonomous coding team.
+100% Opensource.
+
+Comment "CODE" and I'll DM you the repo link.
+
+---
 
 ### @KSimback
 *2026-02-27* | https://x.com/KSimback/status/2027326580121358819

@@ -27,6 +27,51 @@ Each task follows this structure:
 
 ## Active Tasks
 
+### BL-020 | P0 | verified | Nehemiah
+**Re-verify BL-014 (RPG dashboard) after path fix**
+- Acceptance: Confirm all 5 dashboard files (index.html, styles.css, app.js, data.js, refresh-data.mjs) exist at `/Users/deaconsopenclaw/.openclaw/workspace/scripts/dashboard/`. Run `node refresh-data.mjs` from that path and confirm data.js is updated. Set BL-014 status to verified.
+- Created: 2026-02-28
+- Notes: BL-014 was fixed at 22:06 CST 2026-02-27 (moved from workspace-coder to workspace) but never re-verified. QA gate is open.
+- QA: VERIFIED 2026-02-28 09:00 CST (Nehemiah) — All 5 files confirmed at shared workspace path ✅. node refresh-data.mjs ran cleanly (exit 0) ✅. data.js mtime updated to 09:00 CST ✅. No errors. PASS. BL-014 promoted to verified.
+
+### BL-021 | P0 | open | Bezzy
+**Smoke-test vidgen.py with a real prompt against live APIs**
+- Acceptance: Run `scripts/vidgen.py` with a real prompt (e.g. "A dramatic cinematic shot of the Texas State Capitol at sunrise") against all configured platforms. Log run to `scripts/vidgen-log.jsonl`. Report: which platforms returned valid video output, which failed, and error messages for failures. Deliverable: a plain-text summary at `shared-context/agent-outputs/vidgen-smoke-test.md`.
+- Created: 2026-02-28
+- Notes: BL-013 marked verified but script was never run against live APIs — smoke test was a "passed without crash" dry run only. Demo is early March; must confirm at least 1 platform returns video before then.
+
+### BL-022 | P0 | open | Bezzy
+**Build pre-demo environment verification script for Spectrum demo**
+- Acceptance: Script at `scripts/pre-demo-check.sh` that checks: (1) OpenClaw gateway is running, (2) Redtail login reachable (curl check), (3) eMoney reachable, (4) workspace disk space >1GB free, (5) M365 license status check (or placeholder with manual instruction). Prints pass/fail per check. Deacon runs this 30 min before demo day.
+- Created: 2026-02-28
+- Notes: BL-015 demo outline flagged M365 Copilot license and eMoney live sync as highest-risk staging items. Demo is early March — this is the safety net.
+
+### BL-023 | P1 | open | Bezzy
+**Build FEC/TEC SQLite ingestion tool per BL-012 spec**
+- Acceptance: Script at `scripts/fec-ingest.py` that: downloads FEC bulk data (indiv26.zip or committee file), creates the 7-table SQLite schema from BL-012 spec, and loads the data. Running it should produce `data/fec.db` with queryable donor/committee/filing tables. README or inline comments explain usage.
+- Created: 2026-02-28
+- Notes: BL-012 spec is verified and Deacon-reviewed. This is the build step. Unlocks BL-006 follow-up investigations.
+
+### BL-024 | P1 | open | Berean
+**Second OpenPlanter investigation: DFW donor → TX House energy vote cross-reference**
+- Acceptance: Research doc at `research/openplanter-runs/dfW-energy-votes/findings.md` covering: top DFW-area energy sector donors (from BL-006), which TX House members received their money, and how those members voted on 2+ major energy-related bills in the last session. Highlight any "bought vote" signals. Mirror to Obsidian.
+- Created: 2026-02-28
+- Notes: Directly actionable political intelligence. Uses BL-006 baseline. If BL-023 SQLite tool is available, use it; otherwise use FEC API directly as in BL-006 run3.
+
+### BL-025 | P1 | open | Selah
+**Draft first video content plan for AmericanFireside YouTube Shorts**
+- Acceptance: Deliverable at `shared-context/drafts/americanfireside-video-plan.md` with: (1) 5 video concepts (topic, angle, target length, hook line), (2) recommended platform distribution (YouTube Shorts, X, TikTok), (3) 3 sample vidgen.py prompts ready to run once BL-021 confirms working platforms. Faith + politics content focus.
+- Created: 2026-02-28
+- Notes: vidgen.py is built (BL-013 verified). Once BL-021 confirms working platforms, Selah's prompts go straight into the pipeline. This is the content strategy layer.
+
+### BL-026 | P1 | open | Ezra
+**Draft Spectrum demo leave-behind one-pager**
+- Acceptance: A single-page PDF-ready document at `shared-context/drafts/spectrum-demo-onepager.md` summarizing: (1) the problem Spectrum faces, (2) what OpenClaw/AI can do for them, (3) 3 concrete ROI numbers from BL-002/BL-008, (4) next steps / call to action. Something Deacon can print or email after the demo. Clean, professional, no jargon.
+- Created: 2026-02-28
+- Notes: BL-015 polished the demo outline; this is the hand-off artifact. Deacon leaves every advisor with something tangible. Demo is early March.
+
+
+
 ### BL-001 | P0 | verified | Ezra
 **Update priorities.md to reflect current state (Feb 26)**
 - Acceptance: priorities.md has correct current priorities (Spectrum demo, Ridley Research social, LinkedIn OAuth, missing Telegram topics), removes stale references (Arnold, Xalt, core 3)
@@ -119,11 +164,11 @@ Each task follows this structure:
 - Completed: 2026-02-27 07:04 CST
 - Delivered: `scripts/vidgen.py` created and made executable. Implements prompt input, optional Claude Sonnet optimization (`--optimize`), parallel fan-out across available providers (Kling/MiniMax/Luma/Runway) with graceful key-based skipping, async polling with 5-minute timeout per platform, output folder creation at `~/Desktop/vidgen-output/{timestamp}/`, and JSONL run logging to `scripts/vidgen-log.jsonl` with per-platform status/cost fields. Smoke test command passed without crash.
 
-### BL-009 | P2 | blocked (prune-candidate) | Bezzy
+### BL-009 | P2 | pruned | Bezzy
 **Investigate and document the 2 missing Telegram topics**
 - Acceptance: Document at ops/telegram-topic-audit.md listing all 16 expected topics, which 14 exist, which 2 are missing, and what they should be configured as.
 - Created: 2026-02-26
-- Notes: De-prioritized by Tom on 2026-02-26 in favor of video generation spec/build. Marked for pruning unless reactivated.
+- Pruned: 2026-02-28 (backlog intake) — de-prioritized by Deacon 2026-02-26; not reactivated. Reopen only if Telegram topic-gaps cause a real operational problem.
 
 ### BL-010 | P2 | verified | Gideon
 **Create system health dashboard in shared-context/kpis/**
@@ -135,11 +180,11 @@ Each task follows this structure:
 - QA: VERIFIED 2026-02-27 16:00 CST (Basher sweep) — `shared-context/kpis/system-health.md` present ✅. Gateway uptime ✅, session count (32) ✅, disk usage (4.0G) ✅, cron success rate (66.7%, 12/18) ✅, per-agent activity table ✅. Generator script present and executable (-rwxr-xr-x) ✅. Note: "messages sent" is proxied via session updatedAt — acceptable approximation, flagged in script. PASS.
 - Notes: Run `./scripts/generate-health-dashboard.py` to refresh. Cron-ready via direct invocation.
 
-### BL-011 | P2 | blocked (prune-candidate) | Berean
+### BL-011 | P2 | pruned | Berean
 **Audit existing email integration and define Gmail digest spec**
 - Acceptance: A spec document at shared-context/agent-outputs/email-integration-spec.md covering: (1) current state — what himalaya/email tooling is configured and working, (2) what a daily Gmail digest would contain (priority senders, flagged subjects, calendar events pulled from email), (3) a concrete implementation plan with owner and effort estimate. No build yet — just the spec.
 - Created: 2026-02-26
-- Notes: De-prioritized by Tom on 2026-02-26 in favor of video generation spec/build. Marked for pruning unless reactivated.
+- Pruned: 2026-02-28 (backlog intake) — de-prioritized by Deacon 2026-02-26, Gmail Digest cron killed in BL-017, email integration not a current priority. Reopen only if Deacon re-prioritizes email automation.
 
 ### BL-012 | P2 | verified | Berean
 **Spec out FEC donor data access and Texas ethics cross-referencing tooling**
@@ -153,7 +198,7 @@ Each task follows this structure:
 ## Completed Tasks
 _None yet. Let's change that._
 
-### BL-014 | P2 | done | Bezzy
+### BL-014 | P2 | verified | Bezzy
 **Build RPG-style agent dashboard with live stats and avatars**
 - Acceptance: A local web dashboard (Three.js + React or similar) at `scripts/dashboard/` that: displays each active agent as a named avatar card (Enoch, Bezzy, Berean, Ezra, Gideon, Solomon, Selah, Nehemiah), shows live stats per agent (tasks completed, messages sent in last 24h, last active timestamp), and pulls data from backlog.md + ops/in-flight.md + session logs. Accessible at localhost:3333. Static/no server required for initial version.
 - Created: 2026-02-26 (decomposed from intake queue by Mission Pulse 21:00 CST)
@@ -216,3 +261,9 @@ _None yet. Let's change that._
 > Vague ideas that need decomposition before becoming tasks. Enoch processes these during Mission Pulse.
 
 _(empty — RPG dashboard decomposed into BL-014)_
+
+### BL-027 | P2 | open | Ezra
+**Draft LinkedIn post series for Deacon's personal account (financial advisor angle)**
+- Acceptance: 5-7 ready-to-post LinkedIn posts targeting financial advisor audience. Professional but not stiff. Topics: retirement planning insights, client relationship wisdom, industry observations, personal takes on wealth building. Varying lengths (some punchy, some longer-form). Deliverable: `shared-context/drafts/linkedin-posts-fa-batch1.md`
+- Created: 2026-02-28
+- Notes: Target publish: late next week. LinkedIn OAuth is live for personal account (token at scripts/linkedin-token.json). Company page (Ridley Research) posting blocked on Community Management API approval.

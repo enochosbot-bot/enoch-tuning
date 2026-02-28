@@ -6,19 +6,9 @@
 ## Active
 
 ### Console / Dashboard
-1. **Search function for workspace files** — add a search UI to the console that can search across workspace files, memory, research, etc. Could use QMD (already indexed) as the backend. _Effort: medium_ _Priority: normal_
-2. **API spending dashboard** — track and display costs across all APIs (Anthropic, OpenAI, ElevenLabs, Twilio, X API, ngrok, etc.). Usage breakdowns by service, time period, per-session. Charts + totals. Pull from provider dashboards/APIs where possible. _Effort: high_ _Priority: normal_
-   - **X API deep-dive section** — dedicated view for X/Twitter API usage. Log each request with what it was doing (search query, topic, who triggered it), endpoint hit, credits consumed, timestamps. Searchable history so you can see exactly what's been looked up and when. _Effort: medium_
-   - **Brave Search API usage** — track Brave API calls (web_search tool), queries made, timestamps, which session triggered them. Include in spending dashboard alongside other services. _Effort: low-medium_
-3. **Knowledge graph visualization** — visual graph of entities, relationships, and connections across memory/research/notes. Nodes = people, projects, concepts, tools. Edges = relationships. Interactive, explorable from the console. _Effort: high_ _Priority: normal_
+1. **Knowledge graph visualization** — visual graph of entities, relationships, and connections across memory/research/notes. Nodes = people, projects, concepts, tools. Edges = relationships. Interactive, explorable from the console. _Effort: high_ _Priority: normal_
 
-### OpenNotes iOS App
-- MinimaList clone — dead-simple task list
-- Swift/SwiftUI, iOS 17+, MVVM
-- Full spec: `projects/task-app/SPEC.md`
-- Core: swipe gestures (cross-off, delete, add), haptics, focus timer, dark mode
-- Personal use first, App Store if it rocks
-- _Effort: high_ _Priority: high_
+> **API costs** → not a standalone dashboard. Integrate spend summary (Anthropic, OpenAI, ElevenLabs, X API, Brave) into the **daily report** via what daily-report.mjs already knows. One line per service, totals. That's it.
 
 ### 📚 Bookshelf Dashboard
 - Visual bookshelf display for the castle/console dashboard
@@ -79,7 +69,7 @@
 
 1. ~~**`openclaw secrets audit`**~~ ✅ **DONE** — Critical fixed (`openclaw.json` chmod 600). 5 remaining warnings reviewed, all acceptable-risk.
 
-2. **OpenClaw: enable ACP thread-bound agents** — Set `spawnAcpSessions: true` in Discord channel config (if using Discord). Also: `openclaw agents bind` for faster agent routing. _Effort: 15 min_ _Priority: normal_
+2. **OpenClaw: enable ACP thread-bound agents** — Use thread-bound persistent ACP sessions for channel workflows (`thread: true`, `mode: session`) and run `openclaw agents bind` for faster routing. _Effort: 15 min_ _Priority: normal_
 
 3. **Claude Code /simplify + /batch** — Watch for next release. Boris Cherny (Anthropic). _Priority: whenever_
 

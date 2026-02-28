@@ -12,7 +12,7 @@
 - Values proactive problem-solving
 - Wants notification when I go down/come back during restarts
 - Wants no lost messages (queue mode: steer+backlog)
-- "Stepping away" / "afk" / "//" = START WORKING on queued tasks immediately, ping when done or blocked
+- "Stepping away" / "afk" / "//" = manual trigger to START WORKING on queued tasks immediately, ping when done or blocked. (Mission Pulse handles scheduled idle work at 9/12/15/18/21 — no continuous polling.)
 
 ## Infrastructure
 - Mac mini (Darwin arm64)

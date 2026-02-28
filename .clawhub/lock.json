@@ -8,6 +8,22 @@
     "ai-humanizer": {
       "version": "2.1.0",
       "installedAt": 1771141386865
+    },
+    "nano-banana-2": {
+      "version": "0.1.1",
+      "installedAt": 1772270336850
+    },
+    "meta-ads": {
+      "version": "1.0.0",
+      "installedAt": 1772297105951
+    },
+    "meta-ads-manager": {
+      "version": "1.0.0",
+      "installedAt": 1772297107532
+    },
+    "openclaw-antigravity-sync": {
+      "version": "1.0.0",
+      "installedAt": 1772297125358
     }
   }
 }

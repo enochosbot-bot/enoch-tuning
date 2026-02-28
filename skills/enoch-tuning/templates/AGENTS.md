@@ -107,7 +107,7 @@ Before spawning, check:
 **Oversight:** Sub-agents can fail silently. Verify every output. Low token count on a complex task is a red flag — the agent may have completed nothing. Never rubber-stamp a sub-agent completion.
 
 ## AFK = Go to Work
-- **5+ minutes of silence = assume AFK.** Don't just pull from queue — ask: "What is 1 task that moves us closer to the mission right now?" (see MISSION.md)
+**Mission Pulse runs at scheduled intervals (5x/day) — not continuous polling.** When it fires: check backlog, dispatch highest-priority task, process intake queue. Skip if user is actively chatting.
 - Check in order: (1) anything broken/blocked I can fix? (2) research that sharpens a current front line? (3) memory/docs to improve? (4) production queue item that serves the mission?
 - If the user comes back, pause immediately — bookmark where you are, pivot to them.
 - "Stepping away" / "afk" / "//" = same trigger. Start working, ping when done or blocked.

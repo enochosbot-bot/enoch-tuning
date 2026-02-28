@@ -18,8 +18,8 @@ All content must pass strategic review before publishing. This prevents off-bran
 6. Solomon hands back to Ezra via sessions_send (REVIEW_VERDICT)
 7. If REVISE → Ezra incorporates feedback, loops back to step 3 (max 1 revision)
 8. If APPROVE → Ezra publishes (dispatch to Bezzy for website, or post via script)
-9. If KILL → Ezra notifies Deacon with Solomon's reasoning
-10. Summary posted to Security & Ops (topic 3061) for visibility
+9. If KILL → Ezra notifies Deacon with Solomon's reasoning + posts to Security & Ops (topic 3061)
+10. Routine approvals stay in scribe channel only — no cross-posting. Security & Ops only sees escalations (KILL, stuck reviews).
 ```
 
 ---
@@ -156,8 +156,7 @@ SUMMARY: [1-2 sentence summary of verdict reasoning]
 1. Publish via appropriate channel:
    - Blog/website → dispatch to Bezzy (coder) with deploy instructions
    - LinkedIn/X → execute via social posting script or manual post
-2. Post summary to Security & Ops (topic 3061):
-   `✅ Published: {title} on {platform}. Solomon approved. Link: {url}`
+2. No cross-channel notification needed — scribe channel is the single source of truth for content flow.
 
 ### On REVISE
 1. Read Solomon's feedback from `shared-context/feedback/{slug}-review.md`

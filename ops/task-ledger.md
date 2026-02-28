@@ -106,3 +106,58 @@ _Newest entries at bottom. Rotate weekly (move to ops/ledger-archive/)._
 [2026-02-28 03:00] [cron] [main] [✅ done] — Nightly Maintenance + Brief Compilation (173.5s)
 [2026-02-28 02:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.9s)
 [2026-02-28 02:42] [cron] [main] [✅ done] — Session Monitor — Context Bloat Alert (14.8s)
+[2026-02-28 04:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 04:03] [watchdog] [researcher] [🧹 pruned] — 283KB. Last: no summary
+[2026-02-28 03:30] [cron] [observer] [✅ done] — Gideon — Nightly Deep Audit (168.6s)
+[2026-02-28 03:45] [cron] [observer] [✅ done] — Gideon — Abaddon Nightly Red Team (158.1s)
+[2026-02-28 04:00] [cron] [researcher] [✅ done] — Berean — X Bookmarks Nightly Sync (155.0s)
+[2026-02-28 04:02] [cron] [observer] [✅ done] — Session Auto-Prune (4.4s)
+[2026-02-28 03:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.9s)
+[2026-02-28 03:42] [cron] [main] [✅ done] — Session Monitor — Context Bloat Alert (13.2s)
+[2026-02-28 05:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 05:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 04:15] [cron] [main] [✅ done] — Session Resume — Handoff Pickup (78.5s)
+[2026-02-28 04:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.3s)
+[2026-02-28 04:30] [cron] [observer] [✅ done] — qmd Reindex — Memory Freshness (13.6s)
+[2026-02-28 04:42] [cron] [main] [✅ done] — Session Monitor — Context Bloat Alert (15.5s)
+[2026-02-28 06:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 06:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 06:00] [cron] [observer] [✅ done] — Gideon — Daily Quick Scan (68.8s)
+[2026-02-28 06:01] [cron] [observer] [✅ done] — Session Auto-Prune (4.2s)
+[2026-02-28 05:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.1s)
+[2026-02-28 05:42] [cron] [main] [✅ done] — Session Monitor — Context Bloat Alert (15.9s)
+[2026-02-28 07:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 06:30] [cron] [basher] [✅ done] — Nehemiah — Daily Smoke Test (18.8s)
+[2026-02-28 07:00] [cron] [main] [✅ done] — Backlog Intake — Task Decomposition (136.9s)
+[2026-02-28 06:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.2s)
+[2026-02-28 06:42] [cron] [main] [✅ done] — Session Monitor — Context Bloat Alert (15.7s)
+[2026-02-28 08:05] [watchdog] [observer] [🧹 pruned] — 10h old. Last: no summary
+[2026-02-28 08:05] [watchdog] [observer] [🧹 pruned] — 10h old. Last: no summary
+[2026-02-28 08:05] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 08:05] [watchdog] [researcher] [🧹 pruned] — 283KB. Last: no summary
+[2026-02-28 08:00] [cron] [main] [✅ done] — Morning Brief (8 AM) (44.9s)
+[2026-02-28 08:00] [cron] [observer] [✅ done] — Daily Cost Report (4.1s)
+[2026-02-28 08:00] [cron] [researcher] [❌ failed] — X Engagement Monitor — Daily Batch (300.1s) — cron: job execution timed out
+[2026-02-28 07:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.4s)
+[2026-02-28 07:42] [cron] [main] [✅ done] — Session Monitor — Context Bloat Alert (15.6s)
+[2026-02-28 09:06] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 09:06] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 09:06] [watchdog] [researcher] [🧹 pruned] — 416KB. Last: no summary
+[2026-02-28 08:05] [cron] [observer] [✅ done] — Session Auto-Prune (4.4s)
+[2026-02-28 09:00] [cron] [main] [✅ done] — Mission Pulse — Idle Self-Direction (383.5s)
+[2026-02-28 08:05] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.3s)
+[2026-02-28 08:30] [cron] [observer] [✅ done] — qmd Reindex — Memory Freshness (6.2s)
+[2026-02-28 10:03] [watchdog] [main] [🧹 pruned] — 583KB. Last: no summary
+[2026-02-28 10:03] [watchdog] [observer] [🧹 pruned] — 1119KB. Last: no summary
+[2026-02-28 10:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 10:01] [cron] [observer] [✅ done] — Session Auto-Prune (6.2s)
+[2026-02-28 10:00] [cron] [basher] [❌ failed] — Nehemiah — Output QA Sweep (55.3s) — ⚠️ ✍️ Write: `to ~/.openclaw/workspace/shared-context/qa-reports/qa-sweep-2026-0
+[2026-02-28 09:06] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (9.2s)
+[2026-02-28 11:03] [watchdog] [basher] [🧹 pruned] — 357KB. Last: no summary
+[2026-02-28 11:03] [watchdog] [coder] [🧹 pruned] — 478KB. Last: no summary
+[2026-02-28 11:03] [watchdog] [coder] [🧹 pruned] — 237KB. Last: no summary
+[2026-02-28 11:03] [watchdog] [main] [🧹 pruned] — 636KB. Last: no summary
+[2026-02-28 11:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 11:03] [watchdog] [observer] [🧹 pruned] — 374KB. Last: no summary
+[2026-02-28 11:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 10:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.0s)
