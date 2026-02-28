@@ -1,18 +1,13 @@
 status: completed
-active-task: BL-014 RPG Agent Dashboard
-current-step: Completed implementation + verification + closeout updates.
-next-step: None.
+active_task: Run full system/package updates from nightly audit
+current_step: completed
+next_step: optional manual checks in System Settings for Gatekeeper/OS updates; monitor gateway memory after restart
+updated_at: 2026-02-28T14:55:27Z
+critical_ids_paths:
+  - /Users/deaconsopenclaw/.openclaw/workspace/shared-context/checkpoints/session-checkpoint.md
+  - /tmp/openclaw/openclaw-2026-02-28.log
 artifacts:
-  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/index.html
-  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/styles.css
-  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/app.js
-  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/refresh-data.mjs
-  - /Users/deaconsopenclaw/.openclaw/workspace-coder/scripts/dashboard/data.js
-  - /Users/deaconsopenclaw/.openclaw/workspace/shared-context/backlog.md (BL-014 set to done)
-  - /Users/deaconsopenclaw/.openclaw/workspace/ops/in-flight.md (BL-014 row in Completed)
-external-notify:
-  - sessions_send to agent:main:main accepted (runId: 389ba75f-91e6-45fd-a9a8-c9dbbb2f94a4)
-verification:
-  - Served dashboard locally on :3333
-  - Fetched index/app/data via curl
-  - JS syntax checks passed for app.js and refresh-data.mjs
+  - upgraded: openclaw 2026.2.24 -> 2026.2.26
+  - upgraded_formulae: agent-browser, bun, certifi, deno, gemini-cli, gh, libngtcp2, llama.cpp, ollama, tirith, uv
+  - certifi_link_fix: brew link --overwrite certifi
+  - gateway_status: running (pid 10789), rpc probe ok, loopback-only
