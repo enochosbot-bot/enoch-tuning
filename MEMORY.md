@@ -97,8 +97,7 @@ Three operational rules baked into AGENTS.md:
 - Token: `~/.openclaw/agents/creative/workspace/scripts/youtube_token.json` (full youtube scope)
 - Workflow: `shorty_workflow.sh` | Inbox: `shorty/inbox/` | Agent: Selah
 - API quota: 10k units/day (~6 uploads), resets midnight PT (2AM CST)
-- Kiriakou/Rogan clips: 14 rendered (arcs 5–18), arcs 1–4 missing (need make_clips.sh re-run)
-- Arc5 (Feb 27) + Arc6 (Feb 28) uploaded. Arcs 7–18 pending quota reset.
+- **Kiriakou clips pipeline: KILLED per Deacon 2026-02-28. Do not resume.**
 
 ## Infrastructure Changes (2026-02-26)
 - `channels.telegram.streaming` = off (was partial — caused message truncation)
@@ -117,5 +116,4 @@ Three operational rules baked into AGENTS.md:
 - RPG pixel dashboard (Enoch as robed sage + Arnold as armored guard)
 - Jarvis Initialization voice conversation (goals, dreams, friction, cognition)
 - Humanizer skill install (ClawHub rate limited)
-- Kiriakou arcs 1–4: re-render with `bash ~/Desktop/Kiriakou-Clips/make_clips.sh`
-- Upload remaining 12 Kiriakou clips after 2AM CST quota reset
+- Session monitor (alert Deacon when session age > threshold to trigger /new)
