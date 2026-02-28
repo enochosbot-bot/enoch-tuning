@@ -1,8 +1,8 @@
 #!/bin/bash
 # X OAuth 2.0 PKCE flow for user-context bookmarks access
 
-CLIENT_ID="N0xhTjV6eEJISEVGbWxTVWZvTU06MTpjaQ"
-CLIENT_SECRET="UFEDThr0WOmDR4U3xPWD5HxiCQa1xR9oQYTWIj3d1miuUi1Hst"
+CLIENT_ID="${X_OAUTH_CLIENT_ID}"
+CLIENT_SECRET="${X_OAUTH_CLIENT_SECRET}"
 REDIRECT_URI="http://127.0.0.1:1455/auth/callback"
 SCOPES="bookmark.read tweet.read users.read offline.access"
 

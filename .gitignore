@@ -94,8 +94,8 @@ creative-output/
 scripts/content-pipeline/output/
 runs/
 
-# Wrangler account cache
-.wrangler/cache/wrangler-account.json
+# Wrangler — never commit cache (contains account IDs)
+.wrangler/
 
 # Temp image files
 tmp/*.jpg
