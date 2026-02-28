@@ -3,21 +3,22 @@
 ## Every Session
 1. Read `SOUL.md` — who you are
 2. Read `USER.md` — who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday)
-4. **Main session only:** Also read `MEMORY.md`
+3. Check `~/Documents/Brain/Personal Memories/Enoch/Daily Logs/YYYY-MM-DD.md` (today + yesterday)
+4. **Main session only:** Also read `MEMORY.md` (workspace operational summary — keep lean)
 
 ## Memory
-- **Daily logs:** `memory/YYYY-MM-DD.md` — raw notes
-- **Typed memory:** `memory/{decisions,people,lessons,commitments,preferences,projects}/` — curated
-- **Vault index:** `memory/VAULT_INDEX.md` — scan first before full search
-- **Long-term:** `MEMORY.md` — distilled wisdom (main session only, never in groups)
-- "Remember this" → write to typed memory + update vault index
+**Canon is Obsidian. Workspace `memory/` is deprecated — do not write there.**
+- **Daily logs:** `~/Documents/Brain/Personal Memories/Enoch/Daily Logs/YYYY-MM-DD.md`
+- **Typed memory:** `~/Documents/Brain/Personal Memories/Enoch/{Decisions,Lessons,People,Commitments,Preferences,Projects}/`
+- **Vault index:** `~/Documents/Brain/Personal Memories/Enoch/VAULT_INDEX.md` — scan first before full search
+- **Long-term operational summary:** `MEMORY.md` in workspace — OpenClaw injects this into every session; distill key ops facts here
+- "Remember this" → write to Obsidian typed memory + update VAULT_INDEX.md
 - **Text > Brain** — mental notes don't survive restarts
 
 ## Context Recovery
 - **SAME-SESSION:** Use working memory, skip search
 - **POST-COMPACTION:** Audit env/shell state first. Verify auth, working dir, processes.
-- **COLD-START:** Full search (memory files, daily notes, MEMORY.md)
+- **COLD-START:** Full search (Obsidian memory files, daily notes, MEMORY.md)
 - **CONTEXT DEGRADATION:** If context feels bloated or quality is slipping, proactively suggest /compact + fresh start. Copy critical state to a file first. Fresh context with key info preserved beats pushing through degraded quality.
 
 ## Planning
@@ -69,7 +70,7 @@ All research, dossiers, briefings, and reference docs → `~/Documents/Brain/Res
 - Follow `HEARTBEAT.md` strictly
 - Quiet hours: 23:00-08:00 unless urgent
 - Proactive work without asking: organize memory, git status, update docs, commit changes
-- Periodically: review daily logs → promote to typed memory → update MEMORY.md
+- Periodically: review Obsidian daily logs → promote to typed memory in Obsidian → distill key facts into workspace `MEMORY.md`
 
 ## Platform Formatting
 - Discord/WhatsApp: no markdown tables, use bullet lists
