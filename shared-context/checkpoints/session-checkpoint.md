@@ -1,12 +1,13 @@
 status: completed
-active_task: Add proactive gateway/context alert + autosave/reset/resume automation
+active_task: Build session-archive → Obsidian incident summarizer + cron wiring
 current_step: completed
-next_step: verify next cron cycle behavior and adjust thresholds if too noisy
-updated_at: 2026-02-28T15:25:49Z
+next_step: verify next hourly Session Watchdog run writes incremental incident notes without duplicates
+updated_at: 2026-02-28T10:33:00-06:00
 critical_ids_paths:
+  - /Users/deaconsopenclaw/.openclaw/workspace/scripts/session-archive-to-obsidian.sh
   - /Users/deaconsopenclaw/.openclaw/workspace/ops/cron-definitions.json
-  - /Users/deaconsopenclaw/.openclaw/workspace/shared-context/checkpoints/session-checkpoint.md
+  - /Users/deaconsopenclaw/.openclaw/workspace/shared-context/state/session-archive-seen.txt
 artifacts:
-  - updated_job: Session Auto-Prune (threshold-based auto-save/reset/resume)
-  - updated_job: Session Resume — Handoff Pickup (spawn-on-miss resend flow)
-  - thresholds: context >=1.5MB jsonl, gateway RSS >=1500MB
+  - /Users/deaconsopenclaw/Documents/Brain/Research/OpenClaw Ops/Session Incidents/2026-02-28-session-incidents.md
+  - /Users/deaconsopenclaw/Documents/Brain/Research/OpenClaw Ops/OpenClaw Incident Log.md
+  - git_commit: dfd8d18

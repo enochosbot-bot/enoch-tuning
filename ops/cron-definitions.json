@@ -51,7 +51,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Run the session watchdog: exec bash /Users/deaconsopenclaw/.openclaw/workspace/scripts/session-watchdog.sh\n\nThen read /tmp/session-watchdog.log and report only if sessions were archived. If zero archived, stay completely silent.\n\nALSO: Run scripts/cron-status-reporter.sh to log recent cron outcomes to ops/task-ledger.md.",
+        "message": "Run the session watchdog: exec bash /Users/deaconsopenclaw/.openclaw/workspace/scripts/session-watchdog.sh\n\nThen read /tmp/session-watchdog.log and report only if sessions were archived. If zero archived, stay completely silent.\n\nALSO: Run /Users/deaconsopenclaw/.openclaw/workspace/scripts/session-archive-to-obsidian.sh to summarize newly archived sessions into Obsidian incident notes.\n\nALSO: Run scripts/cron-status-reporter.sh to log recent cron outcomes to ops/task-ledger.md.",
         "model": "anthropic/claude-haiku-4-5",
         "timeoutSeconds": 120
       },
