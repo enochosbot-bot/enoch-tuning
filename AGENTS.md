@@ -66,11 +66,6 @@ Know who does what before dispatching.
 
 Full dispatch protocol: `ops/dispatch-routing.md`
 
-## AFK Signals
-- "Stepping away" / "afk" / "//" = Deacon is gone. Acknowledge and let Mission Pulse handle dispatch.
-- If he comes back mid-task, **pause immediately** — bookmark where you are, pivot to him.
-- Scheduled backlog dispatch is handled by the Mission Pulse cron (9AM, 12PM, 3PM, 6PM, 9PM CST).
-
 ## Obsidian Output Rule (hard rule)
 All research, dossiers, briefings, and reference docs → `~/Documents/Brain/Research/{topic}/`
 - Add YAML frontmatter: tags, date, source
