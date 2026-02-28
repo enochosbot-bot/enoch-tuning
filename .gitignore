@@ -88,10 +88,14 @@ intro_*.png
 ps_*.png
 *.tw_session
 
-# Large media — clips and generated images
+# Large media — clips, generated images, video runs
 clips/
 creative-output/
 scripts/content-pipeline/output/
+runs/
+
+# Wrangler account cache
+.wrangler/cache/wrangler-account.json
 
 # Temp image files
 tmp/*.jpg
