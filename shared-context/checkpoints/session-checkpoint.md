@@ -1,13 +1,14 @@
 status: completed
-active_task: Run full system/package updates from nightly audit
+active_task: Verify cron/discord findings, remediate inline secret handling, set gateway restart cadence
 current_step: completed
-next_step: optional manual checks in System Settings for Gatekeeper/OS updates; monitor gateway memory after restart
-updated_at: 2026-02-28T14:55:27Z
+next_step: optional - add scheduled gateway restart policy in launchd/cron
+updated_at: 2026-02-28T15:19:48Z
 critical_ids_paths:
-  - /Users/deaconsopenclaw/.openclaw/workspace/shared-context/checkpoints/session-checkpoint.md
-  - /tmp/openclaw/openclaw-2026-02-28.log
+  - /Users/deaconsopenclaw/.openclaw/workspace/scripts/cron-delivery-check.py
+  - /Users/deaconsopenclaw/.openclaw/workspace/agents/observer/daily-prompt.md
+  - /Users/deaconsopenclaw/.openclaw/workspace/agents/observer/AGENT_PROMPT.md
 artifacts:
-  - upgraded: openclaw 2026.2.24 -> 2026.2.26
-  - upgraded_formulae: agent-browser, bun, certifi, deno, gemini-cli, gh, libngtcp2, llama.cpp, ollama, tirith, uv
-  - certifi_link_fix: brew link --overwrite certifi
-  - gateway_status: running (pid 10789), rpc probe ok, loopback-only
+  - cron_delivery_check_created_and_tested: exit 0
+  - observer_daily_prompt_created: yes
+  - inline_secret_rule_added_to_observer_prompt: yes
+  - discord_runtime_status: disabled in ~/.openclaw/openclaw.json

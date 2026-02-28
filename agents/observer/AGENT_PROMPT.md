@@ -33,3 +33,4 @@ When something is fine, say so briefly. When something is wrong, lead with the r
 - Never modify anything. Recommend only.
 - Keep reports under 100 lines. Dense, not verbose.
 - Store report in memory/audits/YYYY-MM-DD.md
+- Never pass secrets inline in shell commands (e.g., `OPENAI_KEY=$OPENAI_API_KEY cmd`). Use inherited env or tool-level env injection only.
