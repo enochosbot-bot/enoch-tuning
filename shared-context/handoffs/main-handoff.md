@@ -1,74 +1,60 @@
-# Handoff — Enoch (Main Agent)
-_Written: 2026-02-27 16:12 CST_
+# Handoff — Enoch (main)
+**Written:** 2026-02-28 00:51 CST
 
 ## Active Task
-Session compaction — no active user task in progress. Last completed work was verifying BL-005 (social post pipeline QA fix) and general housekeeping.
+Kiriakou clip styling pipeline — applying "fast & punchy" AF-montage style to Kiriakou arcs 1-4, then uploading to YouTube.
 
 ## Progress
-
-### Done Today (2026-02-27)
-- **RR-Site nav fix** — Bezzy updated 37 HTML files locally but never deployed. Enoch ran `wrangler pages deploy` manually. Live site verified 200 + correct nav ("Products & Pricing" everywhere, "See All Products" gone). ✅
-- **BL-005** — QA FAIL path correction for social-post-pipeline.py. Files copied to shared workspace scripts/, permissions set, cron path updated, dry-run verified. ✅
-- **BL-004** — X launch-week posts (5 posts) → `shared-context/drafts/x-launch-week.md` ✅
-- **BL-006** — FEC/TX donor network research → `research/openplanter-runs/texas-donors-run3/findings.md` ✅
-- **BL-008** — Spectrum demo outline → `shared-context/agent-outputs/spectrum-demo-outline.md` ✅
-- **BL-012** — FEC/ethics tooling spec → `shared-context/agent-outputs/fec-ethics-tooling-spec.md` ✅
-- **BL-015** — Demo outline prose polish (Ezra) ✅
-- **BL-016** — LinkedIn post review (Solomon) — BL-003 posts REJECTED (wrong ICP), Batch 2 + Pitch Post approved ✅
-- **BL-018** — Data flow audit → `shared-context/agent-outputs/data-flow-audit.md` ✅
-- **BL-010** — System health dashboard → `shared-context/kpis/system-health.md` ✅
-- **BL-013** — vidgen.py CLI built → `scripts/vidgen.py` ✅
+### Done ✅
+- Rendered Kiriakou arcs 1–4 from source using `make_clips.sh` (was missing, arcs 5–18 already existed)
+  - `arc1_the_decision.mp4` (50M, 240s)
+  - `arc2_the_retaliation.mp4` (42M, 223s)
+  - `arc3_the_mob.mp4` (42M, 190s)
+  - `arc4_heart_stopped.mp4` (15M, 70s)
+  - All at: `~/Desktop/Kiriakou-Clips/clips/`
+- Analyzed Nick Fuentes ep1648 Rumble video b-roll style (ep1648-demo-15min.mp4)
+  - Style: dark blue cinematic grade, graphic title cards, hard cuts, impactful text overlays
+- Generated b-roll graphic card assets (PIL) at `/tmp/kiriakou-assets/`
+  - cia_seal_card.png, refused_card.png, espionage_card.png, brennan_card.png, obama_card.png, waterboard_card.png, aryan_card.png, mob_card.png, torture_doc_card.png
+- Applied full style pass to all 4 arcs:
+  - Dark blue color grade (curves + eq filters)
+  - Strategic b-roll card inserts (1.5–2s holds)
+  - Impactful text overlays at key moments
+  - Output: `~/Desktop/Kiriakou-Clips/styled/arc{1-4}_styled.mp4`
+- Compressed to Telegram-friendly size (<16MB each, 720x1280):
+  - `/Users/deaconsopenclaw/.openclaw/workspace/arc{1-4}_tg.mp4`
+- **Sent all 4 to Deacon on Telegram** (message IDs 6413–6416) ✅
+- Waiting on Deacon feedback
 
 ### In Flight
-- Nothing active. All dispatch rows closed.
-
-### Pending / Queued
-- **AF Pre-show analysis** (Berean) — ep1648 downloaded at `/Users/deaconsopenclaw/.openclaw/agents/researcher/workspace/research/af-preshow/ep1648-full.mp4`. Need: trim first 7 min, extract frames, analyze production pattern, write brief. See `researcher-handoff.md`.
-- **X launch-week posts (BL-004)** — drafted, awaiting Deacon approval
-- **LinkedIn posts (BL-003 rejected; BL-016 Batch 2 approved)** — awaiting Deacon scheduling decision
-- **Spectrum demo outline (BL-008/BL-015)** — polished and demo-ready, awaiting Deacon use
-- **Kiriakou arcs 1–4** — need re-render with `bash ~/Desktop/Kiriakou-Clips/make_clips.sh`, then upload arcs 7–18 (quota resets 2AM CST)
-- **RPG pixel dashboard** — BL-014, on hold until 3+ agents have output data (threshold met)
-- **BL-009, BL-011** — blocked/prune-candidates, low priority
+- Deacon hasn't responded with feedback yet on the styled clips
 
 ## Next Steps
-1. Check if Deacon has any new requests — he's been active around 4PM CST
-2. If AFK: pull Kiriakou arcs 1–4 re-render from queue (`bash ~/Desktop/Kiriakou-Clips/make_clips.sh`)
-3. After 2AM CST: upload remaining Kiriakou arcs 7–18 via Selah pipeline
-4. Ask Deacon to approve X launch-week posts (BL-004) and confirm LinkedIn posting schedule
-5. Surface AF pre-show analysis resumption to Deacon — Berean session needs restart
+1. **Wait for Deacon's feedback** on the 4 styled clips (quality, timing, color grade, text overlays)
+2. **If approved** → upload arcs 1–4 to YouTube via the Shorty pipeline (scheduled at 6PM CST, private until publish)
+   ```bash
+   cd /Users/deaconsopenclaw/.openclaw/agents/creative/workspace
+   python3 scripts/youtube_upload.py --file ~/Desktop/Kiriakou-Clips/clips/arc1_the_decision.mp4 --title "..." --channel american_fireside
+   ```
+   Or re-run the full shorty_workflow.sh for each if titles are needed
+3. **If changes needed** → re-run `/tmp/kiriakou-assets/process_arcs.py` after editing splice points/cards/text
+4. **Nick Fuentes LGIZtPsafSs.webm** — still in shorty/inbox, still unprocessed. It's already a 26s vertical 9:16 short (60fps 2160x3840). Just needs a title and upload.
+5. **ep1648-full.mp4** — the full Nick Fuentes ep1648 (3.5hr). Pipeline was attempted but failed due to libass missing. That's now fixed (using ffmpeg-full). Could re-run for AI-selected clips if desired. But Deacon's original intent was the style mimicry, not auto-clips.
 
 ## Key Context
-
-### File Paths
-- Social pipeline: `/Users/deaconsopenclaw/.openclaw/workspace/scripts/social-post-pipeline.py` + `.sh`
-- Drafts queue: `shared-context/drafts/`
-- Agent outputs: `shared-context/agent-outputs/`
-- Spectrum demo: `shared-context/agent-outputs/spectrum-demo-outline.md`
-- X posts: `shared-context/drafts/x-launch-week.md`
-- LinkedIn (approved): `shared-context/drafts/linkedin-launch-week-reviewed.md`
-- Kiriakou clips: `~/Desktop/Kiriakou-Clips/`
-- Shorty inbox: `~/.openclaw/agents/creative/workspace/shorty/inbox/`
-
-### Infrastructure
-- RR site: ridleyresearch.com → Cloudflare Pages (`ridleyresearch`), deploy from `ridleyresearch-site-v2-revamped/ridleyresearch-site-v2/`
-- YouTube channel: AmericanFireside (UC7I25J3vQ2VGvEu0Bl2_Hig), quota resets 2AM CST
-- AF pre-show ep: `/Users/deaconsopenclaw/.openclaw/agents/researcher/workspace/research/af-preshow/ep1648-full.mp4`
-
-### Agents
-- Ezra (scribe): `~/.openclaw/workspace-scribe/`
-- Bezzy (coder): `~/.openclaw/workspace-coder/`
-- Berean (researcher): `~/.openclaw/agents/researcher/workspace/`
-- Selah: YouTube shorts pipeline
-- Solomon: review/strategy
-
-### Decisions Made Today
-- Bezzy must always run `wrangler pages deploy` AND verify 200 — not just update files locally
-- BL-003 LinkedIn posts rejected by Solomon (wrong ICP: RIA-focused, not bootstrappers/SMBs)
-- LinkedIn approved content: Batch 2 + Pitch Post from `linkedin-launch-week-reviewed.md`
+- **Kiriakou clips source**: `~/Desktop/Kiriakou-Clips/kiriakou-full.mp4` + `kiriakou.en.vtt`
+- **Arc render script**: `~/Desktop/Kiriakou-Clips/make_clips.sh` (arcs 1–4), `make_clips_batch2.sh` (arcs 5–18)
+- **Style processing script**: `/tmp/kiriakou-assets/process_arcs.py` (NOTE: /tmp will be cleared on restart — copy to workspace if needed)
+- **Asset gen script**: `/tmp/kiriakou-assets/gen_assets.py`
+- **Styled output**: `~/Desktop/Kiriakou-Clips/styled/`
+- **TG-compressed output**: `/Users/deaconsopenclaw/.openclaw/workspace/arc{1-4}_tg.mp4`
+- **ffmpeg-full path**: `/opt/homebrew/opt/ffmpeg-full/bin/ffmpeg` (has libass, required for subtitle burning)
+- **YouTube channel**: AmericanFireside (UC7I25J3vQ2VGvEu0Bl2_Hig), token at `~/.openclaw/agents/creative/workspace/scripts/youtube_token.json`
+- **Nick Fuentes ep1648 Rumble URL**: https://rumble.com/v76c4c2-america-first-ep.-1648.html
+- **ep1648 demo clip**: `/Users/deaconsopenclaw/.openclaw/agents/creative/workspace/shorty/inbox/ep1648-demo-15min.mp4` (first 15 min, the b-roll section Deacon referenced)
+- **Style reference**: fast/hard cuts, dark blue cinematic grade, graphic title cards, white bold text overlays, no dissolves
+- **libass issue**: Standard Homebrew ffmpeg lacks libass. Always use ffmpeg-full for subtitle burning.
 
 ## Blockers
-- Kiriakou arcs 1–4 re-render: waiting on quota window (2AM CST)
-- X/LinkedIn post scheduling: waiting on Deacon approval
-- AF pre-show analysis: needs fresh Berean session + context on ep1648 location
-- BL-009 (Bezzy project), BL-011 (email): prune-candidates, low priority
+- Awaiting Deacon's reaction to the 4 styled clips before deciding whether to iterate or upload
+- `/tmp/` assets will be lost on restart — regenerate with `python3 /tmp/kiriakou-assets/gen_assets.py` (copy script to workspace first if needed)

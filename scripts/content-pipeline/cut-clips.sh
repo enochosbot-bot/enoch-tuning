@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+FFMPEG=/opt/homebrew/opt/ffmpeg-full/bin/ffmpeg
+
 usage() {
   cat <<EOF
 Usage:

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Use ffmpeg-full (has libass for subtitle burning), same as Kiriakou pipeline
+FFMPEG=/opt/homebrew/opt/ffmpeg-full/bin/ffmpeg
+
 usage() {
   cat <<EOF
 Usage:
@@ -100,7 +103,7 @@ PY
   escaped_srt="${seg_srt//\\/\\\\}"
   escaped_srt="${escaped_srt//:/\\:}"
 
-  ffmpeg -hide_banner -loglevel error -y -i "$in_clip" \
+  $FFMPEG -hide_banner -loglevel error -y -i "$in_clip" \
     -vf "subtitles=filename='${escaped_srt}':force_style='FontName=Arial,FontSize=18,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,Outline=3,Shadow=1,Alignment=2,MarginV=220'" \
     -c:v libx264 -preset medium -crf 18 -c:a copy \
     "$out_clip"

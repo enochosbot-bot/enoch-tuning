@@ -78,3 +78,14 @@ _Newest entries at bottom. Rotate weekly (move to ops/ledger-archive/)._
 [2026-02-27 23:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
 [2026-02-27 22:03] [cron] [observer] [✅ done] — Session Auto-Prune (4.3s)
 [2026-02-27 22:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.8s)
+[2026-02-28 00:03] [watchdog] [main] [🧹 pruned] — 482KB. Last: no summary
+[2026-02-28 00:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 00:01] [cron] [observer] [✅ done] — Session Auto-Prune (5.5s)
+[2026-02-27 23:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.3s)
+[2026-02-28 00:00] [cron] [main] [✅ done] — Shorty — Monitor for YouTube links & inbox videos (4.3s)
+[2026-02-28 01:03] [watchdog] [main] [🧹 pruned] — 946KB. Last: no summary
+[2026-02-28 01:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 01:03] [watchdog] [researcher] [🧹 pruned] — 665KB. Last: no summary
+[2026-02-28 00:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.2s)
+[2026-02-28 00:30] [cron] [observer] [✅ done] — qmd Reindex — Memory Freshness (3.4s)
+[2026-02-28 01:00] [cron] [main] [✅ done] — Shorty — Monitor for YouTube links & inbox videos (67.7s)

@@ -75,6 +75,20 @@
 - **Goal:** For Spectrum pitch — "here's exactly how client PII never touches a cloud API"
 - _Effort: high_ _Priority: critical_
 
+### 📌 From Bookmarks — 2026-02-28
+
+1. **Claude Code `/remote-control`** — Update CLI to v2.1.58+, test the `/remote-control` command (Pro feature, rolling out). Log out/in first for fresh flags. _Effort: 15 min_ _Priority: soon_
+
+2. **@ashen_one Mac Mini + OpenClaw video** — Watch the full video. Mine "3 Actual Things My Openclaws Do" for competitive intel + content ideas for Ridley Research. _Effort: 30 min_ _Priority: normal_
+
+3. **Obsidian Sync headless integration** — Explore headless Obsidian Sync as agentic vault access layer (from @kepano). E2E encrypted, privacy-respecting. Obsidian skill already installed. _Effort: medium_ _Priority: normal_
+
+4. **Speed-to-lead agent — Ridley Research service** — Blueprint from @coreyganim: webhook → AI text qualify → hot/cold route → auto-quote. Make/n8n + Twilio + LLM, ~2-4 hr build. Systematize into a Ridley Research install package. _Effort: medium_ _Priority: normal_
+
+5. **Content: GhostTrack OPSEC thread** — Write-up for Ridley Research. Angle: "here's your threat surface from just a phone number, here's how to shrink it." Source: @sukh_saroy thread. _Effort: low_ _Priority: normal_
+
+6. **Content: Xcode 26.3 + Claude + Codex** — Blog post angle: Apple shipped AI agent coding tools natively. What it means for developers. Source: @gregjoz announcement. _Effort: low_ _Priority: normal_
+
 ## Parked (Risk Review)
 - **iMessage channel** — Full Disk Access granted, `imsg` CLI installed, Messages.app needs sign-in
 - **Apple Notes integration** — AppleScript working, "Enoch" folder created, needs risk assessment before full wiring

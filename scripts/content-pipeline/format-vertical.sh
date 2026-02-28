@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+FFMPEG=/opt/homebrew/opt/ffmpeg-full/bin/ffmpeg
+
 usage() {
   cat <<EOF
 Usage:
@@ -59,12 +61,12 @@ PY
   fi
 
   if [ "$is_vertical" = "1" ]; then
-    ffmpeg -hide_banner -loglevel error -y -i "$in_clip" \
+    $FFMPEG -hide_banner -loglevel error -y -i "$in_clip" \
       -vf "$vf" \
       -r 30 -c:v libx264 -preset medium -crf 20 -c:a aac -b:a 160k \
       "$out_clip"
   else
-    ffmpeg -hide_banner -loglevel error -y -i "$in_clip" \
+    $FFMPEG -hide_banner -loglevel error -y -i "$in_clip" \
       -filter_complex "$vf" \
       -map "[v]" -map 0:a? \
       -r 30 -c:v libx264 -preset medium -crf 20 -c:a aac -b:a 160k \
