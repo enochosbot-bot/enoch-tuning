@@ -75,3 +75,6 @@ _Newest entries at bottom. Rotate weekly (move to ops/ledger-archive/)._
 [2026-02-27 22:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
 [2026-02-27 22:00] [cron] [basher] [✅ done] — Nehemiah — Output QA Sweep (228.5s)
 [2026-02-27 21:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (4.3s)
+[2026-02-27 23:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-27 22:03] [cron] [observer] [✅ done] — Session Auto-Prune (4.3s)
+[2026-02-27 22:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.8s)

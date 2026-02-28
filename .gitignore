@@ -61,9 +61,19 @@ deacon-photos/
 
 # Raw bookmark data — personal
 research/x-bookmarks*.json
+research/youtube-watch-history-raw.json
+shared-context/research/x-bookmarks-*.md
+shared-context/research/x-engagement-*.md
 
-# Personal HTML guides
+# Tmp — never commit images, charts, or HTML
 tmp/*.html
+tmp/*.jpg
+tmp/*.jpeg
+tmp/*.png
+tmp/*.gif
+tmp/*.webp
+tmp/*.py
+tmp/*.pdf
 
 # Personal media — never commit to public repo
 deacon-headshot*
