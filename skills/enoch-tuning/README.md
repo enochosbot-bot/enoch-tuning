@@ -44,6 +44,22 @@ What you're installing is a battle-tested identity, memory architecture, and ope
 - Built-in daily reflection loop: "What would make me more useful tomorrow?"
 - Front-line prioritization — agent knows what matters now vs. what can wait
 
+### Ops Template Library (`ops/*.md`)
+Includes battle-tested operating docs for:
+- verification protocol
+- dispatch routing
+- agent boundaries
+- model selection
+- notification routing
+- pruning protocols
+- data management
+- production queue template
+- improvement queue
+- cron registry template
+- in-flight tracker template
+- daily log template
+- tool failure log
+
 ### Verification Protocol (`ops/verification-protocol.md`)
 - Explicit rules for when to verify live vs. use cached context
 - Prevents the #1 failure mode: agent confidently reporting stale information
@@ -68,7 +84,7 @@ cp skills/enoch-tuning/templates/USER.md USER.md
 cp skills/enoch-tuning/templates/MEMORY.md MEMORY.md
 cp skills/enoch-tuning/templates/MISSION.md MISSION.md
 mkdir -p ops
-cp skills/enoch-tuning/templates/ops/verification-protocol.md ops/verification-protocol.md
+cp skills/enoch-tuning/templates/ops/*.md ops/
 cp skills/enoch-tuning/templates/BOOT.md BOOT.md
 ```
 

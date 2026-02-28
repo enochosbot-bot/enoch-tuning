@@ -23,22 +23,38 @@ What you're installing is a production-tested identity and memory system — dec
 ## What You Get
 
 - **Pre-wired SOUL.md** — decision heuristics, hard rules, anti-patterns, cost awareness. The behavioral core that makes the difference between a useful agent and a corporate chatbot.
-- **AGENTS.md** — full operating rules: verification protocol, status reporting, Claude Code coordination, AFK behavior, sub-agent management, safety tiers, idiot prevention.
+- **AGENTS.md** — full operating rules: verification protocol, status reporting, sub-agent management, safety tiers.
 - **Memory architecture** — 6-category typed memory system (decisions, people, lessons, commitments, preferences, projects), VAULT_INDEX, daily log structure.
 - **MISSION.md template** — mission-driven idle behavior. Agent asks "what gets us closer to the mission?" instead of waiting.
-- **Verification protocol** — prevents stale data, fake sub-agent completions, and unverified facts from reaching you.
+- **Full ops template library:**
+  - Verification protocol — prevents stale data and fake completions
+  - Dispatch routing — task → agent routing with mandatory close protocol
+  - Agent boundaries — what each agent can/cannot do
+  - Model selection — when to use which model tier
+  - Notification routing — one channel per workflow, no noise
+  - Pruning protocols — context hygiene, data lifecycle
+  - Data management — where things live, backup strategy
+  - Production queue — tracking work items by status
+  - Improvement queue — process optimization tracking
+  - Cron registry — scheduled job documentation
+  - Daily log template — session documentation format
+  - Tool failure log — tracking dead ends so agents don't retry
 - **Setup scripts** — memory directory structure, identity file locking.
 
 ## Installation
 
 ### Step 1 — Copy templates
 ```bash
+# Core identity files
 cp skills/enoch-tuning/templates/SOUL.md ~/.openclaw/workspace/SOUL.md
 cp skills/enoch-tuning/templates/AGENTS.md ~/.openclaw/workspace/AGENTS.md
 cp skills/enoch-tuning/templates/USER.md ~/.openclaw/workspace/USER.md
 cp skills/enoch-tuning/templates/MEMORY.md ~/.openclaw/workspace/MEMORY.md
 cp skills/enoch-tuning/templates/MISSION.md ~/.openclaw/workspace/MISSION.md
-cp skills/enoch-tuning/templates/ops/verification-protocol.md ~/.openclaw/workspace/ops/verification-protocol.md
+
+# Create ops directory and copy all ops templates
+mkdir -p ~/.openclaw/workspace/ops
+cp skills/enoch-tuning/templates/ops/*.md ~/.openclaw/workspace/ops/
 ```
 
 ### Step 2 — Create memory structure
@@ -72,16 +88,28 @@ Tell your agent: your name, what you do, the top 3 things you want automated, an
 
 ```
 skills/enoch-tuning/
-├── SKILL.md                          ← this file
+├── SKILL.md                                ← this file
 ├── templates/
-│   ├── SOUL.md                       ← identity template
-│   ├── AGENTS.md                     ← operating rules template
-│   ├── USER.md                       ← user intake template
-│   ├── MEMORY.md                     ← long-term memory template
-│   ├── MISSION.md                    ← mission statement template
+│   ├── SOUL.md                             ← identity template
+│   ├── AGENTS.md                           ← operating rules template
+│   ├── USER.md                             ← user intake template
+│   ├── MEMORY.md                           ← long-term memory template
+│   ├── MISSION.md                          ← mission statement template
 │   └── ops/
-│       └── verification-protocol.md  ← fact-checking protocol
+│       ├── verification-protocol.md        ← fact-checking protocol
+│       ├── dispatch-routing.md             ← task → agent routing
+│       ├── agent-boundaries.md             ← hard role boundaries
+│       ├── model-selection.md              ← model usage by task type
+│       ├── notification-routing.md         ← single-source alerts
+│       ├── pruning-protocols.md            ← context/data lifecycle hygiene
+│       ├── data-management.md              ← canonical paths + backups
+│       ├── production-queue-template.md    ← work queue template
+│       ├── improvement-queue.md            ← system improvement tracking
+│       ├── cron-registry-template.md       ← cron documentation template
+│       ├── in-flight-template.md           ← dispatch tracking template
+│       ├── daily-log-template.md           ← Obsidian daily log format
+│       └── tool-failure-log.md             ← known dead ends + workarounds
 └── setup/
-    ├── memory-structure.sh           ← creates memory directories
-    └── lock-identity.sh              ← locks SOUL.md + AGENTS.md
+    ├── memory-structure.sh                 ← creates memory directories
+    └── lock-identity.sh                    ← locks SOUL.md + AGENTS.md
 ```
