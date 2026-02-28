@@ -89,3 +89,11 @@ _Newest entries at bottom. Rotate weekly (move to ops/ledger-archive/)._
 [2026-02-28 00:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.2s)
 [2026-02-28 00:30] [cron] [observer] [✅ done] — qmd Reindex — Memory Freshness (3.4s)
 [2026-02-28 01:00] [cron] [main] [✅ done] — Shorty — Monitor for YouTube links & inbox videos (67.7s)
+[2026-02-28 02:03] [watchdog] [creative] [🧹 pruned] — 214KB. Last: no summary
+[2026-02-28 02:03] [watchdog] [main] [🧹 pruned] — 209KB. Last: no summary
+[2026-02-28 02:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 02:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 02:01] [cron] [observer] [✅ done] — Session Auto-Prune (4.8s)
+[2026-02-28 01:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.3s)
+[2026-02-28 01:30] [cron] [main] [✅ done] — Shorty — Monitor for YouTube links & inbox videos (108.7s)
+[2026-02-28 01:42] [cron] [main] [✅ done] — Session Monitor — Context Bloat Alert (17.4s)
