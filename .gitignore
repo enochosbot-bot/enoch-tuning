@@ -81,6 +81,7 @@ ps_*.png
 # Large media — clips and generated images
 clips/
 creative-output/
+scripts/content-pipeline/output/
 
 # Temp image files
 tmp/*.jpg
