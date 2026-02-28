@@ -52,7 +52,7 @@
 ## Deprecated — Do Not Reference
 
 The following are no longer active and should not appear in any agent output or planning:
-- Arnold (deprecated agent)
+- Arnold (deprecated — renamed Gideon)
 - Xalt (deprecated agent)
 - "Core 3" framing (superseded by current 8-agent roster)
 - Any pre-February 2026 agent architecture references

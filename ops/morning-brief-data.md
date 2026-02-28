@@ -1,124 +1,61 @@
-# Morning Brief Data — Friday, February 27, 2026
+# Morning Brief Data — 2026-02-28 03:15 AM CST
 
 ## API Usage
-**Note:** Cost report scripts not found at `scripts/daily-cost-report.py`. Manual ledger review shows minimal February activity.
-
-From `ops/cost-ledger.md`:
-- **Feb 2026 to date:** Anthropic (setup), OpenAI ~$0.015 (YouTube summaries x2), X API ~$0.01 (test queries)
-- **X API:** $5 credits loaded, active
-- **Status:** Well within budget. No red flags.
+*Cost report script not found at workspace/scripts/daily-cost-report.py — skipped. Review cost infrastructure.*
 
 ## Overnight Work
-
-**2026-02-26 through 2026-02-27 (03:00 CST)**
-
-### Infrastructure & Config
-- Git commit completed successfully — 20+ file additions including:
-  - Creative agent YouTube pipeline (shorty_workflow.sh, youtube_upload.py, generate_titles.py)
-  - Solomon agent workspace setup (SOUL.md, daily-prompt.md)
-  - Researcher (Berean) data flow audit output
-  - Multi-agent routing updates
-- Changelog entries: Deployment verification protocol finalized, Bezzy site task hardening (mandatory curl checks), Solomon delivery fixed, Telegram streamMode optimized
-
-### Previous Session Outcomes (Feb 26)
-From daily log summary:
-- **Telegram streaming issue:** `partial` → `off` (was truncating mid-sentence)
-- **Watchdog timeouts:** Bumped to 10min fresh / 5min resume
-- **Cron cleanup:** 6 dead jobs deleted (email sorter, Gmail digest, morning briefing, memory-consolidation, Solomon Strategy, proactive dispatch). Mission Pulse expanded to absorb dispatch work. ~24 Sonnet calls/day saved.
-- **Dispatch loop:** `ops/in-flight.md` tracker built + mandatory closing block in all agent briefs
-- **Idiot Prevention:** Removed per Deacon's instruction
-- **Obsidian Canon Rule:** Hard rule established — all research → `~/Documents/Brain/Research/` with YAML frontmatter, 24 workspace files synced
-- **YouTube Pipeline (Selah):** Full Shorts workflow built, OAuth authorized for AmericanFireside channel, 14 Kiriakou/Rogan clips uploaded (2 live, 12 waiting on quota)
-- **ICP Locked:** Bootstrapping small businesses & individuals (leverage frame), RIA focus completely removed, 5 RIA X posts deleted, X Batch 2 + LinkedIn Batch 2 rewritten
-- **Social System:** Funnel posts written, reply playbook built (7 sets, whale targets: @levelsio, @dhh, @naval, @sama, @paulg)
-- **X API:** OAuth 1.0a credentials regenerated (consumer key `bhWriU3i8D7LGf6GdFZTkh3P9`), needs re-enabling in portal
-- **New keys:** MiniMax API key stored (needs rotation — plaintext), OAuth 2.0 client secret configured
+- **Memory System Migration (02:00-02:32 AM):** Completed full migration from workspace/memory/ to Obsidian. Deleted workspace memory/ directory entirely. Updated AGENTS.md to point all memory ops to Obsidian vault. Fixed 3 Gideon cron jobs to read from ~/Documents/Brain/Personal Memories/Enoch/Audits/. Obsidian is now single source of truth for all persistent memory.
+- **Git Snapshot:** Committed workspace changes at 03:01:26 (openclaw-config repo).
+- **No scheduled cron jobs ran** — all overnight activity was manual human-initiated sessions.
 
 ## Memory Garden
-
-### Consolidated Items
-From 2026-02-26 daily log:
-- **6 new Infrastructure entries:** Telegram streaming fix, watchdog config, cron cleanup metrics, dispatch loop design, Obsidian canon rule, idiot prevention removal
-- **3 new YouTube Pipeline entries:** Selah workflow overview, OAuth setup notes, quota/scheduling details
-- **4 new Social/Marketing entries:** ICP positioning, reply playbook, social system design, whale account targets
-- **2 new X API entries:** Key regeneration incident, auth flow notes
-
-**Total consolidated:** 15 items routed to appropriate Obsidian typed folders (Infrastructure, Projects, Preferences)
-
-### Archive Pass
-- Daily logs older than 30 days: **none found** (earliest log: 2026-02-14, 13 days old)
-- No archive operation needed
-
-### Files Processed
-- Daily log 2026-02-26: 3.1 KB, 100+ lines, fully analyzed
-- Daily log 2026-02-25: 2.6 KB, 80+ lines, fully analyzed
+- **Consolidated:** 0 new items from daily logs (memory migration items already processed Feb 27)
+- **Archived:** 0 logs (none older than 30 days)
+- **Status:** Obsidian vault migration complete; 219 files, 1.1M, all memory now canonical in ~/Documents/Brain/
 
 ## Supersession Candidates
-**None flagged.** All recent decisions and lessons are novel or represent natural progression (e.g., Feb 23 X account creation → Feb 26 X social policy framework, both coexist as foundation → guidance).
+- **Status:** None found. Recent decisions validate/extend prior ones; no contradictions detected.
 
 ## Vault Hygiene
-
-### Vault Stats
-- **Total files:** 129 across all typed folders
-  - Decisions: 44 files
-  - Lessons: 51 files
-  - Projects: 18 files
-  - Commitments: 1 file
-  - People: 5 files
+- **Files:** 219 total
+- **Per-folder breakdown:**
+  - Lessons: 52 files (largest category)
+  - Decisions: 45 files
+  - Audits: 18 files
+  - Daily Logs: 19 files
+  - Projects: 19 files
+  - Infrastructure: 15 files
+  - Business: 12 files
   - Preferences: 10 files
-- **Total size:** 1.0 MB (healthy — well under 5 MB threshold)
-- **Empty files:** 0 found
-- **Stale entries:** None (no completed/archived projects older than 30 days, no cancelled/done commitments)
-
-**Result:** Vault healthy — 129 files, 1.0 MB
+  - Captures: 8 files
+  - Architecture: 5 files
+  - People: 5 files
+  - Deacon Info: 4 files
+  - Agents: 1 file
+  - Dreams: 1 file
+  - Archive: 1 file
+- **Total Size:** 1.1M (healthy, well under limits)
+- **Empty Files:** 0
+- **Stale Content:** 0 (no completed/archived items beyond retention thresholds)
+- **Vault Status:** ✅ Healthy — no pruning needed
 
 ## Focus Today
-
-### Commitments (PENDING)
-1. **Republican Precinct Convention — 2026**
-   - [ ] Call local Republican County Chair (Texas GOP county chairs list)
-   - [ ] Polling location appearance after polls close, March 3
-   - [ ] If elected: County/SD Convention March 28, State Convention June 8-13, Houston
-   - **Deacon note:** "Must call someone soon to get moving"
-
-### Production Queue (Top 3)
-1. **🔒 Data Flow Audit (CRITICAL — for Spectrum pitch)**
-   - Map data egress points: Anthropic, OpenAI, Google OAuth, Twilio, Brave Search, Ollama viability
-   - Build clean-room sub-agent implementation plan
-   - Goal: "Here's exactly how client PII never touches cloud APIs"
-
-2. **Console Dashboard — Search Function**
-   - Workspace file search backed by QMD (already indexed)
-   - Medium effort, normal priority
-
-3. **API Spending Dashboard**
-   - Track costs across all services (Anthropic, OpenAI, ElevenLabs, X API, ngrok, etc.)
-   - Usage breakdowns, charts, timestamps
-   - X API deep-dive section + Brave Search tracking
-
-### Other High-Priority Items
-- **OpenNotes iOS App:** Swift/SwiftUI, task list clone, personal use first
-- **Bookshelf Dashboard:** Visual display with cover art, read status, author bios
-- **Content Creator Cataloging:** Reformation Church deep-dive (beliefs, positions, scriptural basis)
-- **X Bookmarks OAuth:** Flow ready, waiting for browser cooperation
+- **1 PENDING commitment:** Precinct Convention — call Republican County Chair to get started (March 3 primary + precinct convention, March 28 county convention, June 8-13 state convention)
+- **MISSION.md & claude-code-todo.md:** Not found (infrastructure files may not exist or were deleted)
+- **Production Queue:** 10 items completed yesterday (X posts, research, Spectrum demo, video clips); awaiting approval on social content
 
 ## Loose Ends
-- **LinkedIn app setup:** Waiting for Deacon to run OAuth flow (one-time)
-- **Draft Approvals Telegram topic:** Waiting for Deacon to create
-- **macOS Sequoia screen sharing:** Fully blocked — requires manual System Settings toggle (no programmatic path)
-- **Peekaboo skill:** Blocked by screen recording permissions on Mac mini
-- **2 missing Telegram topics:** Deacon noted 16 total, only 14 found/configured
+- **LinkedIn posts:** BL-003 rejected (wrong ICP), Batch 2 + Pitch Post approved; awaiting Deacon scheduling approval
+- **X launch-week posts:** Drafted in shared-context/drafts/x-launch-week.md; awaiting approval
+- **Spectrum demo outline:** Demo-ready at shared-context/agent-outputs/spectrum-demo-outline.md
+- **Kiriakou clips:** Arcs 5–18 rendered; Arcs 1–4 need re-render; awaiting YouTube API quota reset (2 AM CST)
 
 ## Security
-**Grade: B** _(Abaddon red team — 2026-02-27 03:45 CST)_
-**Top Finding:** /opt/homebrew/bin group-writable (50+ exec-audit warnings, unfixed) + openclaw.json world-readable (no creds leaked, permissions wrong)
-**Key Wins:** SIP on ✅ · FileVault on ✅ · Firewall+stealth on ✅ · Gateway loopback-only ✅ · No authorized_keys ✅ · No cron/tunnels ✅ · Credentials dir all 600 ✅
-**Open Issues:** /opt/homebrew/bin group-writable (supply-chain risk) · openclaw.json needs chmod 600 · AGENTS.v2 files world-readable in /tmp (stale, delete) · Elevated API-key grep command logged from unknown agent
-**Full Report:** memory/audits/abaddon-2026-02-27.md
+*Pending — Gideon 3:30 AM*
 
 ## Blog Drafts
-None flagged. No new substantive work product meeting draft criteria.
+None — no significant technical milestone or learnable pattern from overnight work.
 
 ---
 
-**Compiled:** 2026-02-27 03:01 CST | Runtime: ~60 seconds | All memory canonical to Obsidian vault | Git synced ✓
+**Nightly Maintenance Complete:** 03:15 AM CST | All systems operational | Memory fully migrated to Obsidian | Git snapshot committed

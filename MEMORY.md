@@ -46,7 +46,7 @@ Three operational rules baked into AGENTS.md:
 - When Deacon pastes long content, it arrives in multiple messages — wait for the full thing
 - One comprehensive response per topic — don't repeat if asked same question twice
 - When tool errors surface in Telegram, immediately follow with plain-English explanation + next steps
-- Speaks loosely — "Arnold's stack" means Arnold's domain, not a literal rename
+- Speaks loosely — "Gideon's stack" means Gideon's domain (security/ops), not a literal rename
 
 ## Ridley Research Site — Deployment
 - **Live site**: ridleyresearch.com → **Cloudflare Pages** (project: `ridleyresearch`)
@@ -86,7 +86,7 @@ Three operational rules baked into AGENTS.md:
 
 ## Agent Architecture
 - **Enoch 🔮** — main agent, Opus, handles all topics + DMs, command center
-- **Arnold ⚔️** — medieval knight personality on Security topic (topic 3), same Enoch session, system prompt only. Future: promote to full agent with scoped permissions.
+- **Gideon ⚔️** — biblical warrior-judge personality on Security & Ops topic (topic 3), deployed as `observer` agent. Runs security audits, cron reports, infrastructure alerts, system monitoring.
 - **Ezra the Scribe 📜** — spawnable sub-agent on Sonnet, own workspace (`~/.openclaw/workspace-scribe/`), research/writing/dossiers/analysis on demand. NOT bound to any topic — dispatched by Enoch when needed. Research compounds in his workspace. Has explicit boundary rules: no code, no external comms, no config.
 - **Bezzy 🔨** — coding agent on Sonnet, own workspace (`~/.openclaw/workspace-coder/`), builds projects/scripts/apps. Named for Bezalel (Exodus 31). Ships working code, doesn't do research or comms.
 - Sub-agents default to Codex (free), Ezra and Bezzy use Sonnet for better reasoning
@@ -113,7 +113,7 @@ Three operational rules baked into AGENTS.md:
 - YouTube content: faith/politics niche, AmericanFireside channel, 6PM CST daily
 
 ## Queued Work
-- RPG pixel dashboard (Enoch as robed sage + Arnold as armored guard)
+- RPG pixel dashboard (Enoch as robed sage + Gideon as armored guard)
 - Jarvis Initialization voice conversation (goals, dreams, friction, cognition)
 - Humanizer skill install (ClawHub rate limited)
 - Session monitor (alert Deacon when session age > threshold to trigger /new)

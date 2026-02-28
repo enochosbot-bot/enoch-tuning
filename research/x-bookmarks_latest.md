@@ -1,6 +1,460 @@
 # X Bookmarks — Deacon Ridley
 
-Last sync: 2026-02-28 01:20 | Total: 254
+Last sync: 2026-02-28 02:45 | Total: 279
+
+### @KSimback
+*2026-02-27* | https://x.com/KSimback/status/2027326580121358819
+
+Here's why security is SO important for setting up openclaw
+
+Within minutes of installing on a new VPS I caught a bot attempting to login
+
+Make sure you have Fail2Ban enabled - it watches the SSH login logs and automatically bans any IP that fails to authenticate repeatedly https://t.co/EMVLjXY2xC
+
+---
+
+### @VadimStrizheus
+*2026-02-27* | https://x.com/VadimStrizheus/status/2027235559735787845
+
+Here is each agent inside my AI company: 🦞 
+
+1. CLAWD - ships code while I sleep
+2. ATLAS - reads the internet so I don't have to
+3. PIXEL - designs everything on demand
+4. NOVA - generates video content
+5. SCRIBE - writes every tweet and caption 
+6. VIBE -  builds animated videos
+7. TRENDY - scans X every 2 hours for what's blowing up
+8. SAGE - sends every email to every user automatically
+9. CLOSER - researches leads and drafts my outreach
+10. CLIP - clips YouTube videos and posts them to TT, IG, YT
+11. CONTENT - writes SEO blog posts
+12. WRITER -Humanizer and SEO review
+
+I'm 18.
+I work a 9-5.
+I have 450+ users on my SaaS.
+
+Costs me $400/mo with OpenClaw
+
+This is what "agentic enterprises" actually means.
+
+---
+
+### @data_slayer
+*2026-02-27* | https://x.com/data_slayer/status/2027383852734337473
+
+You don't need permission to build a communication network.
+
+  No FCC license (ISM band). No permits. No contracts. No monthly fees.
+
+  Just open-source software on commodity hardware.
+
+  This is what freedom of speech infrastructure looks like. https://t.co/OGACe5PWIg
+
+---
+
+### @_vmlops
+*2026-02-27* | https://x.com/_vmlops/status/2027336259040133499
+
+Check out Antigravity Awesome Skills - a massive library with 900+ AI agent skills for Claude, Copilot, Gemini, Cursor, and more
+
+Automate workflows, search faster, manage GitHub tasks & unlock your AI’s full potential all in one place
+
+https://t.co/rbNXLl9OU8 https://t.co/9sDGRBlS7x
+
+---
+
+### @tom_doerr
+*2026-02-27* | https://x.com/tom_doerr/status/2027205245344874626
+
+Generates research reports using LLMs and web search
+
+https://t.co/I3orlZFSWJ https://t.co/z3i1f0I9WR
+
+---
+
+### @mdancho84
+*2026-02-27* | https://x.com/mdancho84/status/2027422297930289443
+
+Turn ANY DOCUMENT into LLM-ready data!
+
+Microsoft released MarkItDown, a lightweight Python library that converts any document to Markdown for use with LLMs.
+
+100% Open Source https://t.co/C6YFehuGBT
+
+---
+
+### @chhddavid
+*2026-02-26* | https://x.com/chhddavid/status/2027074243251642409
+
+NO WAYY
+
+Shipper builds animated websites... Opus 4.6 one-shots motion design
+
+It's so over... https://t.co/6OHCIuGIeq
+
+---
+
+### @officerjuanrico
+*2026-02-27* | https://x.com/officerjuanrico/status/2027441507180155222
+
+Second night of Epithalon & Pinealon.
+
+Nearly 4 hours of restorative sleep.
+
+@AbudBakri @doctormorphh @aestheticprimal @BioReg https://t.co/RjTz7KxhKT
+
+---
+
+### @heygurisingh
+*2026-02-27* | https://x.com/heygurisingh/status/2027365974333395343
+
+A startup burned $1,000,000 building a personal finance app with a built-in AI assistant.
+
+The business failed.
+
+So they gave the entire codebase to the internet for free.
+
+It tracks your accounts, investments, crypto, and debt.
+
+The AI knows your exact numbers and answers any question about them.
+
+Your data never leaves your server.
+
+This is what $1,000,000 of free software looks like.
+
+100% Opensource.
+
+---
+
+### @alexcooldev
+*2026-02-27* | https://x.com/alexcooldev/status/2027386287091777694
+
+https://t.co/FHRUy3SlNN
+
+---
+
+### @zackbshapiro
+*2026-02-27* | https://x.com/zackbshapiro/status/2027389987444957625
+
+https://t.co/QVaE6niDY2
+
+---
+
+### @ziwenxu_
+*2026-02-27* | https://x.com/ziwenxu_/status/2027265127582478555
+
+3 weeks of building OpenClaw in the dark was enough.
+
+I needed to see my squad, so I built them a home. 🕹️
+
+Mission Control is live:
+• Pixel Office: Watch your 12-agent squad actually work (and hit the breakroom).
+• Kanban Sync: They don’t just “run”—they update the boards too.
+• Zero Guesswork: Real-time logs and cron jobs in one clean view.
+
+If you’re tired of managing an autonomous team through a messy terminal, this is for you.
+
+Comment "OpenClaw" below for beta access! 🚀
+
+---
+
+### @juliafedorin
+*2026-02-27* | https://x.com/juliafedorin/status/2027461083569487915
+
+https://t.co/tM3J2yHngR
+
+---
+
+### @Akasheth_
+*2026-02-27* | https://x.com/Akasheth_/status/2027434798000849170
+
+If you use AI daily, save this.
+
+🔗 https://t.co/aAVJIvqIpd
+
+One of the biggest open-source prompt libraries on the internet.
+
+• 140K+ GitHub stars
+• Works with ChatGPT, Claude, Gemini, Llama, Mistral
+• Community-curated prompts for real use cases
+• 100% free & open-source
+• Easy to fork and customize
+
+Old repo but still goated 🐐
+
+---
+
+### @tom_doerr
+*2026-02-28* | https://x.com/tom_doerr/status/2027595957701927252
+
+Automates content creation for social media platforms
+
+https://t.co/O2B4ESurOs https://t.co/0S2DALT58g
+
+---
+
+### @wickedguro
+*2026-02-27* | https://x.com/wickedguro/status/2027429588293587113
+
+https://t.co/JmZQ7B1mqX
+
+---
+
+### @Sumanth_077
+*2026-02-27* | https://x.com/Sumanth_077/status/2027356975017930901
+
+Turn your laptop into a powerful RAG system!
+
+LEANN can index and search through millions of documents while using 97% less storage than traditional solutions without accuracy loss.
+
+LEANN achieves this through graph-based selective recomputation with high-degree preserving pruning, computing embeddings on-demand instead of storing them all.
+
+Key Features:
+
+🔒 Privacy: Everything stays on your laptop with no cloud and no hidden terms.
+🪶 Lightweight: Smart graph pruning and CSR format cut down both storage and memory usage.
+📦 Portable: Move your knowledge base across devices or share it with others at minimal cost.
+📈 Scalable: Handles messy personal data and agent-generated memory that often crash traditional vector DBs.
+✨ Accurate: Provides the same search quality as heavyweight solutions while using 97% less storage.
+
+It's 100% Open Source
+
+Link to the Github Repo in the comments!
+
+---
+
+### @larsencc
+*2026-02-27* | https://x.com/larsencc/status/2027225210412470668
+
+https://t.co/b4mGhikEXh
+
+---
+
+### @Zephyr_hg
+*2026-02-27* | https://x.com/Zephyr_hg/status/2027309074396668174
+
+https://t.co/wMYYzD1g4h
+
+---
+
+### @jumperz
+*2026-02-27* | https://x.com/jumperz/status/2027331308838404518
+
+openclaw dropped a good update and this one is super important for your swarm, but half the features don't work until you manually activate them.
+
+>ACP thread-bound agents 
+
+i was already spinning up subagents in Discord threads to handle tasks. it worked, but i had to manage it myself by checking if they finished, cleaning up dead threads, etc. 
+
+now openclaw handles all of that. the agent opens a thread, does the job, reports back...i only show up when an actual decision needs to be made.
+
+→ do this: set spawnAcpSessions: true in your discord channel config
+
+>external secrets management  
+
+my API keys, anthropic, elevenlabs, brave etc, were just sitting in a config file in plain text. 
+
+anyone with access to that file had the keys. now they live in a separate vault and only get loaded when the system actually needs them.
+
+→ do this: run openclaw secrets audit — it scans your config and tells you exactly which keys are still exposed and where
+
+>agent routing CLI 
+
+wiring agents to channels used to take a lot of time. now it's just bind/unbind from the cli, so onboarding a new agent takes a minute or even less..
+
+→ do this: migrate with openclaw agents bind <id> --channel <your-channel> --peer <target>
+
+you have to do all of the above because openclaw ships opt-in features, not auto-changes...
+
+anything that touches security, permissions, or routing requires you to do it manually, and these are super important for your swarm.
+
+PS: if you're not on Discord, the ACP thread stuff doesn't apply, but the other two do.
+
+---
+
+### @bcherny
+*2026-02-28* | https://x.com/bcherny/status/2027534984534544489
+
+In the next version of Claude Code..
+
+We're introducing two new Skills: /simplify and /batch. I have been using both daily, and am excited to share them with everyone.
+
+Combined, these kills automate much of the work it used to take to (1) shepherd a pull request to production and (2) perform straightforward, parallelizable code migrations.
+
+---
+
+### @WontDieAverage_
+*2026-02-27* | https://x.com/WontDieAverage_/status/2027428955964219490
+
+https://t.co/q9YO4aUxSJ
+
+---
+
+### @neural_avb
+*2026-02-27* | https://x.com/neural_avb/status/2027470838916911543
+
+One of the most MUST MUST MUST read articles
+
+---
+
+### @bloggersarvesh
+*2026-02-27* | https://x.com/bloggersarvesh/status/2027433409325486097
+
+call me crazy..but the next 12 months are going to create some stupid rich local businesses using Claude + SEO
+
+this feels like buying domain names when people thought the internet was a fad
+
+not because it was complicated. Because most people didn't take it seriously until it was too late.
+
+we’re in that same window again.
+but this time, the winners won't be the ones with the biggest pockets.
+
+it’s how fast you can publish helpful local pages + optimize your Google Business Profile before your competitors even wake up.
+
+the stack to win local search didn’t look like this 12 months ago, but now it’s here:
+
+→ Claude (or ChatGPT): $20-30/month
+
+→ Google Business Profile: Free
+
+→ A basic website (WordPress): low cost
+
+→ Canva/CapCut for simple visuals: Free
+
+→ Google Search Console + Analytics: Free
+
+Total cost to start: Under $100/month. 
+
+And people used to pay agencies $1k–$3k/month just to move slowly.
+
+Here’s how to use it:
+
+Step 1: Find your local keywords with Claude
+
+You don’t need to guess anymore.
+
+Give Claude your services + your city/areas. Ask it to list:
+
+- A “service + location” keywords
+
+- “near me” intent keywords
+
+- emergency keywords
+
+- comparison keywords (best, affordable, etc.)
+
+Step 2: Build service area pages (fast)
+
+Tell Claude your exact offer, prices, process, and service areas.
+
+Ask it to draft pages for each area you serve (one page per area).
+
+Then you add the real stuff: photos, reviews, FAQs, and a call button.
+
+Step 3: Turn your Google Business Profile into a lead machine
+
+Ask Claude to write:
+
+- GBP description
+
+- services list (with short blurbs)
+
+- 20 FAQs + answers
+
+- weekly Google Post ideas (offers, tips, before/after)
+
+Step 4: Create “proof” content that ranks
+
+Claude can turn one job into 10 pieces of content:
+
+- a short case study page (“AC repair in Bandra: fixed in 45 mins”)
+
+- a Google Post
+
+- a simple Reel script
+
+- a FAQ update
+
+Step 5: Get reviews + replies done in minutes
+
+Ask Claude to write 3 review request texts and a review reply template.
+
+Then do the only part AI can’t: actually ask customers.
+
+This isn’t magic..it’s still local SEO.
+
+You can just out-execute now.
+
+And in local markets, pace decides who gets the calls.
+
+---
+
+### @alxfazio
+*2026-02-27* | https://x.com/alxfazio/status/2027473676690665745
+
+my claude flow is so battle-tested that half the time i catch myself just hitting yes/no/enter, so i built myself a ralph that doesn’t suck. it follows swe best practices with quality gates (e.g., plankton), adopts best-in-class context engineering practices, and can handle complex codebases, with stacked prs and multiple rounds of pr review. article and repo soon. spoiler, it's all claude -p
+
+---
+
+### @TheMattBerman
+*2026-02-27* | https://x.com/TheMattBerman/status/2027220216409723296
+
+I run my meta ads with @openclaw for $0/month 😱
+
+here's the system that runs autonomously:
+
+step 1: daily health check
+→ social-cli (major shoutout to @vishalojha_me) wraps @Meta's marketing API (token refresh, pagination, rate limits all handled)
+→ am I on track? what's running? who's winning? who's bleeding? any fatigue?
+→ the same 5 questions I asked Ads Manager every morning for 20 years
+
+step 2: catch dying ads before CPA spikes
+→ @OpenClaw pulls daily frequency by ad
+→ frequency > 3.5 = audience is cooked, CTR is about to drop
+→ this one signal saves more money than any dashboard 
+
+step 3: auto-pause bleeders + shift budget to winners
+→ CPA > 2.5x target for 48hrs? auto-pause. no hesitation.
+→ ranks every campaign by efficiency. recommends shifting spend.
+→ last fri it paused an $87 CPA campaign at 3am and scaled my best performer 30%
+
+step 4: write new ad copy from your winners
+→ agent analyzes what's working  (hooks, angles, CTAs)
+→ generates variations based on the patterns in YOUR top performers
+→ copy modeled on what already converts in your account.
+
+step 5: upload ads directly to your account
+→ new creative + copy 
+→ live in @Meta Ads Manager
+→ no more downloading, formatting, clicking through the upload flow
+→ agent handles the entire publish cycle
+
+step 6: content concepts + morning brief
+→ spots patterns across winners and suggests what to test next
+→ delivers everything to Telegram, Slack, wherever you want it
+→ 90 seconds to read. reply "approved." done.
+
+input: your ad account + your target CPA
+output: an AI that monitors, kills, scales, writes, AND uploads your ads
+
+dozens of hours in ad manager → 1 text message
+
+I packaged the entire system as the Meta Ads Kit.
+5 @OpenClaw skills:
+- meta-ads (daily checks + auto-pause)
+- ad-creative-monitor (fatigue detection)
+- budget-optimizer (efficiency scoring + shift recs)
+- ad-copy-generator (writes variations from your winners)
+- ad-upload (publishes creative directly to your account)
+
+giving it away free.
+
+comment ADS + like + follow
+(must follow so i can DM)
+
+---
 
 ### @sukh_saroy
 *2026-02-27* | https://x.com/sukh_saroy/status/2027291839590777142
@@ -58,24 +512,6 @@ The tool isn't the threat. Your exposed data is.
 *2026-02-27* | https://x.com/PrajwalTomar_/status/2027387894399422775
 
 https://t.co/TDxO1Tclra
-
----
-
-### @ashen_one
-*2026-02-27* | https://x.com/ashen_one/status/2027438530608169265
-
-After spending $8000 on four different Macs and a month of testing, I finally found the perfect setup for [two] Openclaws that I think 99% of you should be using
-
-And no, it's not a local model running on a $10,000 Mac Studio (it's better)
-
-00:00 Wasting $8000 on Mac Setups
-01:07 Why you DONT need a Local LLM
-02:44 Why the cheapest Mac Minis are OP
-03:33 Banger Subscriptions > Hardware
-04:10 Local Models Are Dumb
-05:38 3 Actual Things My Openclaws Do RN
-06:17 Why Subscriptions are better than Local Models
-07:14 Don't overthink the setup, just start DOING stuff
 
 ---
 

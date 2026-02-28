@@ -75,6 +75,28 @@
 - **Goal:** For Spectrum pitch — "here's exactly how client PII never touches a cloud API"
 - _Effort: high_ _Priority: critical_
 
+### 📌 From Bookmarks — 2026-02-28 (Batch 2)
+
+1. ~~**`openclaw secrets audit`**~~ ✅ **DONE** — Critical fixed (`openclaw.json` chmod 600). 5 remaining warnings reviewed, all acceptable-risk.
+
+2. **OpenClaw: enable ACP thread-bound agents** — Set `spawnAcpSessions: true` in Discord channel config (if using Discord). Also: `openclaw agents bind` for faster agent routing. _Effort: 15 min_ _Priority: normal_
+
+3. **Claude Code /simplify + /batch** — Watch for next release. Boris Cherny (Anthropic). _Priority: whenever_
+
+4. **Ziwenxu Mission Control beta** — Comment "OpenClaw" on @ziwenxu_ tweet to request beta. Pixel office, kanban sync, cron/log view. Overlaps Console dashboard queue item. _Effort: 2 min_ _Priority: normal_
+
+5. ~~**Microsoft MarkItDown**~~ ✅ **DONE** — v0.1.5 installed via pipx. `markitdown <file>` ready to use.
+
+6. **Local SEO + Claude service for Ridley Research** — Systematize as Ridley Research add-on. GBP optimization, service area pages, content factory. Pull `local-legal-seo-audit` + `programmatic-seo` from Antigravity Skills first. _Effort: medium_ _Priority: normal_
+
+7. ~~**Check clawhub for Meta Ads Kit**~~ ✅ **DONE** — `meta-ads` skill exists (zachgodsell93, updated today, v1.0.0). Ready to install when needed: `clawhub install meta-ads`.
+
+8. ~~**LEANN RAG evaluation**~~ ✅ **DONE** — Too early stage (1 star, Rust rewrite only). Skip for now.
+
+9. **`/remote-control` in Claude Code** — Updated to 2.1.63 ✓. Command not yet flagged for this account (10% rollout). Action: `claude logout && claude login` to get fresh flags. _Effort: 5 min_ _Priority: soon_
+
+10. **Antigravity Awesome Skills — pull relevant skills** — 946 skills, 16K+ stars, updated today. Relevant: `sales-automator`, `seo-content-writer`, `programmatic-seo`, `paid-ads`, `agent-memory-systems`. Review before building any of these from scratch. _Effort: medium_ _Priority: normal_
+
 ### 📌 From Bookmarks — 2026-02-28
 
 1. **Claude Code `/remote-control`** — Update CLI to v2.1.58+, test the `/remote-control` command (Pro feature, rolling out). Log out/in first for fresh flags. _Effort: 15 min_ _Priority: soon_

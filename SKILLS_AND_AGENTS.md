@@ -29,5 +29,5 @@
 _(None yet. Can spawn isolated sessions for parallel work.)_
 
 ## Planned
-- Arnold — Security audit agent (mentioned in AGENTS.md shared-context)
+- Gideon ⚔️ — Security & Ops agent (`observer` agent ID), deployed on Security & Ops Telegram topic
 - Xalt — Twitter/social agent (future)
