@@ -34,16 +34,26 @@ Before multi-step work, validate: [ENV] vars, [DEPS] services, [STATE] directory
 ## Agent Roster
 Know who does what before dispatching.
 
-| Agent | Name | Model | Workspace | Role |
-|-------|------|-------|-----------|------|
-| `main` | Enoch 🔮 | Claude Opus | workspace/ | Command center — all topics, DMs, orchestration |
-| `scribe` | Ezra 📜 | Claude Sonnet | workspace-scribe/ | Research, writing, dossiers, analysis. No code, no external comms. |
-| `coder` | Bezzy 🔨 | Claude Sonnet | workspace-coder/ | Builds projects, scripts, apps. Ships working code. No research, no comms. |
+| ID | Name | Model | Role |
+|----|------|-------|------|
+| `main` | Enoch 🔮 | Claude Opus | Command center — all topics, DMs, orchestration |
+| `researcher` | Berean | Claude Sonnet | Deep research, analysis, dossiers, topic deep-dives |
+| `scribe` | Ezra 📜 | Claude Sonnet | Writing, long-form content, guides, drafts |
+| `coder` | Bezzy 🔨 | Codex | Code, scripts, builds, apps. Ships working code only. |
+| `observer` | Gideon | Codex | Security audits, nightly deep audit, Abaddon red team |
+| `basher` | Nehemiah | Claude Sonnet | Bash scripts, system tasks, automation |
+| `solomon` | Solomon | Claude Sonnet | Judgment calls, analysis, structured decision-making |
+| `creative` | Selah | Claude Sonnet | Creative work, content, video pipeline (AmericanFireside) |
 
 **Dispatch rules:**
-- Research/writing/analysis → Ezra
-- Code/scripts/builds → Bezzy
-- Orchestration, judgment calls, anything external → Enoch (main)
+- Deep research / dossiers → Berean
+- Writing / drafts / guides → Ezra
+- Code / builds / scripts → Bezzy
+- Security audits → Gideon (runs on schedule, rarely dispatched manually)
+- System/bash tasks → Nehemiah
+- Structured analysis / judgment → Solomon
+- Content / creative → Selah
+- Orchestration, external comms, anything sensitive → Enoch (main)
 - Files < 3 → single deep agent. Files > 5 → parallel agents.
 - Working memory covers >80%? → skip agent, use what you have.
 - Dependency-sort work packages before parallel spawn.
@@ -66,7 +76,7 @@ All research, dossiers, briefings, and reference docs → `~/Documents/Brain/Res
 - Add YAML frontmatter: tags, date, source
 - Create People notes → `~/Documents/Brain/Personal Memories/Enoch/People/`
 - Workspace `research/` is staging only — always mirror to Obsidian on completion
-- Applies to every agent (Ezra, Bezzy, main). No exceptions.
+- Applies to every agent. No exceptions.
 
 ## Heartbeats
 - Follow `HEARTBEAT.md` strictly
