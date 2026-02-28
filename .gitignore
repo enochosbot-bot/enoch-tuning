@@ -114,3 +114,4 @@ tmp/*.webp
 # Nested repos — tracked separately, not ingested here
 research/openplanter-repo/
 openclaw-supercharge/
+openclaw-supercharge/
