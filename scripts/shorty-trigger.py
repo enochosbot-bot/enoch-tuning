@@ -119,47 +119,104 @@ def send_ack(input_value: str) -> None:
 
 
 def run_clip_pipeline(input_value: str) -> int:
+    """Process video to clips (transcribe, cut, caption, format) WITHOUT uploading.
+    Output goes to shorty/review/ for Deacon QC."""
+    
+    pipeline_script = Path(__file__).resolve().parent / "content-pipeline" / "pipeline.sh"
+    review_dir = Path.home() / ".openclaw" / "agents" / "creative" / "workspace" / "shorty" / "review"
+    
+    if not pipeline_script.exists():
+        print(f"Pipeline script not found: {pipeline_script}")
+        return 1
+    
+    review_dir.mkdir(parents=True, exist_ok=True)
+    
     cmd = [
-        "python3",
-        str(Path(__file__).resolve().parent / "content-factory.py"),
+        "bash",
+        str(pipeline_script),
         input_value,
-        "--mode",
-        "clip",
-        "--platforms",
-        "yt,x",
+        "--output-dir",
+        str(review_dir),
     ]
     p = subprocess.run(cmd, check=False, capture_output=True, text=True)
     if p.returncode != 0:
         print(p.stdout)
         print(p.stderr)
-    return p.returncode
+        return 1
+    
+    # Alert that clips are ready for review (don't upload)
+    send_review_alert(input_value, str(review_dir))
+    return 0
+
+
+def send_review_alert(source: str, review_dir: str) -> None:
+    """Notify Deacon that clips are ready for QC."""
+    msg = f"📹 Clips ready for review: {source}\nCheck: {review_dir}"
+    subprocess.run(
+        [
+            "openclaw",
+            "message",
+            "send",
+            "--channel",
+            "telegram",
+            "--target",
+            "5801636051",  # Deacon's chat
+            "--message",
+            msg,
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+
+def check_inbox_for_new_videos() -> Optional[str]:
+    """Watch shorty/inbox/ for new .mp4/.webm files and return the first one found."""
+    inbox_dir = Path.home() / ".openclaw" / "agents" / "creative" / "workspace" / "shorty" / "inbox"
+    if not inbox_dir.exists():
+        return None
+    
+    # Look for video files that haven't been processed yet
+    for video_file in sorted(inbox_dir.glob("*.mp4")) + sorted(inbox_dir.glob("*.webm")):
+        if video_file.is_file():
+            return str(video_file)
+    return None
 
 
 def main() -> int:
     state = load_state()
     last_id = int(state.get("last_processed_message_id", 0))
 
+    # Check for new YouTube links in topic session
     new_id, trigger_input, note = latest_unprocessed_trigger(last_id)
+    if trigger_input:
+        send_ack(trigger_input)
+        rc = run_clip_pipeline(trigger_input)
+        state["last_processed_message_id"] = new_id
+        save_state(state)
+        if rc == 0:
+            print(f"Processed message {new_id}: {trigger_input}")
+            return 0
+        print(f"Processing failed for message {new_id}: {trigger_input}")
+        return rc
+    
     if note:
         print(note)
-        return 0
-
-    if not trigger_input:
-        print("No new URL/video trigger found.")
-        return 0
-
-    send_ack(trigger_input)
-    rc = run_clip_pipeline(trigger_input)
-
-    # Only advance state after attempted processing to avoid duplicate storms.
-    state["last_processed_message_id"] = new_id
-    save_state(state)
-
-    if rc == 0:
-        print(f"Processed message {new_id}: {trigger_input}")
-        return 0
-    print(f"Processing failed for message {new_id}: {trigger_input}")
-    return rc
+    
+    # Also check inbox for new videos dropped by other agents
+    inbox_video = check_inbox_for_new_videos()
+    if inbox_video:
+        print(f"Found video in inbox: {inbox_video}")
+        send_ack(inbox_video)
+        rc = run_clip_pipeline(inbox_video)
+        if rc == 0:
+            print(f"Processed inbox video: {inbox_video}")
+            return 0
+        print(f"Processing failed for inbox video: {inbox_video}")
+        return rc
+    
+    print("No new triggers found (no topic messages, no inbox videos).")
+    return 0
 
 
 if __name__ == "__main__":
