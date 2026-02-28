@@ -36,6 +36,13 @@ Three operational rules baked into AGENTS.md:
 2. **Plan Phase Prerequisite Validation** — validate [ENV], [DEPS], [STATE], [FILES] before executing multi-step plans. Produce file-edit manifests for complex tasks.
 3. **Breadth vs Depth Parallelization** — files <3 = depth (single agent), >5 = breadth (parallel). Skip agent if working memory covers >80%. Dependency-sort work packages.
 
+## Status Report Protocol (hard rule)
+When Deacon asks for status on active jobs, check ALL THREE:
+1. `ops/in-flight.md` Active table
+2. `shared-context/checkpoints/session-checkpoint.md`
+3. `subagents list` + `sessions_list`
+If checkpoint shows `status: active` but not in in-flight.md → flag as orphaned/stalled. Never declare "board clear" without checking all sources.
+
 ## Lessons Learned
 - Config patches defer during active replies — always restart after
 - ngrok must be run fully detached (nohup + disown)
