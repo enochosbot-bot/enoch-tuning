@@ -59,6 +59,12 @@ tmp/*.pdf
 # Photos (managed externally)
 deacon-photos/
 
+# Raw bookmark data — personal
+research/x-bookmarks*.json
+
+# Personal HTML guides
+tmp/*.html
+
 # Personal media — never commit to public repo
 deacon-headshot*
 bookshelf_frame_*
