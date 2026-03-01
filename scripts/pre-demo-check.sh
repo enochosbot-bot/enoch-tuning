@@ -84,7 +84,7 @@ main() {
 
   check_gateway
   check_url "Redtail CRM" "https://redtailtechnology.com"
-  check_url "eMoney" "https://app.emaplan.com"
+  check_url "eMoney" "https://wealth.emaplan.com"
   check_disk
   check_m365_manual
 
