@@ -13,10 +13,10 @@ Output: ~/Desktop/vidgen-output/{timestamp}/
 Logs:   scripts/vidgen-log.jsonl
 
 API Key setup (one-time, per platform):
-  security add-generic-password -s KLING_API_KEY    -w "ACCESS_KEY_ID:SECRET_KEY" -a $USER
-  security add-generic-password -s MINIMAX_API_KEY  -w "your-key"                 -a $USER
-  security add-generic-password -s LUMA_API_KEY     -w "your-key"                 -a $USER
-  security add-generic-password -s RUNWAY_API_KEY   -w "your-key"                 -a $USER
+  security add-generic-password -s KLING_API_KEY    -w "ACCESS_KEY_ID:SECRET_KEY" -a <username>
+  security add-generic-password -s MINIMAX_API_KEY  -w "your-key"                 -a <username>
+  security add-generic-password -s LUMA_API_KEY     -w "your-key"                 -a <username>
+  security add-generic-password -s RUNWAY_API_KEY   -w "your-key"                 -a <username>
   (ANTHROPIC_API_KEY already in Keychain for Claude optimizer)
 
 Install deps:
@@ -413,7 +413,7 @@ async def run(args):
     if not active:
         print("\n❌ No platforms available. Set API keys in Keychain:\n")
         for p in requested:
-            print(f"  security add-generic-password -s {p.upper()+'_API_KEY'} -w YOUR_KEY -a $USER")
+            print(f"  security add-generic-password -s {p.upper()+'_API_KEY'} -w YOUR_KEY -a <username>")
         sys.exit(1)
 
     # Setup output dir
@@ -510,7 +510,7 @@ Examples:
   python3 scripts/vidgen.py "warrior culture clip" --platforms minimax
 
 Add an API key:
-  security add-generic-password -s KLING_API_KEY -w "AK_ID:SECRET" -a $USER
+  security add-generic-password -s KLING_API_KEY -w "AK_ID:SECRET" -a <username>
 """,
     )
     parser.add_argument("prompt",       help="Plain English description of the video you want")

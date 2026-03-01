@@ -161,3 +161,75 @@ _Newest entries at bottom. Rotate weekly (move to ops/ledger-archive/)._
 [2026-02-28 11:03] [watchdog] [observer] [🧹 pruned] — 374KB. Last: no summary
 [2026-02-28 11:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
 [2026-02-28 10:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.0s)
+[2026-02-28 12:03] [watchdog] [main] [🧹 pruned] — 280KB. Last: no summary
+[2026-02-28 12:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 12:01] [cron] [observer] [✅ done] — Session Auto-Prune (4.1s)
+[2026-02-28 12:00] [cron] [main] [✅ done] — Mission Pulse — Idle Self-Direction (9.1s)
+[2026-02-28 11:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.7s)
+[2026-02-28 13:03] [watchdog] [main] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 13:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 13:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 12:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.8s)
+[2026-02-28 12:30] [cron] [observer] [✅ done] — qmd Reindex — Memory Freshness (5.0s)
+[2026-02-28 14:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 14:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 14:01] [cron] [observer] [✅ done] — Session Auto-Prune (4.3s)
+[2026-02-28 13:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.4s)
+[2026-02-28 15:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 15:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 15:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 15:03] [watchdog] [researcher] [🧹 pruned] — 391KB. Last: no summary
+[2026-02-28 15:00] [cron] [main] [✅ done] — Mission Pulse — Idle Self-Direction (13.6s)
+[2026-02-28 14:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.5s)
+[2026-02-28 16:03] [watchdog] [creative] [🧹 pruned] — 216KB. Last: no summary
+[2026-02-28 16:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 16:03] [watchdog] [researcher] [🧹 pruned] — 288KB. Last: no summary
+[2026-02-28 16:01] [cron] [observer] [✅ done] — Session Auto-Prune (4.4s)
+[2026-02-28 16:00] [cron] [basher] [✅ done] — Nehemiah — Output QA Sweep (8.0s)
+[2026-02-28 15:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.5s)
+[2026-02-28 17:03] [watchdog] [main] [🧹 pruned] — 374KB. Last: no summary
+[2026-02-28 17:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 17:03] [watchdog] [researcher] [🧹 pruned] — 279KB. Last: no summary
+[2026-02-28 16:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.9s)
+[2026-02-28 16:30] [cron] [observer] [✅ done] — qmd Reindex — Memory Freshness (5.8s)
+[2026-02-28 18:03] [watchdog] [coder] [🧹 pruned] — 278KB. Last: no summary
+[2026-02-28 18:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 18:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 18:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 18:01] [cron] [observer] [✅ done] — Session Auto-Prune (6.3s)
+[2026-02-28 18:00] [cron] [main] [✅ done] — Mission Pulse — Idle Self-Direction (61.6s)
+[2026-02-28 17:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.7s)
+[2026-02-28 19:03] [watchdog] [basher] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 19:03] [watchdog] [main] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 19:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 19:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 19:03] [watchdog] [researcher] [🧹 pruned] — 278KB. Last: no summary
+[2026-02-28 18:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.8s)
+[2026-02-28 20:03] [watchdog] [creative] [🧹 pruned] — 296KB. Last: no summary
+[2026-02-28 20:03] [watchdog] [creative] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 20:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 20:03] [watchdog] [researcher] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 20:01] [cron] [observer] [✅ done] — Session Auto-Prune (6.9s)
+[2026-02-28 19:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.5s)
+[2026-02-28 21:03] [watchdog] [main] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 21:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 21:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 21:00] [cron] [main] [✅ done] — Mission Pulse — Idle Self-Direction (133.9s)
+[2026-02-28 20:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.1s)
+[2026-02-28 20:30] [cron] [observer] [✅ done] — qmd Reindex — Memory Freshness (5.7s)
+[2026-02-28 22:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 22:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 22:01] [cron] [observer] [✅ done] — Session Auto-Prune (5.1s)
+[2026-02-28 22:00] [cron] [basher] [✅ done] — Nehemiah — Output QA Sweep (71.9s)
+[2026-02-28 21:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.4s)
+[2026-02-28 23:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 23:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 23:03] [watchdog] [solomon] [🧹 pruned] — 9h old. Last: no summary
+[2026-02-28 22:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (5.8s)
+[2026-03-01 00:03] [watchdog] [creative] [🧹 pruned] — 554KB. Last: no summary
+[2026-03-01 00:03] [watchdog] [main] [🧹 pruned] — 9h old. Last: no summary
+[2026-03-01 00:03] [watchdog] [main] [🧹 pruned] — 661KB. Last: no summary
+[2026-03-01 00:03] [watchdog] [observer] [🧹 pruned] — 9h old. Last: no summary
+[2026-03-01 00:03] [watchdog] [solomon] [🧹 pruned] — 331KB. Last: no summary
+[2026-03-01 00:01] [cron] [observer] [✅ done] — Session Auto-Prune (5.9s)
+[2026-02-28 23:03] [cron] [observer] [✅ done] — Session Watchdog — Bloat Cleanup (6.1s)

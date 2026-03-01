@@ -24,6 +24,14 @@
     "openclaw-antigravity-sync": {
       "version": "1.0.0",
       "installedAt": 1772297125358
+    },
+    "searxng-local-search": {
+      "version": "0.1.0",
+      "installedAt": 1772314741924
+    },
+    "searxng": {
+      "version": "1.0.3",
+      "installedAt": 1772314762474
     }
   }
 }

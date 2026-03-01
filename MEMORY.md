@@ -114,6 +114,13 @@ If checkpoint shows `status: active` but not in in-flight.md → flag as orphane
 - Obsidian canon rule: all research → `~/Documents/Brain/Research/` — hard rule in SOUL.md + AGENTS.md
 - Dispatch loop: ops/in-flight.md tracker + mandatory Telegram close ping on every agent brief
 
+## Research Sources
+- **@officialrnintel (X)** — Deacon's go-to for military/intel news, strike tracking, conflict updates. First stop for any geopolitical research.
+
+## Credit / Finance
+- **Wells Fargo CLI line:** 1-800-642-4720 — call once card arrives to request credit limit increase
+- Current WF card limit: $2k (approved Feb 2026, want higher for balance transfer + Mac Studio)
+
 ## Preferences
 - No email crons (Gmail digest, auto-sorter) — Deacon doesn't use them
 - CFP is paused until Deacon explicitly re-prioritizes it.
