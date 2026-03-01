@@ -5,14 +5,6 @@ _Enoch maintains this file. Updated at dispatch and on close._
 
 | Task | Agent | Dispatched | Expected Close | Notes |
 |------|-------|------------|----------------|-------|
-| BL-022: pre-demo env verification script | Bezzy | 2026-03-01T03:00Z | 2026-03-01T04:00Z | P0 — demo safety net before early March |
-
-
-
-
-
-
-
 
 ## Completed (last 7 days)
 
